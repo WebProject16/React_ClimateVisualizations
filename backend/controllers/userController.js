@@ -52,8 +52,6 @@ const login = (req, res) => {
             return res.status(500).json({status:"error",msg:err})
         }
 
-        console.log(result[0]);
-
         if(!result[0]){
             return res.status(400).send({status:"error", msg:"Invalid username or password"})
         }

@@ -15,6 +15,9 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(helmet());
 
+const auth = require('./misc/auth');
+app.use(auth);
+
 const userRouter = require('./routes/userRoutes')
 
 app.use((err, req, res, next) => {
