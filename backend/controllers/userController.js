@@ -1,5 +1,5 @@
 const userModel = require('../models/userModel.js');
-const { json } = require("express/lib/response");
+const bcrypt = require('bcrypt');
 
 const hello = (req, res) => {
     let s = userModel.hello()
@@ -30,7 +30,7 @@ const register = (req, res) => {
 
             return res.status(500).send(err)
         }else{
-            return res.status(200).json(dbRes)
+            return res.status(200).json({msg:'Successfully registered new user'})
         }
     })
     

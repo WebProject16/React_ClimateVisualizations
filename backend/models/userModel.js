@@ -1,5 +1,6 @@
 const db = require("../misc/db")
 const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const user = {
     hello: async function(){
@@ -11,10 +12,9 @@ const user = {
         }
     },
     register: async function(username, password, callback){
-        //db.query(`SELECT * FROM users WHERE username=?`,username,(err,result) => {
-        //TODO: bcrypt
+        const encryptedPWD = await bcrypt.hash(password, saltRounds)
         try{
-        db.query(`INSERT INTO users (username, password) VALUES (? , ?)`, [username, password],callback)
+        db.query(`INSERT INTO users (username, password) VALUES (? , ?)`, [username, encryptedPWD],callback)
         }catch(err){
             return err
         }     
