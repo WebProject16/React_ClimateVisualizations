@@ -23,12 +23,17 @@ const register = (req, res) => {
             msg:'passwords must match'
         })
     }
-    let respo = userModel.register(password, username)
-    if(respo === "Success"){
-        return res.json({msg:"succesfully created user"})
-    }else{
-        return respo
-    }
+    userModel.register(username, password, function(err, dbRes){
+        if(err){
+            if(err.errno == 1062)
+                return res.status(400).send({msg:'username already taken'}) 
+
+            return res.status(500).send(err)
+        }else{
+            return res.status(200).json(dbRes)
+        }
+    })
+    
 }
 
 

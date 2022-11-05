@@ -10,19 +10,17 @@ const user = {
         return "Hello word asd";
         }
     },
-    register: async function(password, username){
-        db.query(`SELECT * FROM users WHERE username=??`,username,(err,result) => {
-            if(err){return err}
-            if(result.length !== 0){return "Username already taken"}
-            bcrypt.hash(password, 8).then((hash)=> {
-                let cryptPw = hash
-            }).then(()=>{
-                db.query(`INSERT INTO users (username, password) VALUES (? , ?)`, [username, password],(err,result)=>{
-                    if(err){return err}
-                })
-            })
-            return "Success"
-        })
+    register: async function(username, password, callback){
+        //db.query(`SELECT * FROM users WHERE username=?`,username,(err,result) => {
+        //TODO: bcrypt
+        try{
+        db.query(`INSERT INTO users (username, password) VALUES (? , ?)`, [username, password],callback)
+        }catch(err){
+            return err
+        }     
+    },
+    getUserByName: async function(username, callback){
+        db.query(`SELECT * FROM users WHERE username=?`,[username],callback)
     }
 }
 
