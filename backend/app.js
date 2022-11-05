@@ -16,16 +16,21 @@ app.use(morgan("dev"));
 app.use(helmet());
 
 const auth = require('./misc/auth');
-app.use(auth);
 
 const userRouter = require('./routes/userRoutes')
+const testAuthRouter = require('./routes/testAuthRoutes')
 
 app.use((err, req, res, next) => {
   console.error(err.stack)
   res.status(500).send('Internal server error, check console')
 })
 
+// endpoints that dont need authentication ->
 app.use('/user', userRouter);
+
+app.use(auth);
+// endpoints that need authentication ->
+app.use(testAuthRouter);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)

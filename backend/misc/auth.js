@@ -26,7 +26,7 @@ const auth = (req, res, next) => {
 
         req.id = result.id;
         req.username = result.username;
-        
+
         next();
     })
 }

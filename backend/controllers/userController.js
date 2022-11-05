@@ -9,7 +9,7 @@ const hello = (req, res) => {
 }
 
 const register = (req, res) => {
-    let{username, password,password_rpt}=req.body
+    const {username, password, password_rpt} = req.body
     
     if(!username){
         return res.status(400).send({
@@ -43,13 +43,13 @@ const login = (req, res) => {
     const {username, password} = req.body;
 
     if(!username || !password){
-        return res.status(400).json({status:"error",msg:"One or more fields are needed"})
+        return res.status(400).json({status:"error",msg:"One or more fields are missing"})
     }
 
     userModel.getUserByName(username, (err, result) => {
         if(err){
             console.log(err)
-            return res.status(500).json({status:"error",msg:err})
+            return res.status(500).json({status:"error", msg:err})
         }
 
         if(!result[0]){
@@ -59,7 +59,7 @@ const login = (req, res) => {
         bcrypt.compare(password, result[0].password, (err, correctPassword) => {
             if(err){
                 console.log(err)
-                return res.status(500).json({status:"error",msg:"Error on comparing passwords"})
+                return res.status(500).json({status:"error", msg:"Error on comparing passwords"})
             }
 
             if(!correctPassword){
