@@ -31,9 +31,7 @@ const register = (req, res) => {
             return res.status(500).send(err)
         }else{
             return res.status(200).json({msg:'Successfully registered new user'})
-        }
-    })
-    
+        }})   
 }
 
 
