@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import Navbar from './Components/Navbar.js';
-import Header from './Components/Header.js';
-import Home from './Components/Home.js';
-import Contact from './Components/Contact.js';
-import Create from './Components/Create.js';
-import Login from './Components/Login.js';
-import Footer from './Components/Footer.js';
+import Navbar from './components/Navbar.js';
+import Header from './components/Header.js';
+import Home from './components/Home.js';
+import Contact from './components/Contact.js';
+import Create from './components/Create.js';
+import Login from './components/Login.js';
+import Footer from './components/Footer.js';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
