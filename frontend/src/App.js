@@ -7,6 +7,7 @@ import Contact from './Components/Contact.js';
 import Create from './Components/Create.js';
 import Login from './Components/Login.js';
 import Footer from './Components/Footer.js';
+import Register from './Components/Register';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/Create" element={<Create />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Login" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
         </Routes>
       </div>
       <Footer />
