@@ -13,23 +13,23 @@ const register = (req, res) => {
     
     if(!username){
         return res.status(400).send({
-            msg:'please enter an username'
+            msg:'Please enter an username'
         })
     }
     if(!password || password.length < 5){
         return res.status(400).send({
-            msg:'password must have more than 4 characters'
+            msg:'Password must have more than 4 characters'
         })
     }
     if(!password_rpt || password != password_rpt){
         return res.status(400).send({
-            msg:'passwords must match'
+            msg:'Passwords must match'
         })
     }
     userModel.register(username, password, function(err, dbRes){
         if(err){
             if(err.errno == 1062)
-                return res.status(400).send({msg:'username already taken'}) 
+                return res.status(400).send({msg:'Username already taken'}) 
 
             return res.status(500).send(err)
         }else{
