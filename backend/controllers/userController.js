@@ -5,35 +5,35 @@ const jwt = require("../misc/jwt");
 
 const hello = (req, res) => {
     let s = userModel.hello()
-    res.send(s)
+    res.json(s)
 }
 
 const register = (req, res) => {
     const {username, password, password_rpt} = req.body
     
     if(!username){
-        return res.status(400).send({
+        return res.status(400).json({
             msg:'Please enter an username'
         })
     }
     if(!password || password.length < 5){
-        return res.status(400).send({
+        return res.status(400).json({
             msg:'Password must have more than 4 characters'
         })
     }
     if(!password_rpt || password != password_rpt){
-        return res.status(400).send({
+        return res.status(400).json({
             msg:'Passwords must match'
         })
     }
     userModel.register(username, password, function(err, dbRes){
         if(err){
             if(err.errno == 1062)
-                return res.status(400).send({msg:'Username already taken'}) 
+                return res.status(400).json({msg:'Username already taken'}) 
 
-            return res.status(500).send(err)
+            return res.status(500).json(err)
         }else{
-            return res.status(200).send({msg:'Successfully registered new user'})
+            return res.status(200).json({msg:'Successfully registered new user'})
         }})   
 }
 
@@ -51,7 +51,7 @@ const login = (req, res) => {
         }
 
         if(!result[0]){
-            return res.status(400).send({status:"error", msg:"Invalid username or password"})
+            return res.status(400).json({status:"error", msg:"Invalid username or password"})
         }
 
         bcrypt.compare(password, result[0].password, (err, correctPassword) => {
@@ -61,13 +61,13 @@ const login = (req, res) => {
             }
 
             if(!correctPassword){
-                return res.status(400).send({status:"error", msg:"Invalid username or password"})
+                return res.status(400).json({status:"error", msg:"Invalid username or password"})
             }
 
             jwt.createToken(result[0].userID, result[0].username, (err, token) => {
                 if(err){
                     console.log(err)
-                    return res.status(400).send({status:"error", msg:"Error on creating authorization token"})
+                    return res.status(400).json({status:"error", msg:"Error on creating authorization token"})
                 }
 
                 res.json({status:"success", msg:"Successfully logged in", token:token})
