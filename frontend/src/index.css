@@ -20,3 +20,16 @@ code {
   left: 0;
   padding-left: 10px;
 }
+
+#nav img {
+  min-height: 3vh;
+  max-height: 5vh;
+}
+
+.navbar-brand {
+  font-size: 1.5em;
+}
+
+#navbarToggle {
+  float: right;
+}
