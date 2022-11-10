@@ -16,7 +16,7 @@ const register = (req, res) => {
             msg:'please enter an username'
         })
     }
-    if(!password || password.lenght < 5){
+    if(!password || password.length < 5){
         return res.status(400).send({
             msg:'password must have more than 4 characters'
         })
