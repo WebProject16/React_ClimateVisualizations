@@ -1,6 +1,6 @@
 import React from 'react'
 import {useRef, useState, useEffect} from 'react'
-import {RegisterReq} from '../API/request';
+import {Post} from '../API/request';
 import { Link } from 'react-router-dom';
 
 function Register() {
@@ -28,7 +28,7 @@ function Register() {
             errRef.current.focus();
             return setErrMsg('Please fill all fields!');
         }
-        await RegisterReq("/user/register",{username:user,password:password,password_rpt:password_rpt},
+        await Post("/user/register",{username:user,password:password,password_rpt:password_rpt},
         function(res){
             if(res.status === 200){
                 setSuccess(true)
@@ -60,7 +60,7 @@ function Register() {
                 <input type="password" className="form-control" id="password" autoComplete="off" onChange={(e) => setPassword(e.target.value)} value={password} />
             </div>
             <div className='form-group'>
-                <label htmlFor='password_rpt'>Please reapeat above password:</label>
+                <label htmlFor='password_rpt'>Please repeat the password:</label>
                 <input type="password" id="password_rpt" className="form-control" autoComplete="off" onChange={(e) => setPassword_rpt(e.target.value)} value={password_rpt} />
             </div>
             <br />

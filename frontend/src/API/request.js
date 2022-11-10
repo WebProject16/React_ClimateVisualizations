@@ -5,12 +5,8 @@ const host = config.server.host;
 const  port = config.server.port;
 const BASE_URL = "http://" + host + port
 
-export async function RegisterReq(path,body,cb){
-    axios.post(BASE_URL + path, {
-        username: body.username,
-        password: body.password,
-        password_rpt: body.password_rpt
-    })
+export async function Post(path,body,cb){
+    axios.post(BASE_URL + path, body)
     .then((res) => {
         cb(res)
     }).catch(err => {
