@@ -1,6 +1,6 @@
 import React from 'react'
 import {useRef, useState, useEffect} from 'react'
-import {Post} from '../API/request'
+import { Post } from '../API/request'
 import { useNavigate } from 'react-router-dom'
 
 function Login() {
@@ -42,7 +42,8 @@ function Login() {
                 errRef.current.focus();
                 setErrMsg(res.response.data.msg)
             }
-        }) 
+        })
+        
     }
     
     return (
