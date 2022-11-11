@@ -28,6 +28,9 @@ export default function Navbar() {
                         <Link className="nav-link" to="/contact">Contact</Link>
                     </li>
 
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/profile">Profile</Link>
+                    </li>
                     
                     <li className="nav-item">
                         <Link className="nav-link" to="/login">Login</Link>

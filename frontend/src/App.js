@@ -8,6 +8,7 @@ import Create from './Components/Create.js';
 import Login from './Components/Login.js';
 import Footer from './Components/Footer.js';
 import Register from './Components/Register';
+import Profile from './Components/Profile';
 import { Routes, Route } from 'react-router-dom';
 import RouteGuard from './Components/RouteGuard';
 
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Create" element={<RouteGuard> <Create /> </RouteGuard>} />
+          <Route path="/Profile" element={<RouteGuard> <Profile/> </RouteGuard>} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
