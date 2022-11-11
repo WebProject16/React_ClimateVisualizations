@@ -36,7 +36,6 @@ function Register() {
                 setErrMsg(res.response.data.msg)
             }
         })
-        
     }
     
     return (

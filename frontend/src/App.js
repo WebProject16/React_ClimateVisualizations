@@ -9,6 +9,7 @@ import Login from './Components/Login.js';
 import Footer from './Components/Footer.js';
 import Register from './Components/Register';
 import { Routes, Route } from 'react-router-dom';
+import RouteGuard from './Components/RouteGuard';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       <div className='container'>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Create" element={<Create />} />
+          <Route path="/Create" element={<RouteGuard> <Create /> </RouteGuard>} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
