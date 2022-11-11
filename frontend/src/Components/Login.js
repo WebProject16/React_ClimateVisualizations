@@ -1,20 +1,25 @@
 import React from 'react'
 import {useRef, useState, useEffect} from 'react'
-import {Post} from '../API/request';
-import { Link } from 'react-router-dom';
-
+import {Post} from '../API/request'
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
     const userRef = useRef();
     const errRef = useRef();
-
+    const nav = useNavigate();
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false)
 
+    function Logout() {
+        localStorage.removeItem('token')
+        nav('/');
+    }
+
     useEffect(() => {
       userRef.current.focus();
+      //setSuccess(true)
     }, [])
     
     useEffect(() => {
@@ -46,7 +51,7 @@ function Login() {
             {success ? (
                     <div className="alert alert-success p-4 pb-2">
                         <h2 className="alert-heading">Successfully logged in!</h2>
-                        <h4>TODO: link to logging out</h4>
+                        <button type="submit" className="btn btn-warning" onClick={Logout}>Log out</button>
                     </div>
                 ) : (           
             <form onSubmit={handleSubmit}>

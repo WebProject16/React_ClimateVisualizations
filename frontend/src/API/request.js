@@ -14,3 +14,12 @@ export async function Post(path,body,cb){
     })
 }
 
+export async function AuthPost(path,body,token,cb){
+    axios.post(BASE_URL + path, body)
+    .then((res) => {
+        cb(res)
+    }).catch(err => {
+        cb(err)
+    })
+}
+
