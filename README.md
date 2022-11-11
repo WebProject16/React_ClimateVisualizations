@@ -2,7 +2,9 @@
 
 Technologies: Node.js, React and Javascript
 
-npm run devRun for nodemon
+### `npm run devRun` in /backend/ for nodemon
+
+### `npm start` in /frontend/ for react 
 
 Creators: Helmi Laakkonen, Lasse Suomela, Miko Prykäri and Pinja Kemppainen
 
