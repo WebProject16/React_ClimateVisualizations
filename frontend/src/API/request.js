@@ -16,7 +16,6 @@ export async function Post(path,body,cb){
 
 export async function AuthGet(path,cb){
     const token = "Bearer " + localStorage.getItem('token')
-    console.log(localStorage.getItem('token'))
     axios.get(BASE_URL + path, {
         headers: {
             'Authorization':token
