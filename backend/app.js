@@ -19,6 +19,7 @@ const auth = require('./misc/auth');
 
 const userRouter = require('./routes/userRoutes')
 const testAuthRouter = require('./routes/testAuthRoutes')
+const chartRouter = require('./routes/chartRoutes')
 
 app.use((err, req, res, next) => {
   console.error(err.stack)
@@ -27,6 +28,7 @@ app.use((err, req, res, next) => {
 
 // endpoints that dont need authentication ->
 app.use('/user', userRouter);
+app.use('/charts', chartRouter);
 
 app.use(auth);
 // endpoints that need authentication ->
