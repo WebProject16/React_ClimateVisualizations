@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Navbar() {
+    console.log("nav bar loaded")
     return (
         <nav id="nav" className="navbar-expand-md navbar-dark bg-dark mb-4 pt-2 pb-1">
           <div className="container-fluid">
@@ -28,7 +29,6 @@ export default function Navbar() {
                         <Link className="nav-link" to="/contact">Contact</Link>
                     </li>
 
-                    
                     <li className="nav-item">
                         <Link className="nav-link" to="/login">Login</Link>
                     </li>

@@ -13,8 +13,7 @@ function Login() {
     const [success, setSuccess] = useState(false)
 
     function Logout() {
-        localStorage.removeItem('token')
-        nav('/');
+        nav('/logout');
     }
 
     useEffect(() => {

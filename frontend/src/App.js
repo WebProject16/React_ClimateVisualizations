@@ -10,8 +10,10 @@ import Footer from './Components/Footer.js';
 import Register from './Components/Register';
 import { Routes, Route } from 'react-router-dom';
 import RouteGuard from './Components/RouteGuard';
+import LogoutHandler from './Components/LogoutHandler';
 
 function App() {
+
   return (
     <>
       <Navbar />
@@ -19,6 +21,7 @@ function App() {
       <div className='container'>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/logout" element={<LogoutHandler />} />
           <Route path="/Create" element={<RouteGuard> <Create /> </RouteGuard>} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Login" element={<Login />} />
