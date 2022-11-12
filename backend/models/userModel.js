@@ -21,6 +21,9 @@ const user = {
     },
     getUserByName: async function(username, callback){
         db.query(`SELECT * FROM users WHERE username=?`,[username],callback)
+    },
+    deleteUserByName: async function(username, callback){
+        db.query(`DELETE FROM users WHERE username=?`,[username], callback)
     }
 }
 

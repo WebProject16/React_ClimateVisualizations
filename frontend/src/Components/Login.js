@@ -10,16 +10,23 @@ function Login() {
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false)
+    const [success, setSuccess] = useState(false);
 
     function Logout() {
-        localStorage.removeItem('token')
+        localStorage.removeItem('token');
         nav('/');
     }
 
     useEffect(() => {
-      userRef.current.focus();
-      //setSuccess(true)
+        userRef.current.focus();
+
+        if(localStorage.getItem('token') === null) {
+            setSuccess(false);
+        }
+        else {
+            setSuccess(true);
+        }
+
     }, [])
     
     useEffect(() => {
