@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import {useRef, useState, useEffect} from 'react'
 import { Post } from '../API/request'
-import { LogContext } from './LoginContext'
+import { LoginContext } from './LoginContext'
 
 function Login() {
     const userRef = useRef();
@@ -10,7 +10,7 @@ function Login() {
     const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
-    const { setLogState } = useContext(LogContext);
+    const { setLogState } = useContext(LoginContext);
 
     useEffect(() => {
         userRef.current.focus();

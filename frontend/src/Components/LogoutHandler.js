@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { LogContext } from './LoginContext'
+import { LoginContext } from './LoginContext'
 
 export const LogoutHandler = () => {
     const nav = useNavigate()
-    const { setLogState } = useContext(LogContext)
+    const { setLogState } = useContext(LoginContext)
 
     function Logout(){
         localStorage.removeItem('token')

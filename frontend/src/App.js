@@ -11,7 +11,7 @@ import Register from './Components/Register';
 import { Routes, Route } from 'react-router-dom';
 import RouteGuard from './Components/RouteGuard';
 import { LogoutHandler} from './Components/LogoutHandler';
-import { LogContext } from './Components/LoginContext'
+import { LoginContext } from './Components/LoginContext'
 
 
 function App() {
@@ -31,19 +31,19 @@ function App() {
 
   return (
     <>
-      <LogContext.Provider value={log}>
+      <LoginContext.Provider value={log}>
         <Navbar />
-      </LogContext.Provider>
+      </LoginContext.Provider>
       <Header />
       <div className='container'>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/logout" element={ <LogContext.Provider value={log}>
+          <Route path="/logout" element={ <LoginContext.Provider value={log}>
                                             <LogoutHandler />
-                                          </LogContext.Provider>} />
+                                          </LoginContext.Provider>} />
           <Route path="/Create" element={<RouteGuard> <Create /> </RouteGuard>} />
           <Route path="/Contact" element={<Contact />} />
-          <Route path="/Login" element={<LogContext.Provider value={log}> <Login /> </LogContext.Provider>} />
+          <Route path="/Login" element={<LoginContext.Provider value={log}> <Login /> </LoginContext.Provider>} />
           <Route path="/Register" element={<Register />} />
         </Routes>
       </div>

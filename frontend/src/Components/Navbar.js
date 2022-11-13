@@ -1,24 +1,23 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { LogContext } from './LoginContext';
+import { LoginContext } from './LoginContext';
 
 export default function Navbar() {
-    const { logState } = useContext(LogContext)
+    const { logState } = useContext(LoginContext)
 
     //Elements to render to everyone
     const navItems = [
-    //    {id: 1, route: '/', text: 'Home'},
-        {id: 2, route: '/create', text: 'Create visualizations'},
-        {id: 3, route: '/contact', text: 'Contact'},
+        { route: '/contact', text: 'Contact'},
     ];
 
     //elements to render for authenticated
     if(logState){
-        navItems.push({id: 4, route: '/logout', text: 'Logout'})
+        navItems.push({ route: '/create', text: 'Create visualizations'})
+        navItems.push({ route: '/logout', text: 'Logout'})
     }else{
         //elemements to render for unauthenticated
-        navItems.push({id: 4, route: '/login', text: 'Login'})
-        navItems.push({id: 5, route: '/register', text: 'Register'})
+        navItems.push({ route: '/login', text: 'Login'})
+        navItems.push({ route: '/register', text: 'Register'})
     }
 
     //Visualizations menu drop down, text can be changed to something more descriptive
@@ -33,12 +32,12 @@ export default function Navbar() {
     ]
 
     const visualizations = visualizationData.map((nav) =>
-            <Link key={nav.id} className="dropdown-item" to={nav.route}>{nav.text}</Link>
+            <Link key={nav.route} className="dropdown-item" to={nav.route}>{nav.text}</Link>
     )
     
 
    const items = navItems.map((item)=>
-   <li key={item.id} className="nav-item">
+   <li key={item.route} className="nav-item">
         <Link className="nav-link" to={item.route}>{item.text}</Link>
     </li>
     )
