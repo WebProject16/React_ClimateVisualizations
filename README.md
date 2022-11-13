@@ -2,9 +2,13 @@
 
 Technologies: Node.js, React and Javascript
 
-### `npm run devRun` in /backend/ for nodemon
+### `npm install` in project root, frontend/ and backend/ to install needed dependencies
 
-### `npm start` in /frontend/ for react 
+### `npm run devRun` in backend/ for nodemon
+
+### `npm start` in frontend/ for react 
+
+### `npm run startDev` in project root to start both via npm concurrently
 
 Creators: Helmi Laakkonen, Lasse Suomela, Miko Prykäri and Pinja Kemppainen
 
