@@ -1,21 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {useRef, useState, useEffect} from 'react'
 import { Post } from '../API/request'
-import { useNavigate } from 'react-router-dom'
+import { LoginContext } from './LoginContext'
 
 function Login() {
     const userRef = useRef();
     const errRef = useRef();
-    const nav = useNavigate();
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
-
-    function Logout() {
-        localStorage.removeItem('token');
-        nav('/');
-    }
+    const { setIsLoggedIn } = useContext(LoginContext);
 
     useEffect(() => {
         userRef.current.focus();
@@ -44,6 +39,7 @@ function Login() {
         (res) => {
             if(res.status === 200){
                 localStorage.setItem('token', res.data.token)
+                setIsLoggedIn(true)
                 setSuccess(true)
             }else if(res.response.status === 400){
                 errRef.current.focus();
@@ -55,11 +51,10 @@ function Login() {
     
     return (
         <div className="d-flex justify-content-center">
-
             {success ? (
                     <div className="alert alert-success p-4 pb-2">
                         <h2 className="alert-heading">Successfully logged in!</h2>
-                        <button type="submit" className="btn btn-warning" onClick={Logout}>Log out</button>
+                        <h4>You can now access most features</h4>
                     </div>
                 ) : (           
             <form onSubmit={handleSubmit}>
