@@ -4,7 +4,6 @@ import { LogContext } from './LoginContext';
 
 export default function Navbar() {
     const { logState } = useContext(LogContext)
-    console.log("nav bar loaded", logState)
 
     //Elements to render to everyone
     const navItems = [
@@ -12,7 +11,7 @@ export default function Navbar() {
         {id: 2, route: '/create', text: 'Create visualizations'},
         {id: 3, route: '/contact', text: 'Contact'},
     ];
-    
+
     //elements to render for authenticated
     if(logState){
         navItems.push({id: 4, route: '/logout', text: 'Logout'})

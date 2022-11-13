@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import './App.css';
 import Navbar from './Components/Navbar.js';
 import Header from './Components/Header.js';
@@ -16,6 +16,16 @@ import { LogContext } from './Components/LoginContext'
 
 function App() {
   const [ logState, setLogState ] = useState(false);
+
+  useEffect(() => {
+    if(localStorage.getItem('token') === null){
+      setLogState(false);
+    }else{
+      setLogState(true);
+    }
+  }, [])
+  
+
 
   const log = useMemo(() => ({ logState, setLogState }), [logState, setLogState]);
 
