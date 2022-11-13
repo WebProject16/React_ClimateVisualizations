@@ -10,7 +10,7 @@ function Login() {
     const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
-    const { setLogState } = useContext(LoginContext);
+    const { setIsLoggedIn } = useContext(LoginContext);
 
     useEffect(() => {
         userRef.current.focus();
@@ -39,7 +39,7 @@ function Login() {
         (res) => {
             if(res.status === 200){
                 localStorage.setItem('token', res.data.token)
-                setLogState(true)
+                setIsLoggedIn(true)
                 setSuccess(true)
             }else if(res.response.status === 400){
                 errRef.current.focus();

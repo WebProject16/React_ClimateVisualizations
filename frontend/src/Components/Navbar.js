@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { LoginContext } from './LoginContext';
 
 export default function Navbar() {
-    const { logState } = useContext(LoginContext)
+    const { isLoggedIn } = useContext(LoginContext)
 
     //Elements to render to everyone
     const navItems = [
@@ -11,7 +11,7 @@ export default function Navbar() {
     ];
 
     //elements to render for authenticated
-    if(logState){
+    if(isLoggedIn){
         navItems.push({ route: '/create', text: 'Create visualizations'})
         navItems.push({ route: '/logout', text: 'Logout'})
     }else{
@@ -56,7 +56,7 @@ export default function Navbar() {
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul className="navbar-nav">
                     
-                    <li classname="nav-item dropdown">
+                    <li className="nav-item dropdown">
                         <Link className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-bs-toggle="dropdown">
                             Visualizations
                         </Link>

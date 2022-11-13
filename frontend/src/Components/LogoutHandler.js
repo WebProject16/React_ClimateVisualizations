@@ -4,11 +4,11 @@ import { LoginContext } from './LoginContext'
 
 export const LogoutHandler = () => {
     const nav = useNavigate()
-    const { setLogState } = useContext(LoginContext)
+    const { setIsLoggedIn } = useContext(LoginContext)
 
     function Logout(){
         localStorage.removeItem('token')
-        setLogState(false)
+        setIsLoggedIn(false)
         nav('/')
     }
 

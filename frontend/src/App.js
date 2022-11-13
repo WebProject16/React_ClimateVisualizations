@@ -15,19 +15,19 @@ import { LoginContext } from './Components/LoginContext'
 
 
 function App() {
-  const [ logState, setLogState ] = useState(false);
+  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 
   useEffect(() => {
     if(localStorage.getItem('token') === null){
-      setLogState(false);
+      setIsLoggedIn(false);
     }else{
-      setLogState(true);
+      setIsLoggedIn(true);
     }
   }, [])
   
 
 
-  const log = useMemo(() => ({ logState, setLogState }), [logState, setLogState]);
+  const log = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn, setIsLoggedIn]);
 
   return (
     <>
@@ -38,9 +38,7 @@ function App() {
       <div className='container'>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/logout" element={ <LoginContext.Provider value={log}>
-                                            <LogoutHandler />
-                                          </LoginContext.Provider>} />
+          <Route path="/logout" element={ <LoginContext.Provider value={log}><LogoutHandler /> </LoginContext.Provider>} />
           <Route path="/Create" element={<RouteGuard> <Create /> </RouteGuard>} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Login" element={<LoginContext.Provider value={log}> <Login /> </LoginContext.Provider>} />
