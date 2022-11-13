@@ -7,7 +7,6 @@ export const LogoutHandler = () => {
     const { setLogState } = useContext(LogContext)
 
     function Logout(){
-        console.log("logouthandler")
         localStorage.removeItem('token')
         setLogState(false)
         nav('/')
