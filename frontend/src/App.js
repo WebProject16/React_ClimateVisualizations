@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import './App.css';
 import Navbar from './Components/Navbar.js';
 import Header from './Components/Header.js';
@@ -10,21 +10,30 @@ import Footer from './Components/Footer.js';
 import Register from './Components/Register';
 import { Routes, Route } from 'react-router-dom';
 import RouteGuard from './Components/RouteGuard';
-import LogoutHandler from './Components/LogoutHandler';
+import { LogoutHandler} from './Components/LogoutHandler';
+import { LogContext } from './Components/LoginContext'
+
 
 function App() {
+  const [ logState, setLogState ] = useState(false);
+
+  const log = useMemo(() => ({ logState, setLogState }), [logState, setLogState]);
 
   return (
     <>
-      <Navbar />
+      <LogContext.Provider value={log}>
+        <Navbar />
+      </LogContext.Provider>
       <Header />
       <div className='container'>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/logout" element={<LogoutHandler />} />
+          <Route path="/logout" element={ <LogContext.Provider value={log}>
+                                            <LogoutHandler />
+                                          </LogContext.Provider>} />
           <Route path="/Create" element={<RouteGuard> <Create /> </RouteGuard>} />
           <Route path="/Contact" element={<Contact />} />
-          <Route path="/Login" element={<Login />} />
+          <Route path="/Login" element={<LogContext.Provider value={log}> <Login /> </LogContext.Provider>} />
           <Route path="/Register" element={<Register />} />
         </Routes>
       </div>

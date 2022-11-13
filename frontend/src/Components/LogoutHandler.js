@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Navbar from './Navbar'
+import { LogContext } from './LoginContext'
 
-const LogoutHandler = () => {
+export const LogoutHandler = () => {
     const nav = useNavigate()
+    const { setLogState } = useContext(LogContext)
 
     function Logout(){
         console.log("logouthandler")
         localStorage.removeItem('token')
+        setLogState(false)
         nav('/')
-        return <Navbar isLoggedIn={false}/>
     }
 
   return (
@@ -20,4 +21,3 @@ const LogoutHandler = () => {
   )
 }
 
-export default LogoutHandler
