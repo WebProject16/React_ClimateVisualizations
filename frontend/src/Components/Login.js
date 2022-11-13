@@ -9,12 +9,19 @@ function Login() {
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false)
-    const { setLogState } = useContext(LogContext)
+    const [success, setSuccess] = useState(false);
+    const { setLogState } = useContext(LogContext);
 
     useEffect(() => {
-      userRef.current.focus();
-      //setSuccess(true)
+        userRef.current.focus();
+
+        if(localStorage.getItem('token') === null) {
+            setSuccess(false);
+        }
+        else {
+            setSuccess(true);
+        }
+
     }, [])
     
     useEffect(() => {
