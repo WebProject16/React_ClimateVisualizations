@@ -7,7 +7,7 @@ export default function Navbar() {
 
     //Elements to render to everyone
     const navItems = [
-        {id: 1, route: '/', text: 'Home'},
+    //    {id: 1, route: '/', text: 'Home'},
         {id: 2, route: '/create', text: 'Create visualizations'},
         {id: 3, route: '/contact', text: 'Contact'},
     ];
@@ -21,8 +21,24 @@ export default function Navbar() {
         navItems.push({id: 5, route: '/register', text: 'Register'})
     }
 
-    const items = navItems.map((item)=>
-    <li key={item.id} className="nav-item">
+    //Visualizations menu drop down, text can be changed to something more descriptive
+    const visualizationData = [
+        {route: "/v1", text:"v1 page"},
+        {route: "/v2", text:"v2 page"},
+        {route: "/v3", text:"v3 page"},
+        {route: "/v4", text:"v4 page"},
+        {route: "/v5", text:"v5 page"},
+        {route: "/v6", text:"v6 page"},
+        {route: "/v7", text:"v7 page"}
+    ]
+
+    const visualizations = visualizationData.map((nav) =>
+            <Link key={nav.id} className="dropdown-item" to={nav.route}>{nav.text}</Link>
+    )
+    
+
+   const items = navItems.map((item)=>
+   <li key={item.id} className="nav-item">
         <Link className="nav-link" to={item.route}>{item.text}</Link>
     </li>
     )
@@ -31,15 +47,25 @@ export default function Navbar() {
         <nav id="nav" className="navbar-expand-md navbar-dark bg-dark mb-4 pt-2 pb-1">
           <div className="container-fluid">
 
-            <img src="icon.png" className="m-2" alt="Logo."/>
+            <Link to="/"><img src="icon.png" className="m-2" alt="Logo."/></Link> 
             <Link className="navbar-brand" to='/'>Global climate</Link>
 
-            <button className="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" id="navbarToggle">
+            <button className="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" id="navbarToggle">
             <span className="navbar-toggler-icon"></span>
             </button>
 
-            <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">  
+            <div className="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul className="navbar-nav">
+                    
+                    <li classname="nav-item dropdown">
+                        <Link className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-bs-toggle="dropdown">
+                            Visualizations
+                        </Link>
+
+                        <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            {visualizations}
+                        </div>
+                    </li>  
                     {items}
                 </ul>
             </div>
