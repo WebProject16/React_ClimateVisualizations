@@ -27,21 +27,21 @@ function App() {
   
 
 
-  const log = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn, setIsLoggedIn]);
+  const isLogged = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn, setIsLoggedIn]);
 
   return (
     <>
-      <LoginContext.Provider value={log}>
+      <LoginContext.Provider value={isLogged}>
         <Navbar />
       </LoginContext.Provider>
       <Header />
       <div className='container'>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/logout" element={ <LoginContext.Provider value={log}><LogoutHandler /> </LoginContext.Provider>} />
+          <Route path="/logout" element={ <LoginContext.Provider value={isLogged}><LogoutHandler /> </LoginContext.Provider>} />
           <Route path="/Create" element={<RouteGuard> <Create /> </RouteGuard>} />
           <Route path="/Contact" element={<Contact />} />
-          <Route path="/Login" element={<LoginContext.Provider value={log}> <Login /> </LoginContext.Provider>} />
+          <Route path="/Login" element={<LoginContext.Provider value={isLogged}> <Login /> </LoginContext.Provider>} />
           <Route path="/Register" element={<Register />} />
         </Routes>
       </div>
