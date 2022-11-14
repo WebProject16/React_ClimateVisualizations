@@ -27,6 +27,12 @@ const register = (req, res) => {
             msg:'Passwords must match'
         })
     }
+
+    if(username.length > 30){
+        return res.status(400).json({
+            msg:'Username is too long'
+        })
+    }
     userModel.register(username, password, function(err, dbRes){
         if(err){
             if(err.errno == 1062)
