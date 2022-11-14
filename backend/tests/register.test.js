@@ -8,7 +8,7 @@ describe("Test user register", () => {
     test("Registering user with username and password", done => {
 
         const body = {
-            username: crypto.randomUUID(),
+            username: crypto.randomUUID().substring(0, 30),
             password: "newUser",
             password_rpt: "newUser"
         }
@@ -18,6 +18,7 @@ describe("Test user register", () => {
             .send(body)
             .then(response => {
                 expect(response.statusCode).toBe(200);
+                expect(response.body).toHaveProperty("msg")
                 done();
             });
     });
@@ -35,6 +36,7 @@ describe("Test user register", () => {
             .send(body)
             .then(response => {
                 expect(response.statusCode).toBe(400);
+                expect(response.body).toHaveProperty("msg")
                 done();
             });
     });
@@ -51,6 +53,43 @@ describe("Test user register", () => {
             .send(body)
             .then(response => {
                 expect(response.statusCode).toBe(400);
+                expect(response.body).toHaveProperty("msg")
+                done();
+            });
+    });
+
+    test("Registering user, with too short password", done => {
+
+        const body = {
+            username: "newUser12312223",
+            password: "ne",
+            password_rpt: "ne"
+        }
+
+        request(app)
+            .post("/user/register")
+            .send(body)
+            .then(response => {
+                expect(response.statusCode).toBe(400);
+                expect(response.body).toHaveProperty("msg")
+                done();
+            });
+    });
+
+    test("Registering user, with too long username", done => {
+
+        const body = {
+            username: "137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05",
+            password: "137a8df3-1a09-4ef0-8532-65f616b84e05",
+            password_rpt: "137a8df3-1a09-4ef0-8532-65f616b84e05"
+        }
+
+        request(app)
+            .post("/user/register")
+            .send(body)
+            .then(response => {
+                expect(response.statusCode).toBe(400);
+                expect(response.body).toHaveProperty("msg")
                 done();
             });
     });
