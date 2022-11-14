@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import './App.css';
 import Navbar from './Components/Navbar.js';
 import Header from './Components/Header.js';
@@ -11,19 +11,39 @@ import Register from './Components/Register';
 import Profile from './Components/Profile';
 import { Routes, Route } from 'react-router-dom';
 import RouteGuard from './Components/RouteGuard';
+import { LogoutHandler} from './Components/LogoutHandler';
+import { LoginContext } from './Components/LoginContext'
+
 
 function App() {
+  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+
+  useEffect(() => {
+    if(localStorage.getItem('token') === null){
+      setIsLoggedIn(false);
+    }else{
+      setIsLoggedIn(true);
+    }
+  }, [])
+  
+
+
+  const isLogged = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn, setIsLoggedIn]);
+
   return (
     <>
-      <Navbar />
+      <LoginContext.Provider value={isLogged}>
+        <Navbar />
+      </LoginContext.Provider>
       <Header />
       <div className='container'>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/logout" element={ <LoginContext.Provider value={isLogged}><LogoutHandler /> </LoginContext.Provider>} />
           <Route path="/Create" element={<RouteGuard> <Create /> </RouteGuard>} />
           <Route path="/Profile" element={<RouteGuard> <Profile/> </RouteGuard>} />
           <Route path="/Contact" element={<Contact />} />
-          <Route path="/Login" element={<Login />} />
+          <Route path="/Login" element={<LoginContext.Provider value={isLogged}> <Login /> </LoginContext.Provider>} />
           <Route path="/Register" element={<Register />} />
         </Routes>
       </div>
