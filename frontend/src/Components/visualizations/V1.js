@@ -8,21 +8,18 @@ export default function V1() {
 
   const [chartData, setChartData] = useState([]);
   const [ isAnnual, setIsAnnual ] = useState(false);
+  const [ hasV2, setHasV2 ] = useState(false)
 
   useEffect(() => {
     Get("/charts/v1", (res) => {
         if(res.status === 200){
             setChartData(res.data)
-            setIsAnnual(false)
+            setIsAnnual(true)
         }else{
             console.log("Error: ", res)
         }
     })
   }, [])
-
-  useEffect(() => {
-
-  }, [isAnnual])
 
   let dataMonth = {
     datasets: [
@@ -90,7 +87,7 @@ export default function V1() {
     datasets: [
       {
         label: "Global temperature anomaly",
-        data: chartData.data,
+        data: chartData.dataYear,
         borderColor: "rgb(0, 0, 0)",
         backgroundColor: "rgb(0, 0, 0)",
         parsing: {
@@ -101,7 +98,7 @@ export default function V1() {
       },
       {
         label:"Southern temperature anomaly",
-        data: chartData.data,
+        data: chartData.dataYear,
         borderColor: "rgb(0, 255, 0)",
         backgroundColor: "rgb(0, 255, 0)",
         parsing: {
@@ -112,7 +109,7 @@ export default function V1() {
       },
       {
         label:"Northern temperature anomaly",
-        data: chartData.data,
+        data: chartData.dataYear,
         borderColor: "rgb(0, 0, 255)",
         backgroundColor: "rgb(0, 0, 255)",
         parsing: {
@@ -156,20 +153,29 @@ export default function V1() {
     }
   }
 
+  const ToggleV2 = () => {
+    
+  }
+
 
   return (
-    <div className="container-fluid">
-      {isAnnual ? (
-        <>
-          <Line options={optionsYear} data={dataYear} />
-          <button onClick={ToggleAnnual} className="btn btn-outline-primary mt-4">Show monthly data</button>
-        </>
-      ) : (
-        <>
-          <Line options={optionsMonth} data={dataMonth} />
-          <button onClick={ToggleAnnual} className="btn btn-outline-primary mt-4">Show annual data</button>
-        </>
-      )}
-    </div>
+    <>
+      <div className="container-fluid">
+        {isAnnual ? (
+          <>
+            <Line options={optionsYear} data={dataYear} />
+            <button onClick={ToggleAnnual} className="btn btn-outline-primary mt-4">Show monthly data</button>
+          </>
+        ) : (
+          <>
+            <Line options={optionsMonth} data={dataMonth} />
+            <button onClick={ToggleAnnual} className="btn btn-outline-primary mt-4">Show annual data</button>
+          </>
+        )}
+      </div>
+      <div className="container-fluid">
+        <button className="btn btn-outline-primary mt-2" onClick={ToggleV2}>Toggle v2</button>
+      </div>
+    </>
   );
 }
