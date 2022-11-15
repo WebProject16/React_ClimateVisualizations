@@ -1,9 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { AuthGet } from '../API/request'
 
 const RouteGuard = ({children}) => {
 
-    if(localStorage.getItem('token') === null){
+    const [tokenIsValid, setTokenIsValid] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    // check before token validity before loading the actual component 
+    useEffect(() => {
+
+        AuthGet("/user/token", (res) => {
+            if(res.status === 200){
+                setTokenIsValid(true)
+            }else if(res.response.status === 400){
+                setTokenIsValid(false)
+            }
+      
+            setIsLoaded(true)
+        })
+    }, [])
+
+    if(!tokenIsValid && isLoaded){
         return (
             <div className="alert alert-danger p-4 pb-2">
                 <h2 className="alert-heading">You need to login to view this page</h2>
@@ -14,9 +32,10 @@ const RouteGuard = ({children}) => {
                 </h4>
             </div>
         )
-    }
+    }else if(tokenIsValid && isLoaded){
 
-  return children
+        return children
+    }
 }
 
 export default RouteGuard

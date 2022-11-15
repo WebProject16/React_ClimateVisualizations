@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import {useRef, useState, useEffect} from 'react'
-import { Post } from '../API/request'
+import { Post, AuthGet } from '../API/request'
 import { LoginContext } from './LoginContext'
 
 function Login() {
@@ -15,13 +15,13 @@ function Login() {
     useEffect(() => {
         userRef.current.focus();
 
-        if(localStorage.getItem('token') === null) {
-            setSuccess(false);
-        }
-        else {
-            setSuccess(true);
-        }
-
+        AuthGet("/user/token", (res) => {
+            if(res.status === 200){
+              setSuccess(true)
+            }else if(res.response.status === 400){
+              setSuccess(false)
+            }
+        })
     }, [])
     
     useEffect(() => {
