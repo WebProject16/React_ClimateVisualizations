@@ -33,7 +33,7 @@ export default function Navbar() {
     ]
 
     const visualizations = visualizationData.map((nav) =>
-            <Link key={nav.route} className="dropdown-item" to={nav.route}>{nav.text}</Link>
+        <Link key={nav.route} className="dropdown-item" to={nav.route}>{nav.text}</Link>
     )
     
 

@@ -13,21 +13,23 @@ import { Routes, Route } from 'react-router-dom';
 import RouteGuard from './Components/RouteGuard';
 import { LogoutHandler} from './Components/LogoutHandler';
 import { LoginContext } from './Components/LoginContext'
+import { AuthGet } from './API/request'
 
 
 function App() {
   const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 
+  // check if token is valid and user is logged in before showing btns in nav bar
   useEffect(() => {
-    if(localStorage.getItem('token') === null){
-      setIsLoggedIn(false);
-    }else{
-      setIsLoggedIn(true);
-    }
+    AuthGet("/user/token", (res) => {
+      if(res.status === 200){
+        setIsLoggedIn(true)
+      }else if(res.response.status === 400){
+        setIsLoggedIn(false)
+      }
+  })
   }, [])
   
-
-
   const isLogged = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn, setIsLoggedIn]);
 
   return (
