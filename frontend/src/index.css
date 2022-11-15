@@ -13,12 +13,13 @@ code {
 }
 
 .footer-bot{
-  position: absolute;
+  position: static;
   width: 100%;
   min-height: 70px;
   bottom: 10px;
   left: 0;
   padding-left: 10px;
+  margin-top: 2em;
 }
 
 #nav img {
