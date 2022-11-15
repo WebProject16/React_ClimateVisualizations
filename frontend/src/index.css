@@ -24,3 +24,10 @@ code {
 #navbarToggle {
   float: right;
 }
+
+.main-footer {
+  padding-top: 3em;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}

@@ -33,21 +33,23 @@ function App() {
   const isLogged = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn, setIsLoggedIn]);
 
   return (
-    <div className='layout'>
-      <LoginContext.Provider value={isLogged}>
-        <Navbar />
-      </LoginContext.Provider>
-      <Header />
-      <div className='container'>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/logout" element={ <LoginContext.Provider value={isLogged}><LogoutHandler /> </LoginContext.Provider>} />
-          <Route path="/Create" element={<RouteGuard> <Create /> </RouteGuard>} />
-          <Route path="/Profile" element={<RouteGuard> <Profile/> </RouteGuard>} />
-          <Route path="/Contact" element={<Contact />} />
-          <Route path="/Login" element={<LoginContext.Provider value={isLogged}> <Login /> </LoginContext.Provider>} />
-          <Route path="/Register" element={<Register />} />
-        </Routes>
+    <div className='page-container'>
+      <div className='content'>
+        <LoginContext.Provider value={isLogged}>
+          <Navbar />
+        </LoginContext.Provider>
+        <Header />
+        <div className='container'>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/logout" element={ <LoginContext.Provider value={isLogged}><LogoutHandler /> </LoginContext.Provider>} />
+            <Route path="/Create" element={<RouteGuard> <Create /> </RouteGuard>} />
+            <Route path="/Profile" element={<RouteGuard> <Profile/> </RouteGuard>} />
+            <Route path="/Contact" element={<Contact />} />
+            <Route path="/Login" element={<LoginContext.Provider value={isLogged}> <Login /> </LoginContext.Provider>} />
+            <Route path="/Register" element={<Register />} />
+          </Routes>
+        </div>
       </div>
       <Footer />
       </div>
