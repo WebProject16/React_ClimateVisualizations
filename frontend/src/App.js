@@ -31,7 +31,7 @@ function App() {
   const isLogged = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn, setIsLoggedIn]);
 
   return (
-    <>
+    <div className='layout'>
       <LoginContext.Provider value={isLogged}>
         <Navbar />
       </LoginContext.Provider>
@@ -48,7 +48,7 @@ function App() {
         </Routes>
       </div>
       <Footer />
-      </>
+      </div>
   );
 }
 
