@@ -1,5 +1,5 @@
 import {Delete} from '../API/request';
-import { useState,  useEffect } from 'react';
+import React, { useState,  useEffect } from 'react';
 
 export default function Profile() {
 
@@ -10,7 +10,7 @@ export default function Profile() {
     
 
     const DelProfile = async () => {
-        await Delete ("/somePath", 
+        await Delete ("/user/deleteUser", 
         (res) => {
             console.log(res.request.status)
         })
