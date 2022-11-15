@@ -126,9 +126,14 @@ const deleteUser = (req, res) => {
 
 }
 
+const checkToken = (req, res) => {
+    res.json({status:"success",msg:"Token is valid"})
+}
+
 module.exports = {
     hello,
     register,
     login,
-    deleteUser
+    deleteUser,
+    checkToken
 }
