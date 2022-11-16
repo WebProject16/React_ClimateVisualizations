@@ -104,9 +104,20 @@ export default function V1() {
     <>
       <div className="container-fluid">
         <Line data={data} options={options} alt="Anomaly data chart"/>
-        <button onClick={() => setIsAnnual(!isAnnual)} className="btn btn-outline-primary mt-4">{isAnnual ? "Show monthly data" : "Show yearly data"}</button>
-      </div>
         <button onClick={() => setV2IsVisible(!v2IsVisible)} className="btn btn-outline-primary mt-4">{v2IsVisible ? "Hide northern temp reconstruction" : "Show northern temp reconstruction"}</button>
+      </div>
+      <div className="container-fluid">
+        <button onClick={() => setIsAnnual(!isAnnual)} className="btn btn-outline-primary mt-2">{isAnnual ? "Show monthly data" : "Show yearly data"}</button>
+      </div>
+      <div className="card mt-4" style={{width: "24rem"}}>
+        <div className="card-body">
+          <h5 className="card-title">Data description</h5>
+          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h6 className="card-subtitle mt-2 text-muted">Sources:</h6>
+          <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" className="card-link">Met Office Hadley Centre</a>
+          <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005" target="_blank" className="card-link">Stockholm University</a>
+        </div>
+      </div>
     </>
   );
 }
