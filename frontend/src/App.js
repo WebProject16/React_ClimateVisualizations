@@ -8,6 +8,7 @@ import Create from './Components/Create.js';
 import Login from './Components/Login.js';
 import Footer from './Components/Footer.js';
 import Register from './Components/Register';
+import V1 from './Components/visualizations/V1';
 import { Routes, Route } from 'react-router-dom';
 import RouteGuard from './Components/RouteGuard';
 import { LogoutHandler} from './Components/LogoutHandler';
@@ -45,6 +46,7 @@ function App() {
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Login" element={<LoginContext.Provider value={isLogged}> <Login /> </LoginContext.Provider>} />
           <Route path="/Register" element={<Register />} />
+          <Route path="/v1" element={<V1 />} />
         </Routes>
       </div>
       <Footer />

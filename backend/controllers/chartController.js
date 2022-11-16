@@ -13,7 +13,8 @@ const v1 = (req, res) => {
             return res.status(500).json({status:"error", msg:"No data found in V1 table"})
         }
 
-        res.json({status:"success", data: data})
+
+        res.status(200).json({dataYear: data[0], dataMonth: data[1], dataV2: data[2]})
     })
 }
 
