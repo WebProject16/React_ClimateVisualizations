@@ -27,6 +27,12 @@ const register = (req, res) => {
             msg:'Passwords must match'
         })
     }
+
+    if(username.length > 30){
+        return res.status(400).json({
+            msg:'Username is too long'
+        })
+    }
     userModel.register(username, password, function(err, dbRes){
         if(err){
             if(err.errno == 1062)
@@ -120,9 +126,14 @@ const deleteUser = (req, res) => {
 
 }
 
+const checkToken = (req, res) => {
+    res.json({status:"success",msg:"Token is valid"})
+}
+
 module.exports = {
     hello,
     register,
     login,
-    deleteUser
+    deleteUser,
+    checkToken
 }

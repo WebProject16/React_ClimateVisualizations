@@ -2,7 +2,6 @@ const express = require('express')
 require('dotenv').config()
 
 const app = express()
-const port = process.env.PORT || 8080;
 
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -18,6 +17,7 @@ app.use(helmet());
 const auth = require('./misc/auth');
 
 const userRouter = require('./routes/userRoutes')
+const userAuthRouter = require('./routes/userAuthRoutes')
 const testAuthRouter = require('./routes/testAuthRoutes')
 const chartRouter = require('./routes/chartRoutes')
 
@@ -32,8 +32,7 @@ app.use('/charts', chartRouter);
 
 app.use(auth);
 // endpoints that need authentication ->
+app.use('/user', userAuthRouter);
 app.use(testAuthRouter);
 
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`)
-})
+module.exports = app;
