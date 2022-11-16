@@ -15,6 +15,7 @@ export default function V1() {
         if(res.status === 200){
             setChartData(res.data)
             setIsAnnual(true)
+            setHasV2(true)
         }else{
             console.log("Error: ", res)
         }
@@ -153,8 +154,37 @@ export default function V1() {
     }
   }
 
+  dataMonth.datasets.push({
+    label: "Norther hemisphere reconstruction",
+    data: chartData.dataV2,
+    borderColor: "rgba(255, 0, 0,0.3)",
+    backgroundColor: "rgba(255, 0, 0,0.3)",
+    parsing: {
+      xAxisKey: "year",
+      yAxisKey: "T",
+    },
+    pointRadius: 0,
+  })
+  dataYear.datasets.push({
+    label: "Norther hemisphere reconstruction",
+    data: chartData.dataV2,
+    borderColor: "rgba(255, 0, 0,0.3)",
+    backgroundColor: "rgba(255, 0, 0,0.3)",
+    borderWidth: 7,
+    parsing: {
+      xAxisKey: "year",
+      yAxisKey: "T",
+    },
+    pointRadius: 1,
+  })
+
   const ToggleV2 = () => {
-    
+    if(hasV2){
+      
+      console.log(dataMonth)
+    }else{
+      console.log(dataMonth)
+    }
   }
 
 
