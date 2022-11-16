@@ -5,41 +5,45 @@ import { Get } from "../../API/request";
 import "chartjs-adapter-luxon";
 
 export default function V1() {
+  
+  const [dataYear, setDataYear] = useState([]);
+  const [dataMonth, setDataMonth] = useState([]);
+  const [dataV2, setDataV2 ] = useState([]);
 
-  const [chartData, setChartData] = useState([]);
-  const [ isAnnual, setIsAnnual ] = useState(false);
-  const [ hasV2, setHasV2 ] = useState(false)
+  const [v2IsVisible, setV2IsVisible] = useState([]);
+  const [isAnnual, setIsAnnual] = useState(true);
 
   useEffect(() => {
-    Get("/charts/v1", (res) => {
-        if(res.status === 200){
-            setChartData(res.data)
-            setIsAnnual(true)
-            setHasV2(true)
-        }else{
-            console.log("Error: ", res)
-        }
+    Get("/charts/v1", (res) => 
+    {
+      if(res.status === 200){
+        setDataV2(res.data.dataV2)
+        setDataYear(res.data.dataYear)
+        setDataMonth(res.data.dataMonth)
+      }else{
+        console.log("Error: ", res)
+      }
     })
   }, [])
 
-  let dataMonth = {
+  const data = {
     datasets: [
       {
-        label: "Global temperature anomaly",
-        data: chartData.dataMonth,
-        borderColor: "rgb(0, 0, 0)",
-        backgroundColor: "rgb(0, 0, 0)",
+        label: "Northern temperature anomaly",
+        data: isAnnual ? dataYear : dataMonth,
+        borderColor: "rgb(50, 80, 200)",
+        backgroundColor: "rgb(50, 80, 200)",
         parsing: {
           xAxisKey: "year",
-          yAxisKey: "global_anomaly",
+          yAxisKey: "northern_anomaly",
         },
         pointRadius: 1,
       },
       {
-        label:"Southern temperature anomaly",
-        data: chartData.dataMonth,
-        borderColor: "rgb(0, 255, 0)",
-        backgroundColor: "rgb(0, 255, 0)",
+        label: "Southern temperature anomaly",
+        data: isAnnual ? dataYear : dataMonth,
+        borderColor: "rgb(230, 150, 15)",
+        backgroundColor: "rgb(230, 150, 15)",
         parsing: {
           xAxisKey: "year",
           yAxisKey: "southern_anomaly",
@@ -47,50 +51,10 @@ export default function V1() {
         pointRadius: 1,
       },
       {
-        label:"Northern temperature anomaly",
-        data: chartData.dataMonth,
-        borderColor: "rgb(0, 0, 255)",
-        backgroundColor: "rgb(0, 0, 255)",
-        parsing: {
-          xAxisKey: "year",
-          yAxisKey: "northern_anomaly",
-        },
-        pointRadius: 1,
-      }
-    ],
-  };
-
-  let optionsMonth = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "Temperature anomalies",
-      },
-    },
-    scales: {
-        x: {
-          type: "time",
-          time:{
-            unit:"month",
-          }
-        },
-        yAxis: {
-          type: "linear",
-        },
-      },
-  };
-
-  let dataYear = {
-    datasets: [
-      {
         label: "Global temperature anomaly",
-        data: chartData.dataYear,
-        borderColor: "rgb(0, 0, 0)",
-        backgroundColor: "rgb(0, 0, 0)",
+        data: isAnnual ? dataYear : dataMonth,
+        borderColor: "rgb(50, 150, 100)",
+        backgroundColor: "rgb(50, 150, 100)",
         parsing: {
           xAxisKey: "year",
           yAxisKey: "global_anomaly",
@@ -98,31 +62,21 @@ export default function V1() {
         pointRadius: 1,
       },
       {
-        label:"Southern temperature anomaly",
-        data: chartData.dataYear,
-        borderColor: "rgb(0, 255, 0)",
-        backgroundColor: "rgb(0, 255, 0)",
+        label:v2IsVisible ? "Northern temperature reconstruction" : "",
+        data: dataV2,
+        borderColor: v2IsVisible ?  "rgb(100, 0, 0)" : "rgba(0,0,0,0)",
+        backgroundColor: v2IsVisible ?  "rgb(100, 0, 0)" : "rgba(0,0,0,0)",
         parsing: {
           xAxisKey: "year",
-          yAxisKey: "southern_anomaly",
-        },
-        pointRadius: 1,
-      },
-      {
-        label:"Northern temperature anomaly",
-        data: chartData.dataYear,
-        borderColor: "rgb(0, 0, 255)",
-        backgroundColor: "rgb(0, 0, 255)",
-        parsing: {
-          xAxisKey: "year",
-          yAxisKey: "northern_anomaly",
+          yAxisKey: "T",
         },
         pointRadius: 1,
       }
-    ],
-  };
+    ]
+  }
 
-  let optionsYear = {
+  const options =
+  {
     responsive: true,
     plugins: {
       legend: {
@@ -130,81 +84,39 @@ export default function V1() {
       },
       title: {
         display: true,
-        text: "Temperature anomalies",
+        text: "Temperature anomalies " + (isAnnual ? "(annual)" : "(month)"),
       },
     },
     scales: {
-        x: {
-          type: "time",
-          time:{
-            unit:"year",
-          }
-        },
-        yAxis: {
-          type: "linear",
-        },
+      x: {
+        type: "time",
+        time:{
+          unit: isAnnual ? "year" : "month",
+        }
       },
-  };
-
-  const ToggleAnnual = () => {
-    if(isAnnual){
-      setIsAnnual(false)
-    }else{
-      setIsAnnual(true);
-    }
-  }
-
-  dataMonth.datasets.push({
-    label: "Norther hemisphere reconstruction",
-    data: chartData.dataV2,
-    borderColor: "rgba(255, 0, 0,0.3)",
-    backgroundColor: "rgba(255, 0, 0,0.3)",
-    parsing: {
-      xAxisKey: "year",
-      yAxisKey: "T",
+      yAxis: {
+        type: "linear",
+      },
     },
-    pointRadius: 0,
-  })
-  dataYear.datasets.push({
-    label: "Norther hemisphere reconstruction",
-    data: chartData.dataV2,
-    borderColor: "rgba(255, 0, 0,0.3)",
-    backgroundColor: "rgba(255, 0, 0,0.3)",
-    borderWidth: 7,
-    parsing: {
-      xAxisKey: "year",
-      yAxisKey: "T",
-    },
-    pointRadius: 1,
-  })
-
-  const ToggleV2 = () => {
-    if(hasV2){
-      
-      console.log(dataMonth)
-    }else{
-      console.log(dataMonth)
-    }
   }
-
 
   return (
     <>
       <div className="container-fluid">
-        {isAnnual ? (
-          <>
-            <Line options={optionsYear} data={dataYear} />
-            <button onClick={ToggleAnnual} className="btn btn-outline-primary mt-4">Show monthly data</button>
-          </>
-        ) : (
-          <>
-            <Line options={optionsMonth} data={dataMonth} />
-            <button onClick={ToggleAnnual} className="btn btn-outline-primary mt-4">Show annual data</button>
-          </>
-        )}
+        <Line data={data} options={options} alt="Anomaly data chart"/>
+        <button onClick={() => setV2IsVisible(!v2IsVisible)} className="btn btn-outline-primary mt-4">{v2IsVisible ? "Hide northern temp reconstruction" : "Show northern temp reconstruction"}</button>
       </div>
       <div className="container-fluid">
-        <button className="btn btn-outline-primary mt-2" onClick={ToggleV2}>Toggle v2</button>
+        <button onClick={() => setIsAnnual(!isAnnual)} className="btn btn-outline-primary mt-2">{isAnnual ? "Show monthly data" : "Show yearly data"}</button>
+      </div>
+      <div className="card mt-4" style={{width: "24rem"}}>
+        <div className="card-body">
+          <h5 className="card-title">Data description</h5>
+          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h6 className="card-subtitle mt-2 text-muted">Sources:</h6>
+          <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" className="card-link">Met Office Hadley Centre</a>
+          <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005" target="_blank" className="card-link">Stockholm University</a>
+        </div>
       </div>
     </>
   );

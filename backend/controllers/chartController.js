@@ -14,7 +14,7 @@ const v1 = (req, res) => {
         }
 
 
-        res.json({status:"success", dataYear: data[0], dataMonth: data[1], dataV2: data[2]})
+        res.status(200).json({dataYear: data[0], dataMonth: data[1], dataV2: data[2]})
     })
 }
 
