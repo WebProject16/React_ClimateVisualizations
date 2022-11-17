@@ -17,34 +17,19 @@ const v1 = (req, res) => {
         res.status(200).json({dataYear: data[0], dataMonth: data[1], dataV2: data[2]})
     })
 }
-const v3_annual = (req, res) => {
+const v3 = (req, res) => {
 
-    chartModel.getV3_annual((err, data) => {
+    chartModel.getV3((err, data) => {
         if(err){
             console.log(err);
-            return res.status(500).json({status:"error", msg:"Error on fetching chart V3_annual data"})
+            return res.status(500).json({status:"error", msg:"Error on fetching chart V3 data"})
         }
 
         if(!data){
-            return res.status(500).json({status:"error", msg:"No data found in V3_annual table"})
+            return res.status(500).json({status:"error", msg:"No data found in V3 table"})
         }
 
-        res.json({status:"success", data: data})
-    })
-}
-const v3_monthly = (req, res) => {
-
-    chartModel.getV3_monthly((err, data) => {
-        if(err){
-            console.log(err);
-            return res.status(500).json({status:"error", msg:"Error on fetching chart V3_monthly data"})
-        }
-
-        if(!data){
-            return res.status(500).json({status:"error", msg:"No data found in V3_monthly table"})
-        }
-
-        res.json({status:"success", data: data})
+        res.status(200).json({dataYear: data[0], dataMonth: data[1]})
     })
 }
 const v4 = (req, res) => {
@@ -59,7 +44,7 @@ const v4 = (req, res) => {
             return res.status(500).json({status:"error", msg:"No data found in V4 table"})
         }
 
-        res.json({status:"success", data: data})
+        res.status(200).json({v4: data[0], v3_annual: data[1]})
     })
 }
 const v5 = (req, res) => {
@@ -74,7 +59,7 @@ const v5 = (req, res) => {
             return res.status(500).json({status:"error", msg:"No data found in V5 table"})
         }
 
-        res.json({status:"success", data: data})
+        res.status(200).json({v5: data[0]})
     })
 }
 const v6 = (req, res) => {
@@ -89,14 +74,13 @@ const v6 = (req, res) => {
             return res.status(500).json({status:"error", msg:"No data found in V6 table"})
         }
 
-        res.json({status:"success", data: data})
+        res.status(200).json({v6: data[0]})
     })
 }
 
 module.exports = {
     v1,
-    v3_annual,
-    v3_monthly,
+    v3,
     v4,
     v5,
     v6
