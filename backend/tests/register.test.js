@@ -92,6 +92,26 @@ describe("Test user register", () => {
                 done();
             });
     });
+
+    test("Registering user, with wrong types", done => {
+
+        const body = {
+            username: 13246579,
+            password: 13246579,
+            password_rpt: 13246579
+        }
+
+        request(app)
+            .post("/user/register")
+            .send(body)
+            .then(response => {
+                console.log(response.body.msg);
+                expect(response.statusCode).toBe(400);
+                expect(response.body).toHaveProperty("msg")
+
+                done();
+            });
+    });
   
 });
 
