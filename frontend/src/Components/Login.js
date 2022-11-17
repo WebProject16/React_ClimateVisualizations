@@ -34,16 +34,9 @@ function Login() {
 
         let validate = checkInput(user, password)
 
-        if(validate !== ""){
+        if(validate !== "")
             return setErrMsg(validate)
-        }
-
-        console.log("continued")
-
-        if(!user || !password) {
-            errRef.current.focus();
-            return setErrMsg('Please fill all fields!');
-        }
+        
         await Post("/user/login",{username:user,password:password},
         (res) => {
             if(res.status === 200){
