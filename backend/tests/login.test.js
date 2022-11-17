@@ -3,13 +3,14 @@ const app = require("../app");
 const crypto = require("crypto");
 
 describe("Test user register", () => {
+    const user = crypto.randomUUID().substring(0, 30);
 
     test("Registering user with username and password", done => {
 
         const body = {
-            username: crypto.randomUUID().substring(0, 30),
-            password: "newUser",
-            password_rpt: "newUser"
+            username: user,
+            password: "password",
+            password_rpt: "password"
         }
 
         request(app)
@@ -22,16 +23,14 @@ describe("Test user register", () => {
             });
     });
 
-    test("Registering user but passwords dont match", done => {
+    test("Loggin in but with no password field", done => {
 
         const body = {
-            username: crypto.randomUUID(),
-            password: "newUser",
-            password_rpt: "passwordsDontmatch"
+            username: user
         }
 
         request(app)
-            .post("/user/register")
+            .post("/user/login")
             .send(body)
             .then(response => {
                 expect(response.statusCode).toBe(400);
@@ -40,16 +39,10 @@ describe("Test user register", () => {
             });
     });
 
-    test("Registering user, but missing password", done => {
-
-        const body = {
-            username: "newUser123123",
-            password: "newUser"
-        }
+    test("Loggin in but with no body", done => {
 
         request(app)
-            .post("/user/register")
-            .send(body)
+            .post("/user/login")
             .then(response => {
                 expect(response.statusCode).toBe(400);
                 expect(response.body).toHaveProperty("msg")
@@ -57,30 +50,30 @@ describe("Test user register", () => {
             });
     });
 
-    test("Registering user, with too short password", done => {
+    test("Loggin in with username and password", done => {
 
         const body = {
-            username: "newUser12312223",
-            password: "ne",
-            password_rpt: "ne"
+            username: user,
+            password: "password"
         }
 
         request(app)
-            .post("/user/register")
+            .post("/user/login")
             .send(body)
             .then(response => {
-                expect(response.statusCode).toBe(400);
+                expect(response.statusCode).toBe(200);
                 expect(response.body).toHaveProperty("msg")
+                expect(response.body).toHaveProperty("token")
                 done();
             });
     });
 
-    test("Registering user, with too long username", done => {
+
+    test("Loggin in with too long username and user that doesnt exist", done => {
 
         const body = {
             username: "137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05137a8df3-1a09-4ef0-8532-65f616b84e05",
-            password: "137a8df3-1a09-4ef0-8532-65f616b84e05",
-            password_rpt: "137a8df3-1a09-4ef0-8532-65f616b84e05"
+            password: "password"
         }
 
         request(app)
@@ -92,7 +85,7 @@ describe("Test user register", () => {
                 done();
             });
     });
-  
+
 });
 
 afterAll(done => {
