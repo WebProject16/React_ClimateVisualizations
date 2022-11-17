@@ -21,7 +21,7 @@
   "main": "app.js",
   "scripts": {
     "devRun": "nodemon server.js",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll --detectOpenHandles"
   },
   "keywords": [],
   "author": "",

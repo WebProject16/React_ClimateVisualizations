@@ -112,7 +112,27 @@ describe("Test user register", () => {
                 done();
             });
     });
-  
+
+    test("Registering user, with illegal characters", done => {
+
+        const body = {
+            username: "❤️ 💔 💌 💕 💞 💓 💗 ",
+            password: "0xffffffffffffffff",
+            password_rpt: "0xffffffffffffffff"
+        }
+
+        request(app)
+            .post("/user/register")
+            .send(body)
+            .then(response => {
+                console.log(response.body.msg);
+                expect(response.statusCode).toBe(400);
+                expect(response.body).toHaveProperty("msg")
+
+                done();
+            });
+    });
+
 });
 
 afterAll(done => {
