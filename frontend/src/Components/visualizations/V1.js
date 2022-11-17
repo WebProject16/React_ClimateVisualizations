@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+// eslint-disable-next-line
 import { Chart } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import { Get } from "../../API/request";
@@ -114,8 +115,8 @@ export default function V1() {
           <h5 className="card-title">Data description</h5>
           <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           <h6 className="card-subtitle mt-2 text-muted">Sources:</h6>
-          <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" className="card-link">Met Office Hadley Centre</a>
-          <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005" target="_blank" className="card-link">Stockholm University</a>
+          <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noreferrer" className="card-link">Met Office Hadley Centre</a>
+          <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005" target="_blank" rel="noreferrer" className="card-link">Stockholm University</a>
         </div>
       </div>
     </>
