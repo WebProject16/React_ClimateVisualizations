@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "chart.js": "^3.9.1",
+    "chartjs-adapter-luxon": "^1.2.0",
     "react": "^18.2.0",
     "react-axios": "^2.0.6",
     "react-chartjs-2": "^4.3.1",
