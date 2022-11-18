@@ -59,7 +59,7 @@ const v5 = (req, res) => {
             return res.status(500).json({status:"error", msg:"No data found in V5 table"})
         }
 
-        res.status(200).json({v5: data[0]})
+        res.status(200).json({v5: data})
     })
 }
 const v6 = (req, res) => {
@@ -74,7 +74,7 @@ const v6 = (req, res) => {
             return res.status(500).json({status:"error", msg:"No data found in V6 table"})
         }
 
-        res.status(200).json({v6: data[0]})
+        res.status(200).json({v6: data})
     })
 }
 
