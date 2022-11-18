@@ -3,7 +3,6 @@ const app = require("../app");
 const crypto = require("crypto");
 
 describe("Test user register", () => {
-    const user = crypto.randomUUID();
 
     test("Registering user with username and password", done => {
 
@@ -93,7 +92,47 @@ describe("Test user register", () => {
                 done();
             });
     });
-  
+
+    test("Registering user, with wrong types", done => {
+
+        const body = {
+            username: 13246579,
+            password: 13246579,
+            password_rpt: 13246579
+        }
+
+        request(app)
+            .post("/user/register")
+            .send(body)
+            .then(response => {
+                console.log(response.body.msg);
+                expect(response.statusCode).toBe(400);
+                expect(response.body).toHaveProperty("msg")
+
+                done();
+            });
+    });
+
+    test("Registering user, with illegal characters", done => {
+
+        const body = {
+            username: "❤️ 💔 💌 💕 💞 💓 💗 ",
+            password: "0xffffffffffffffff",
+            password_rpt: "0xffffffffffffffff"
+        }
+
+        request(app)
+            .post("/user/register")
+            .send(body)
+            .then(response => {
+                console.log(response.body.msg);
+                expect(response.statusCode).toBe(400);
+                expect(response.body).toHaveProperty("msg")
+
+                done();
+            });
+    });
+
 });
 
 afterAll(done => {
