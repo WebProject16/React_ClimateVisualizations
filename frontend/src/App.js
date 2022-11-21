@@ -49,7 +49,7 @@ function App() {
           <Route path="/Login" element={<LoginContext.Provider value={isLogged}> <Login /> </LoginContext.Provider>} />
           <Route path="/Register" element={<Register />} />
           <Route path="/v1" element={<V1 />} />
-          <Route path="/v5" element={<V5 />} />
+          <Route path="/vostok" element={<V5 />} />
         </Routes>
       </div>
       <Footer />

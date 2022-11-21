@@ -27,7 +27,7 @@ export default function V5() {
   const data = {
     datasets: [
       {
-        label: "CO2 concentration (ppm)",
+        label: "CO2 pitoisuus (ppm)",
         data: measurements,
         borderColor: "rgb(50, 80, 200)",
         backgroundColor: "rgb(50, 80, 200)",
@@ -49,14 +49,17 @@ export default function V5() {
       },
       title: {
         display: true,
-        text: "Vostok Ice Core CO2 measurements",
+        text: "Ilmakehän hiilidioksidipitoisuudet perustuen Neuvostoliiton etelämantereen Vostok aseman jääkairauksiin",
+        font: {
+          size:"20"
+        }
       },
     },
     scales: {
       x: {
         title: {
           display: true,
-          text:"Mean age of the air (years BP)"
+          text:"Ilman keski-ikä ennen nykyhetkeä (vuosi)"
         },
         type: "linear",
         min: 2342,
@@ -66,7 +69,7 @@ export default function V5() {
         type: "linear",
         title: {
           display: true,
-          text:"CO2 concentration (ppm)"
+          text:"CO2 pitoisuus (ppm)"
         }
       },
     },
@@ -75,15 +78,17 @@ export default function V5() {
   return (
     <>
       <div className="container-fluid">
-        <Line data={data} options={options} alt="Vostok Ice Core CO2 measurements data chart"/>
+        <Line data={data} options={options} alt="Ilmakehän hiilidioksidipitoisuudet perustuen Neuvostoliiton etelämantereen Vostok aseman jääkairauksiin kuvaaja."/>
       </div>
       <div className="card mt-4" style={{width: "24rem"}}>
         <div className="card-body">
-          <h5 className="card-title">Data description</h5>
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <h6 className="card-subtitle mt-2 text-muted">Sources:</h6>
-          <a href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html" target="_blank" rel="noreferrer" className="card-link">Description</a>
-          <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2" target="_blank" rel="noreferrer" className="card-link">Data source</a>
+          <h5 className="card-title">Kuvaus</h5>
+          <p className="card-text">Viivakaavio esittää ilmakehän hiilidioksidipitoisuuksia perustuen Neuvostoliiton etelämantereen Vostok aseman jääkairauksiin.</p>
+          <p className="card-text">Aikajakso on 417160 - 2342 vuotta ennen nykyhetkeä.</p>
+          
+          <h6 className="card-subtitle mt-2 text-muted">Lähteet:</h6>
+          <a href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html" target="_blank" rel="noreferrer" className="card-link">Tietojoukon kuvaus</a>
+          <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2" target="_blank" rel="noreferrer" className="card-link">Tietojoukko</a>
         </div>
       </div>
     </>

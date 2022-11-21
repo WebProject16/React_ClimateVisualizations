@@ -25,7 +25,7 @@ export default function Navbar() {
         {route: "/v1", text:"v1 page"},
         {route: "/v2", text:"v2 page"},
         {route: "/v3", text:"v3 page"},
-        {route: "/v4", text:"v4 page"},
+        {route: "/vostok", text:"Ilmakehän hiilidioksidipitoisuudet (Vostok asema)"},
         {route: "/v5", text:"v5 page"},
         {route: "/v6", text:"v6 page"},
         {route: "/v7", text:"v7 page"}
