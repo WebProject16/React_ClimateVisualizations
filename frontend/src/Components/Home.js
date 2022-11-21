@@ -29,21 +29,12 @@ export default function Home() {
 
     return (
     <>
-        <div className="card text-center">
-            <div className="card-header">
-                some gray text over here
-            </div>
-                <div className="card-body">
-                    <h5 className="card-title">Welcome!</h5>
-                    <p className="card-text">This text explains our project and all details about it. Components etc and programming languages used. A.K.A our word document.
-                    We could also show pictures down below, showing the visualizations etc. Also we will link our github link down here.</p>
-                    <a href="https://github.com/WebProject16/React_ClimateVisualizations" className="btn btn-primary">Link to our github</a>
-                </div>
-            <div className="card-footer text-muted">
-                jotain
+        <div className="card">
+            <div className="card-body">
+                <h5 className="card-title">Welcome! </h5>
+                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
         </div>
-
         <div className='container mt-4'>
             <div className="row mb-2">
                 {visualizations}

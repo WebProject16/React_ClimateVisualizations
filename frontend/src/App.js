@@ -43,6 +43,7 @@ function App() {
         <div className='container'>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/v1" element={<V1 />}  />
             <Route path="/logout" element={ <LoginContext.Provider value={isLogged}><LogoutHandler /> </LoginContext.Provider>} />
             <Route path="/Create" element={<RouteGuard> <Create /> </RouteGuard>} />
             <Route path="/Profile" element={<RouteGuard> <Profile/> </RouteGuard>} />
