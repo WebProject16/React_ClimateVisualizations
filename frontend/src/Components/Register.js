@@ -37,9 +37,15 @@ function Register() {
         await Post("/user/register",{username:user,password:password,password_rpt:password_rpt},
         (res) => {
             if(res.status === 200){
+                setErrMsg('')
+                setPassword('')
+                setUser('')
                 setSuccess(true)
             }else if(res.response.status === 400){
                 setErrMsg(res.response.data.msg)
+            }else{
+                errRef.current.focus();
+                setErrMsg("Unexpected error, try again later")
             }
         })
     }

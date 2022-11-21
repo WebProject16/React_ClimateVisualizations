@@ -50,6 +50,7 @@ function Login() {
                 errRef.current.focus();
                 setErrMsg(res.response.data.msg)
             }else{
+                errRef.current.focus();
                 setErrMsg("Unexpected error, try again later")
             }
         })

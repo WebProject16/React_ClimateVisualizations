@@ -35,12 +35,18 @@ export default function Profile() {
         {username:username, password:password},
         (res) => {
             if (res.status === 200){
+                setErrMsg('')
+                setPassword('')
+                setUsername('')
                 localStorage.removeItem("token")
                 setIsLoggedIn(false);
                 nav("/")
-            }
-            else {
+            }else if (res.response.status === 400){
+                errRef.current.focus();
                 setErrMsg(res.response.data.msg)
+            }else {
+                errRef.current.focus();
+                setErrMsg("Unexpected error, try again later")
             }
         })
     }
