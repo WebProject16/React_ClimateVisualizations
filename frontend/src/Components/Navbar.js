@@ -13,6 +13,7 @@ export default function Navbar() {
     //elements to render for authenticated
     if(isLoggedIn){
         navItems.push({ route: '/create', text: 'Create visualizations'})
+        navItems.push({route: '/profile', text: 'Profile'})
         navItems.push({ route: '/logout', text: 'Logout'})
     }else{
         //elemements to render for unauthenticated

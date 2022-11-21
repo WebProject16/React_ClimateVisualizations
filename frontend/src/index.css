@@ -12,19 +12,10 @@ code {
     monospace;
 }
 
-.footer-bot{
-  position: absolute;
-  width: 100%;
-  min-height: 70px;
-  bottom: 10px;
-  left: 0;
-  padding-left: 10px;
-}
-
 #nav img {
   min-height: 3vh;
   max-height: 5vh;
-}
+} 
 
 .navbar-brand {
   font-size: 1.5em;
@@ -32,4 +23,11 @@ code {
 
 #navbarToggle {
   float: right;
+}
+
+.main-footer {
+  padding-top: 3em;
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
