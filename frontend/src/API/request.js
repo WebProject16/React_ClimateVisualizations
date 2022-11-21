@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 import config from '../config/default.json';
 
 const host = config.server.host;
@@ -46,3 +46,11 @@ export async function AuthGet(path,cb){
     })
 }
 
+export async function Get(path, cb) {
+    axios.get(BASE_URL + path)
+    .then((res) => {
+        cb(res)
+    }).catch(err => {
+        cb(err)
+    })
+}
