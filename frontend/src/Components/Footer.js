@@ -1,13 +1,16 @@
 import React from 'react';
 
 export default function Footer() {
-    //could make a cooler footer later but using this navbar styling works for now
     return (
-    <div className='container-fluid'>
-        <footer className="footer-bot navbar navbar-expand-lg navbar-light bg-light">
-            <span>Helmi Laakkonen, Pinja Kemppainen, Miko Prykäri ja Lasse Suomela</span>
-        </footer>
-    </div>
-
+        <div className='main-footer'>
+            <div className='container-fluid'>
+                <footer className="position-relative d-flex flex-items-center pb-2 f6 color-fg-muted border-top color-border-muted flex-column-reverse flex-lg-row flex-wrap flex-lg-nowrap mt-6 pt-6">
+                    <div className="text-center p-3">
+                    © 2022 Creators:
+                        <a className="text-dark" href="https://github.com/WebProject16/React_ClimateVisualizations">Helmi Laakkonen, Pinja Kemppainen, Lasse Suomela ja Miko Prykäri </a>
+                    </div>
+                </footer>
+            </div>
+        </div>
     );
 }
