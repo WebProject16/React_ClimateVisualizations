@@ -2,6 +2,7 @@ import {Delete} from '../API/request';
 import React, { useState,  useEffect, useRef, useContext } from 'react';
 import { LoginContext } from './LoginContext'
 import { useNavigate } from 'react-router-dom';
+import { checkInput } from './sanitizeInput';
 
 export default function Profile() {
 
@@ -24,6 +25,12 @@ export default function Profile() {
     
     const DelProfile = async (e) => {
         e.preventDefault()
+
+        let validate = checkInput(username, password)
+
+        if(validate !== "")
+            return setErrMsg(validate)
+
         await Delete ("/user/deleteUser", 
         {username:username, password:password},
         (res) => {
