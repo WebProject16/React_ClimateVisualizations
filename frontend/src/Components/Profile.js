@@ -1,11 +1,15 @@
 import {Delete} from '../API/request';
-import React, { useState,  useEffect } from 'react';
+import React, { useState,  useEffect, useRef, useContext } from 'react';
+import { LoginContext } from './LoginContext'
 import { useNavigate } from 'react-router-dom';
 
 export default function Profile() {
 
+    const { setIsLoggedIn } = useContext(LoginContext)
+    const errRef = useRef();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [errMsg, setErrMsg] = useState('');
     
     const nav = useNavigate()
 
@@ -13,6 +17,10 @@ export default function Profile() {
     useEffect(() => {
       setIsDeleting(false)
     }, [])
+
+    useEffect(() => {
+        setErrMsg('');
+      }, [username, password])
     
     const DelProfile = async (e) => {
         e.preventDefault()
@@ -21,10 +29,11 @@ export default function Profile() {
         (res) => {
             if (res.status === 200){
                 localStorage.removeItem("token")
+                setIsLoggedIn(false);
                 nav("/")
             }
             else {
-                console.log(res)
+                setErrMsg(res.response.data.msg)
             }
         })
     }
@@ -59,7 +68,7 @@ export default function Profile() {
             </div>
                 {isDeleting ? (
                 <form onSubmit={DelProfile}>
-                    <h3>Confirm deleting user</h3>
+                    <h3 className='mt-4'>Confirm deleting user</h3>
                     <div>
                         <label htmlFor="username">Username:</label>
                         <input onChange={(e)=>setUsername(e.target.value)} type="text" id="username" className="form-control"/>
@@ -68,13 +77,14 @@ export default function Profile() {
                         <label htmlFor='password'>Password:</label>
                         <input onChange={(e)=>setPassword(e.target.value)} type="password" id="password" className="form-control"/>                
                     </div>
-                    <button type="submit" className="btn btn-outline-danger">Delete user?</button>
+                    <button type="submit" className="btn btn-outline-danger mt-2">Delete user?</button>
                 </form>
                 ) : (   
                 <div className='pb-2 pt-4'>
-                    <button onClick={()=> setIsDeleting(true)} type="button" className="btn btn-outline-danger">Delete user</button>
+                    <button onClick={()=> setIsDeleting(true)} type="button" className="btn btn-outline-danger mt-2">Delete user</button>
                 </div>
                 ) }
+                <p ref={errRef} className={errMsg ? "alert alert-danger mt-2" : "offscreen"} >{errMsg}</p>
         </div>
     )
 }
