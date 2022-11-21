@@ -8,6 +8,7 @@ import Create from './Components/Create.js';
 import Login from './Components/Login.js';
 import Footer from './Components/Footer.js';
 import Register from './Components/Register';
+import Profile from './Components/Profile'
 import V1 from './Components/visualizations/V1';
 import { Routes, Route } from 'react-router-dom';
 import RouteGuard from './Components/RouteGuard';
