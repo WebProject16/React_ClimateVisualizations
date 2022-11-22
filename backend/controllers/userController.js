@@ -38,7 +38,6 @@ const register = (req, res) => {
     }
 
     if(!validator.isAlphanumeric(username)){
-        console.log("username is not alphanumeric");
 
         return res.status(400).json({
             msg:'Username cannot contain special characters'
@@ -46,7 +45,6 @@ const register = (req, res) => {
     }
 
     if(!validator.isStrongPassword(password, {minLength: 6, minLowercase: 0, minUppercase: 0, minSymbols: 0, minNumbers: 1})){
-        console.log("password is not valid");
 
         return res.status(400).json({
             msg:'Password is not valid'
@@ -122,6 +120,10 @@ const deleteUser = (req, res) => {
 
     if(!username || !password){
         return res.status(400).json({status:"error",msg:"One or more fields are missing"});
+    }
+
+    if(typeof username !== 'string' || typeof password !== 'string'){
+        return res.status(400).json({msg:'Inputs are not valid'})
     }
 
     userModel.getUserByName(username, (err, result) => {
