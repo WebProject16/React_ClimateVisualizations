@@ -53,15 +53,24 @@ const register = (req, res) => {
         })
     }
 
-    userModel.register(username, password, function(err, dbRes){
-        if(err){
-            if(err.errno == 1062)
-                return res.status(400).json({msg:'Username already taken'}) 
+    bcrypt.hash(password, 10, (err, hash) => {
 
-            return res.status(500).json(err)
-        }else{
-            return res.status(200).json({msg:'Successfully registered new user'})
-        }})   
+        if(err){
+            console.log(err);
+            return res.status(500).json({msg:'Error on registering user'}) 
+        }
+
+        userModel.register(username, hash, (err, dbRes) => {
+            if(err){
+                if(err.errno == 1062)
+                    return res.status(400).json({msg:'Username already taken'}) 
+    
+                return res.status(500).json(err)
+            }else{
+                return res.status(200).json({msg:'Successfully registered new user'})
+            }
+        })
+    })
 }
 
 const login = (req, res) => {
