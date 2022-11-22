@@ -7,9 +7,9 @@ describe("Test user register", () => {
     test("Registering user with username and password", done => {
 
         const body = {
-            username: crypto.randomUUID().substring(0, 30),
-            password: "newUser",
-            password_rpt: "newUser"
+            username: crypto.randomUUID().substring(0, 8),
+            password: "newUser1",
+            password_rpt: "newUser1"
         }
 
         request(app)
@@ -43,8 +43,7 @@ describe("Test user register", () => {
     test("Registering user, but missing password", done => {
 
         const body = {
-            username: "newUser123123",
-            password: "newUser"
+            username: "newUser123123"
         }
 
         request(app)

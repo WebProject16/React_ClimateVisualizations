@@ -25,7 +25,7 @@ const register = (req, res) => {
             msg:'Password must have more than 5 characters'
         })
     }
-    if(!password_rpt || password != password_rpt){
+    if(!password_rpt || password !== password_rpt){
         return res.status(400).json({
             msg:'Passwords must match'
         })
@@ -36,6 +36,23 @@ const register = (req, res) => {
             msg:'Username is too long'
         })
     }
+
+    if(!validator.isAlphanumeric(username)){
+        console.log("username is not alphanumeric");
+
+        return res.status(400).json({
+            msg:'Username cannot contain special characters'
+        })
+    }
+
+    if(!validator.isStrongPassword(password, {minLength: 6, minLowercase: 0, minUppercase: 0, minSymbols: 0, minNumbers: 1})){
+        console.log("password is not valid");
+
+        return res.status(400).json({
+            msg:'Password is not valid'
+        })
+    }
+
     userModel.register(username, password, function(err, dbRes){
         if(err){
             if(err.errno == 1062)
