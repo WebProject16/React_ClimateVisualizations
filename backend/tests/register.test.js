@@ -25,7 +25,7 @@ describe("Test user register", () => {
     test("Registering user but passwords dont match", done => {
 
         const body = {
-            username: crypto.randomUUID(),
+            username: crypto.randomUUID().substring(0, 8),
             password: "newUser",
             password_rpt: "passwordsDontmatch"
         }
@@ -40,7 +40,7 @@ describe("Test user register", () => {
             });
     });
 
-    test("Registering user, but missing password", done => {
+    test("Registering user, but missing password fields from body", done => {
 
         const body = {
             username: "newUser123123"
@@ -62,6 +62,24 @@ describe("Test user register", () => {
             username: "newUser12312223",
             password: "ne",
             password_rpt: "ne"
+        }
+
+        request(app)
+            .post("/user/register")
+            .send(body)
+            .then(response => {
+                expect(response.statusCode).toBe(400);
+                expect(response.body).toHaveProperty("msg")
+                done();
+            });
+    });
+
+    test("Registering user, with too short username", done => {
+
+        const body = {
+            username: "1",
+            password: "validPassword1",
+            password_rpt: "validPassword1"
         }
 
         request(app)
@@ -104,7 +122,6 @@ describe("Test user register", () => {
             .post("/user/register")
             .send(body)
             .then(response => {
-                console.log(response.body.msg);
                 expect(response.statusCode).toBe(400);
                 expect(response.body).toHaveProperty("msg")
 
@@ -124,7 +141,6 @@ describe("Test user register", () => {
             .post("/user/register")
             .send(body)
             .then(response => {
-                console.log(response.body.msg);
                 expect(response.statusCode).toBe(400);
                 expect(response.body).toHaveProperty("msg")
 

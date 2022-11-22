@@ -32,6 +32,12 @@ const register = (req, res) => {
         })
     }
 
+    if(username.length < 3){
+        return res.status(400).json({
+            msg:'Username is too short'
+        })
+    }
+
     if(!validator.isAlphanumeric(username)){
 
         return res.status(400).json({
