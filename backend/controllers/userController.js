@@ -1,8 +1,7 @@
 const userModel = require('../models/userModel.js');
 const bcrypt = require('bcrypt');
 const jwt = require("../misc/jwt");
-//const auth = require('../misc/auth');
-
+const validator = require('validator');
 
 const hello = (req, res) => {
     let s = userModel.hello()
@@ -11,6 +10,10 @@ const hello = (req, res) => {
 
 const register = (req, res) => {
     const {username, password, password_rpt} = req.body
+
+    if(typeof username !== 'string' || typeof password !== 'string' || typeof password_rpt !== 'string'){
+        return res.status(400).json({msg:'Inputs are not valid'})
+    }
     
     if(!username){
         return res.status(400).json({
@@ -19,7 +22,7 @@ const register = (req, res) => {
     }
     if(!password || password.length < 5){
         return res.status(400).json({
-            msg:'Password must have more than 4 characters'
+            msg:'Password must have more than 5 characters'
         })
     }
     if(!password_rpt || password != password_rpt){
@@ -49,6 +52,10 @@ const login = (req, res) => {
 
     if(!username || !password){
         return res.status(400).json({status:"error",msg:"One or more fields are missing"})
+    }
+
+    if(typeof username !== 'string' || typeof password !== 'string'){
+        return res.status(400).json({msg:'Inputs are not valid'})
     }
 
     userModel.getUserByName(username, (err, result) => {
