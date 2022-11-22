@@ -3,11 +3,6 @@ const bcrypt = require('bcrypt');
 const jwt = require("../misc/jwt");
 const validator = require('validator');
 
-const hello = (req, res) => {
-    let s = userModel.hello()
-    res.json(s)
-}
-
 const register = (req, res) => {
     const {username, password, password_rpt} = req.body
 
@@ -166,7 +161,6 @@ const checkToken = (req, res) => {
 }
 
 module.exports = {
-    hello,
     register,
     login,
     deleteUser,
