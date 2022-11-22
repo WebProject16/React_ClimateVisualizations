@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import {useRef, useState, useEffect} from 'react'
 import { Post, AuthGet } from '../API/request'
 import { LoginContext } from './LoginContext'
+import { checkInput } from './sanitizeInput'
 
 function Login() {
     const userRef = useRef();
@@ -31,19 +32,26 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if(!user || !password) {
-            errRef.current.focus();
-            return setErrMsg('Please fill all fields!');
-        }
+        let validate = checkInput(user, password)
+
+        if(validate !== "")
+            return setErrMsg(validate)
+        
         await Post("/user/login",{username:user,password:password},
         (res) => {
             if(res.status === 200){
                 localStorage.setItem('token', res.data.token)
+                setErrMsg('')
+                setPassword('')
+                setUser('')
                 setIsLoggedIn(true)
                 setSuccess(true)
             }else if(res.response.status === 400){
                 errRef.current.focus();
                 setErrMsg(res.response.data.msg)
+            }else{
+                errRef.current.focus();
+                setErrMsg("Unexpected error, try again later")
             }
         })
         
