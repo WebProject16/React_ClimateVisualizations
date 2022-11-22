@@ -10,6 +10,7 @@ import Footer from './Components/Footer.js';
 import Register from './Components/Register';
 import Profile from './Components/Profile'
 import V1 from './Components/visualizations/V1';
+import V3 from './Components/visualizations/V3';
 import { Routes, Route } from 'react-router-dom';
 import RouteGuard from './Components/RouteGuard';
 import { LogoutHandler} from './Components/LogoutHandler';
@@ -44,6 +45,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/v1" element={<V1 />}  />
+            <Route path="/v3" element={<V3 />}  />
             <Route path="/logout" element={ <LoginContext.Provider value={isLogged}><LogoutHandler /> </LoginContext.Provider>} />
             <Route path="/Create" element={<RouteGuard> <Create /> </RouteGuard>} />
             <Route path="/Profile" element={<LoginContext.Provider value={isLogged}> <Profile /> </LoginContext.Provider>} />
