@@ -43,7 +43,7 @@ function Register() {
 
             {success ? (
                     <div className="alert alert-success p-4 pb-2">
-                        <h2 className="alert-heading">User successfully created</h2>
+                        <h2 className="alert-heading">Käyttäjä luotu onnistuneesti</h2>
                         <h4>
                         Please
                         <Link className="btn btn-success m-2 fs-5 pl-2 pr-2 text-decoration-none"to='/Login'>login</Link>
@@ -52,21 +52,21 @@ function Register() {
                     </div>
                 ) : (           
             <form onSubmit={handleSubmit}>
-            <h1>Register a new user</h1>
+            <h1>Rekisteröi käyttäjä</h1>
             <div className='form-group pb-2 pt-4 w-750'>
-                <label htmlFor="username">Username:</label>
+                <label htmlFor="username">Käyttäjänimi:</label>
                 <input type="text" id="username" className="form-control" ref={userRef} autoComplete="off" onChange={(e) => setUser(e.target.value)} value={user} />
             </div>
             <div className='form-group pb-2 w-750'>
-                <label htmlFor='password'>Password:</label>
+                <label htmlFor='password'>Salasana:</label>
                 <input type="password" className="form-control" id="password" autoComplete="off" onChange={(e) => setPassword(e.target.value)} value={password} />
             </div>
             <div className='form-group pb-2 w-750'>
-                <label htmlFor='password_rpt'>Please repeat the password:</label>
+                <label htmlFor='password_rpt'>Kirjoita salasana uudelleen:</label>
                 <input type="password" id="password_rpt" className="form-control" autoComplete="off" onChange={(e) => setPassword_rpt(e.target.value)} value={password_rpt} />
             </div>
             <p ref={errRef} className={errMsg ? "alert alert-danger" : "offscreen"} >{errMsg}</p>
-            <button type="submit" className="btn btn-outline-primary">Sign up!</button>
+            <button type="submit" className="btn btn-outline-primary">Rekisteröidy!</button>
             </form>
             )}
         </div>

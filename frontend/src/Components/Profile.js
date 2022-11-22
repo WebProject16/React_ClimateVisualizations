@@ -60,7 +60,7 @@ export default function Profile() {
         <div>
             <div>
                 <h2>
-                Welcome user!
+                Tervetuloa!
                 </h2>
             </div>
             <div className="list-group">
@@ -68,20 +68,20 @@ export default function Profile() {
             </div>
                 {isDeleting ? (
                 <form onSubmit={DelProfile}>
-                    <h3 className='mt-4'>Confirm deleting user</h3>
+                    <h3 className='mt-4'>Varmista käyttäjän poistaminen</h3>
                     <div>
-                        <label htmlFor="username">Username:</label>
+                        <label htmlFor="username">Käyttäjänimi:</label>
                         <input onChange={(e)=>setUsername(e.target.value)} type="text" id="username" className="form-control"/>
                     </div>
                     <div>
-                        <label htmlFor='password'>Password:</label>
+                        <label htmlFor='password'>Salasana:</label>
                         <input onChange={(e)=>setPassword(e.target.value)} type="password" id="password" className="form-control"/>                
                     </div>
-                    <button type="submit" className="btn btn-outline-danger mt-2">Delete user?</button>
+                    <button type="submit" className="btn btn-outline-danger mt-2">Poista käyttäjä?</button>
                 </form>
                 ) : (   
                 <div className='pb-2 pt-4'>
-                    <button onClick={()=> setIsDeleting(true)} type="button" className="btn btn-outline-danger mt-2">Delete user</button>
+                    <button onClick={()=> setIsDeleting(true)} type="button" className="btn btn-outline-danger mt-2">Poista käyttäjä</button>
                 </div>
                 ) }
                 <p ref={errRef} className={errMsg ? "alert alert-danger mt-2" : "offscreen"} >{errMsg}</p>
