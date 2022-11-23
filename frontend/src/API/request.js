@@ -14,6 +14,24 @@ export async function Post(path,body,cb){
     })
 }
 
+export async function Delete(path,body,cb){
+    const token = "Bearer " + localStorage.getItem('token')
+    axios.delete(BASE_URL + path, {
+        headers: {
+            'Authorization':token
+        },
+        data: body
+    })
+    
+    .then((res) => {
+        console.log(res)
+        cb(res)
+    }).catch(err => {
+        console.log(err)
+        cb(err)
+    })
+}
+
 export async function AuthGet(path,cb){
     const token = "Bearer " + localStorage.getItem('token')
     axios.get(BASE_URL + path, {
