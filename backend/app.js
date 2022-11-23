@@ -18,7 +18,6 @@ const auth = require('./misc/auth');
 
 const userRouter = require('./routes/userRoutes')
 const userAuthRouter = require('./routes/userAuthRoutes')
-const testAuthRouter = require('./routes/testAuthRoutes')
 const chartRouter = require('./routes/chartRoutes')
 
 app.use((err, req, res, next) => {
@@ -33,6 +32,5 @@ app.use('/charts', chartRouter);
 app.use(auth);
 // endpoints that need authentication ->
 app.use('/user', userAuthRouter);
-app.use(testAuthRouter);
 
 module.exports = app;
