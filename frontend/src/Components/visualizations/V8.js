@@ -17,14 +17,13 @@ export default function V8() {
       if(res.status === 200){
 
         const data = res.data;
-
         setLabels(data.years);
 
         delete data.years;
         setMeasurements(data);
 
         setCountries(Object.keys(data));
-        
+
       }else{
         console.log("Error: ", res)
       }
@@ -33,15 +32,14 @@ export default function V8() {
 
   const data = {
     labels: labels,
-    datasets: [
-      {
-        label:countries[0],
-        data: measurements[countries[0]],
-        borderColor: "rgb(50, 80, 200)",
+    datasets: countries.map(country => {
+      return {
+        label:country,
+        data: measurements[country],
         backgroundColor: "rgb(50, 80, 200)",
         fill:true
       }
-    ]
+    })
   }
 
   const options =
