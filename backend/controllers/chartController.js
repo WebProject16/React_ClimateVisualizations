@@ -17,6 +17,7 @@ const v1 = (req, res) => {
         res.status(200).json({dataYear: data[0], dataMonth: data[1], dataV2: data[2]})
     })
 }
+
 const v3 = (req, res) => {
 
     chartModel.getV3((err, data) => {
@@ -32,6 +33,7 @@ const v3 = (req, res) => {
         res.status(200).json({dataYear: data[0], dataMonth: data[1]})
     })
 }
+
 const v4 = (req, res) => {
 
     chartModel.getV4((err, data) => {
@@ -47,6 +49,7 @@ const v4 = (req, res) => {
         res.status(200).json({v4: data[0], v3_annual: data[1]})
     })
 }
+
 const v5 = (req, res) => {
 
     chartModel.getV5((err, data) => {
@@ -62,6 +65,7 @@ const v5 = (req, res) => {
         res.status(200).json({v5: data})
     })
 }
+
 const v6 = (req, res) => {
 
     chartModel.getV6((err, data) => {
@@ -78,10 +82,26 @@ const v6 = (req, res) => {
     })
 }
 
+const v8 = (req, res) => {
+
+    chartModel.getV8((err, data) => {
+        if(err){
+            console.log(err);
+            return res.status(500).json({status:"error", msg:"Error on fetching chart V8 data"})
+        }
+
+        if(!data){
+            return res.status(500).json({status:"error", msg:"No data found in V8 table"})
+        }
+
+        res.status(200).json({v8: data})
+    })
+}
 module.exports = {
     v1,
     v3,
     v4,
     v5,
-    v6
+    v6,
+    v8
 }
