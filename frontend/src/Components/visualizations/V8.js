@@ -36,14 +36,13 @@ export default function V8() {
       return {
         label:country,
         data: measurements[country],
-        backgroundColor: "rgb(50, 80, 200)",
-        fill:true
+        backgroundColor: "rgba(" + (Math.floor(Math.random() * 255)) + "," + (Math.floor(Math.random() * 255))  + "," + (Math.floor(Math.random() * 255)) + ", 0.4)",
+        fill: true
       }
     })
   }
 
-  const options =
-  {
+  const options = {
     responsive: true,
     plugins: {
       legend: {
