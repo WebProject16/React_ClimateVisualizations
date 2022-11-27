@@ -94,7 +94,42 @@ const v8 = (req, res) => {
             return res.status(500).json({status:"error", msg:"No data found in V8 table"})
         }
 
-        res.status(200).json({v8: data})
+        let years = [];
+
+        // push years to above array
+        data.forEach(result =>
+            years.push(result.year)
+        );
+
+        // delete years from every object
+        data.forEach(result =>
+            delete result.year
+        );
+
+        // get countries as keys
+        const keys = Object.keys(data[0]);
+
+        // create object with years
+        let payload = {
+            years: years,
+        }
+
+        // iterate over every country
+        keys.forEach(key =>
+            {
+                // add country to payload object assigned to empty array
+                payload[key] = [];
+
+                // iterate every object in the db result
+                data.forEach(result =>
+                    // push every datapoint to payload object corrected million tons of carbon to
+                    // million tonnes of CO2 by multiplying with 3.664
+                    payload[key].push(result[key])
+                )
+            }
+        )
+
+        res.json(payload);
     })
 }
 module.exports = {
