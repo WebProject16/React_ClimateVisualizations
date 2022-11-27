@@ -11,6 +11,7 @@ import Register from './Components/Register';
 import Profile from './Components/Profile'
 import V1 from './Components/visualizations/V1';
 import V5 from './Components/visualizations/V5';
+import V8 from './Components/visualizations/V8';
 
 import { Routes, Route } from 'react-router-dom';
 import RouteGuard from './Components/RouteGuard';
@@ -47,6 +48,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/v1" element={<V1 />}  />
             <Route path="/vostok" element={<V5 />} />
+            <Route path="/co2EmissionsPerCountry" element={<V8 />} />
             <Route path="/logout" element={ <LoginContext.Provider value={isLogged}><LogoutHandler /> </LoginContext.Provider>} />
             <Route path="/Create" element={<RouteGuard> <Create /> </RouteGuard>} />
             <Route path="/Profile" element={<LoginContext.Provider value={isLogged}> <Profile /> </LoginContext.Provider>} />
