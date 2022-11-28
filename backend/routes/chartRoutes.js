@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const chartController = require("../controllers/chartController.js");
-const chart = require('../models/chartModel.js');
 
 router.get("/v1", chartController.v1);
 router.get("/v3", chartController.v3);
