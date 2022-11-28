@@ -62,7 +62,24 @@ const v5 = (req, res) => {
             return res.status(500).json({status:"error", msg:"No data found in V5 table"})
         }
 
-        res.status(200).json({v5: data})
+        let years = [];
+
+        // push years to above array
+        data.forEach(result =>
+            years.push(result.year)
+        );
+
+        let measurements = [];
+        data.forEach(result =>
+            measurements.push(result.co2_concentration)
+        );
+
+        let payload = {
+            labels: years.reverse(),
+            measurements: measurements.reverse()
+        }
+
+        res.status(200).json(payload)
     })
 }
 
