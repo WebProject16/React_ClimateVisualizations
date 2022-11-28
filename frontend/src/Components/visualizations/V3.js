@@ -52,7 +52,7 @@ export default function V3() {
       },
     },
     scales: {
-        xAxis: {
+        xAxes: {
             type: isAnnual ? "linear" : "time",
         },
 
