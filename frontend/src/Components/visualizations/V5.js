@@ -27,7 +27,7 @@ export default function V5() {
   const data = {
     datasets: [
       {
-        label: "CO2 pitoisuus (ppm)",
+        label: "CO2 pitoisuus (ppmv)",
         data: measurements,
         borderColor: "rgb(50, 80, 200)",
         backgroundColor: "rgb(50, 80, 200)",
@@ -59,7 +59,7 @@ export default function V5() {
       x: {
         title: {
           display: true,
-          text:"Ilman keski-ikä ennen nykyhetkeä (vuosi)"
+          text:"Ilman keski-ikä ennen nykyhetkeä (vuotta)"
         },
         type: "linear",
         min: 2342,
@@ -69,7 +69,7 @@ export default function V5() {
         type: "linear",
         title: {
           display: true,
-          text:"CO2 pitoisuus (ppm)"
+          text:"CO2 pitoisuus (ppmv)"
         }
       },
     },
