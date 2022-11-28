@@ -124,7 +124,7 @@ const v8 = (req, res) => {
                 data.forEach(result =>
                     // push every datapoint to payload object corrected million tons of carbon to
                     // million tonnes of CO2 by multiplying with 3.664
-                    payload[key].push(result[key])
+                    payload[key].push(result[key] * 3.664)
                 )
             }
         )

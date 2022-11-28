@@ -37,7 +37,8 @@ export default function V8() {
         label:country,
         data: measurements[country],
         backgroundColor: "rgba(" + (Math.floor(Math.random() * 255)) + "," + (Math.floor(Math.random() * 255))  + "," + (Math.floor(Math.random() * 255)) + ", 0.4)",
-        fill: true
+        fill: true,
+        pointRadius: 0
       }
     })
   }
@@ -47,6 +48,8 @@ export default function V8() {
     responsive: true,
     plugins: {
       legend: {
+        display: false,
+        /*
         position: "top",
         labels: {
           font: {
@@ -54,6 +57,7 @@ export default function V8() {
           }
         },
         maxHeight: 400
+        */
       },
       title: {
         display: true,
@@ -67,14 +71,20 @@ export default function V8() {
       x: {
         title: {
           display: true,
-          text:"vuosi"
+          text:"vuosi",
+          font: {
+            size:"14"
+          }
         }
       },
       y: {
         type: "linear",
         title: {
           display: true,
-          text:"Miljoonaa tonnia CO2"
+          text:"Miljoonaa tonnia CO2",
+          font: {
+            size:"14"
+          }
         }
       }
     }
