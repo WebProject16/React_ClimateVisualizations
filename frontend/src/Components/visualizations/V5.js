@@ -59,7 +59,7 @@ export default function V5() {
       x: {
         title: {
           display: true,
-          text:"Ilman keski-ikä ennen nykyhetkeä (vuotta)"
+          text:"Ilman keski-ikä ennen vuotta 1950 (vuotta)"
         }
       },
       y: {
