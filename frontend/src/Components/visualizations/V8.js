@@ -43,10 +43,17 @@ export default function V8() {
   }
 
   const options = {
+    animation: false,
     responsive: true,
     plugins: {
       legend: {
         position: "top",
+        labels: {
+          font: {
+            size: 10
+          }
+        },
+        maxHeight: 400
       },
       title: {
         display: true,
@@ -54,7 +61,7 @@ export default function V8() {
         font: {
           size:"20"
         }
-      },
+      }
     },
     scales: {
       x: {
@@ -69,8 +76,8 @@ export default function V8() {
           display: true,
           text:"Miljoonaa tonnia CO2"
         }
-      },
-    },
+      }
+    }
   }
 
   return (

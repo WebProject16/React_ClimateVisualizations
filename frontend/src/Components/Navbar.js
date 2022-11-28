@@ -30,7 +30,7 @@ export default function Navbar() {
         {route: "/vostok", text:"Ilmakehän hiilidioksidipitoisuudet (Vostok asema)"},
         {route: "/v6", text:"v6 page"},
         {route: "/v7", text:"v7 page"},
-        {route: "/co2EmissionsPerCountry", text:"Hiilidioksidi päästöt maittain"},
+        {route: "/co2EmissionsPerCountry", text:"Hiilidioksidipäästöt maittain"},
     ]
 
     const visualizations = visualizationData.map((nav) =>
