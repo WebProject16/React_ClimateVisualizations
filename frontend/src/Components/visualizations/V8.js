@@ -33,11 +33,14 @@ export default function V8() {
   const data = {
     labels: labels,
     datasets: countries.map(country => {
+
+      const color = "rgb(" + (Math.floor(Math.random() * 255)) + "," + (Math.floor(Math.random() * 255))  + "," + (Math.floor(Math.random() * 255)) + ")";
+
       return {
         label:country,
         data: measurements[country],
-        backgroundColor: "rgba(" + (Math.floor(Math.random() * 255)) + "," + (Math.floor(Math.random() * 255))  + "," + (Math.floor(Math.random() * 255)) + ", 0.4)",
-        fill: true,
+        borderColor: color,
+        backgroundColor: color,
         pointRadius: 0
       }
     })
@@ -46,18 +49,16 @@ export default function V8() {
   const options = {
     animation: false,
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
-        display: false,
-        /*
         position: "top",
         labels: {
           font: {
-            size: 10
+            size: 10.5
           }
         },
         maxHeight: 400
-        */
       },
       title: {
         display: true,
@@ -73,7 +74,7 @@ export default function V8() {
           display: true,
           text:"vuosi",
           font: {
-            size:"14"
+            size:"12"
           }
         }
       },
@@ -81,9 +82,9 @@ export default function V8() {
         type: "linear",
         title: {
           display: true,
-          text:"Miljoonaa tonnia CO2",
+          text:"MtCO2/yr",
           font: {
-            size:"14"
+            size:"12"
           }
         }
       }
@@ -93,7 +94,7 @@ export default function V8() {
   return (
     <>
       <div className="container-fluid">
-        <Line data={data} options={options} alt="Pinottu viivakaavio ajan suhteen maakohtaisista CO2 päästöistä."/>
+        <Line data={data} options={options} id="v8Chart" alt="Pinottu viivakaavio ajan suhteen maakohtaisista CO2 päästöistä."/>
       </div>
       <div className="card mt-4" style={{width: "24rem"}}>
         <div className="card-body">

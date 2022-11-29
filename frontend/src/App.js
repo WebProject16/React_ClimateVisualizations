@@ -47,8 +47,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/v1" element={<V1 />}  />
-            <Route path="/vostok" element={<V5 />} />
-            <Route path="/co2EmissionsPerCountry" element={<V8 />} />
+            <Route path="/v5" element={<V5 />} />
+            <Route path="/v8" element={<V8 />} />
             <Route path="/logout" element={ <LoginContext.Provider value={isLogged}><LogoutHandler /> </LoginContext.Provider>} />
             <Route path="/Create" element={<RouteGuard> <Create /> </RouteGuard>} />
             <Route path="/Profile" element={<LoginContext.Provider value={isLogged}> <Profile /> </LoginContext.Provider>} />

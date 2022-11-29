@@ -70,6 +70,7 @@ const v5 = (req, res) => {
         );
 
         let measurements = [];
+        
         data.forEach(result =>
             measurements.push(result.co2_concentration)
         );
