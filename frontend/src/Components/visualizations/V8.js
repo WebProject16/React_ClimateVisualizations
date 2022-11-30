@@ -79,6 +79,7 @@ export default function V8() {
         }
       },
       y: {
+        stacked: true,
         type: "linear",
         title: {
           display: true,

@@ -134,18 +134,17 @@ const v8 = (req, res) => {
 
         // iterate over every country
         keys.forEach(key =>
-            {
-                // add country to payload object assigned to empty array
-                payload[key] = [];
+        {
+            // add country to payload object assigned to empty array
+            payload[key] = [];
 
-                // iterate every object in the db result
-                data.forEach(result =>
-                    // push every datapoint to payload object corrected million tons of carbon to
-                    // million tonnes of CO2 by multiplying with 3.664
-                    payload[key].push(result[key] * 3.664)
-                )
-            }
-        )
+            // iterate every object in the db result
+            data.forEach(result =>
+                // push every datapoint to payload object corrected million tons of carbon to
+                // million tonnes of CO2 by multiplying with 3.664
+                payload[key].push(result[key] * 3.664)
+            )
+        })
 
         res.json(payload);
     })
