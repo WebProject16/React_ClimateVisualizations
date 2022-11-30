@@ -34,14 +34,15 @@ export default function V8() {
     labels: labels,
     datasets: countries.map(country => {
 
-      const color = "rgb(" + (Math.floor(Math.random() * 255)) + "," + (Math.floor(Math.random() * 255))  + "," + (Math.floor(Math.random() * 255)) + ")";
+      const color = "rgba(" + (Math.floor(Math.random() * 255)) + "," + (Math.floor(Math.random() * 255))  + "," + (Math.floor(Math.random() * 255)) + ", 0.4)";
 
       return {
         label:country,
         data: measurements[country],
         borderColor: color,
         backgroundColor: color,
-        pointRadius: 0
+        pointRadius: 0,
+        fill: true
       }
     })
   }

@@ -127,24 +127,53 @@ const v8 = (req, res) => {
         // get countries as keys
         const keys = Object.keys(data[0]);
 
-        // create object with years
-        let payload = {
-            years: years,
-        }
+        // create templatePayload object
+        let templatePayload = {};
 
+        // create array for the countries and their last emission entry
+        let countriesWithLastEmission = [];
+        
         // iterate over every country
-        keys.forEach(key =>
-        {
-            // add country to payload object assigned to empty array
-            payload[key] = [];
+        keys.forEach(key => {
+            // add country to templatePayload object assigned to empty array
+            templatePayload[key] = [];
 
             // iterate every object in the db result
-            data.forEach(result =>
-                // push every datapoint to payload object corrected million tons of carbon to
+            data.forEach(result => {
+                // push every datapoint to templatePayload object corrected million tons of carbon to
                 // million tonnes of CO2 by multiplying with 3.664
-                payload[key].push(result[key] * 3.664)
-            )
+                templatePayload[key].push(result[key] * 3.664);
+            })
+
+            // insert into the array array of the country and its last emission entry
+            countriesWithLastEmission.push([key, data[data.length - 1][key]]);
         })
+
+        // sort the countries based on last emission entry
+        countriesWithLastEmission.sort((first, second) => {
+            return second[1] - first[1];
+        });
+
+        let correctOrder = [];
+
+        // iterate over the countries array and push only the name of the country to above array
+        countriesWithLastEmission.forEach(item => {
+            correctOrder.push(item[0])
+        })
+
+        // reverse the order
+        correctOrder.reverse();
+
+        let payload = {}
+
+        // iterate over the countries array that are ordered by last emission entry
+        // then assign new var to payload object and get thats value from the templatePayload object
+        correctOrder.forEach(country => {
+            payload[country] = templatePayload[country]
+        })
+
+        // add years to the object
+        payload["years"] = years;
 
         res.json(payload);
     })
