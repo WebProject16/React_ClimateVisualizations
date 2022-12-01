@@ -8,15 +8,18 @@ import "chartjs-adapter-luxon";
 export default function V5() {
   
   const [measurements, setMeasurements] = useState([]);
+  const [labels, setLabels] = useState([]);
 
   useEffect(() => {
     Get("/charts/v5", (res) => 
     {
       if(res.status === 200){
 
-        const data = res.data.v5;
+        const data = res.data;
 
-        setMeasurements(data)
+        setLabels(data.labels)
+
+        setMeasurements(data.measurements)
 
       }else{
         console.log("Error: ", res)
@@ -25,17 +28,14 @@ export default function V5() {
   }, [])
 
   const data = {
+    labels: labels,
     datasets: [
       {
-        label: "CO2 pitoisuus (ppm)",
+        label: "CO2 mittaukset",
         data: measurements,
         borderColor: "rgb(50, 80, 200)",
         backgroundColor: "rgb(50, 80, 200)",
-        parsing: {
-          xAxisKey: "year",
-          yAxisKey: "co2_concentration",
-        },
-        pointRadius: 1,
+        pointRadius: 0
       }
     ]
   }
@@ -59,17 +59,14 @@ export default function V5() {
       x: {
         title: {
           display: true,
-          text:"Ilman keski-ikä ennen nykyhetkeä (vuosi)"
-        },
-        type: "linear",
-        min: 2342,
-        max: 417160
+          text:"Ilman keski-ikä ennen vuotta 1950 (vuotta)"
+        }
       },
       y: {
         type: "linear",
         title: {
           display: true,
-          text:"CO2 pitoisuus (ppm)"
+          text:"CO2 pitoisuus (ppmv)"
         }
       },
     },
