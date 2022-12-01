@@ -20,6 +20,10 @@ const chart = {
 
     getV6: (cb) => {
         db.query("SELECT * FROM v6_ice_core", cb)
+    },
+
+    getV8: (cb) => {
+        db.query("SELECT * FROM v8_co2_emissions", cb)
     }
 }
 
