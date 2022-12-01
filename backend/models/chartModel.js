@@ -22,6 +22,10 @@ const chart = {
         db.query("SELECT * FROM v6_ice_core", cb)
     },
 
+    getV7: (cb) => {
+        db.query("SELECT * FROM v7_gast; SELECT * FROM v7_co2; SELECT * FROM v10_timeline_of_the_human_condition_interesting", cb)
+    },
+
     getV8: (cb) => {
         db.query("SELECT * FROM v8_co2_emissions", cb)
     }
