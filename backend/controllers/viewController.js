@@ -6,14 +6,14 @@ const createView = (req, res) => {
     const { views, isParallel } = req.body;
 
     if(typeof views !== "string" || typeof isParallel !== "number"){
-        return res.status(404).json({status:"error", msg:"Wrong type of input or values missing"})
+        return res.status(400).json({status:"error", msg:"Wrong type of input or values missing"})
     }
 
     const url = uuidv4();
     const userID = req.id;
 
     if(!userID){
-        return res.status(404).json({status:"error", msg:"Invalid user token"})
+        return res.status(400).json({status:"error", msg:"Invalid user token"})
     }
 
     const visualizations = views.split(",");
@@ -25,7 +25,7 @@ const createView = (req, res) => {
     })
 
     if(validVisualizations.toString() !== views){
-        return res.status(404).json({status:"error", msg:"Invalid input for view"})
+        return res.status(400).json({status:"error", msg:"Invalid input for view"})
     }
 
     const data = {
@@ -50,22 +50,20 @@ const deleteView = (req, res) => {
     const { url } = req.params;
 
     if(!url){
-        return res.status(404).json({status:"error", msg:"One or more values are missing"})
+        return res.status(400).json({status:"error", msg:"One or more values are missing"})
     }
 
 
     const userID = req.id;
 
     if(!userID){
-        return res.status(404).json({status:"error", msg:"Invalid user token"})
+        return res.status(400).json({status:"error", msg:"Invalid user token"})
     }
 
     const data = {
         url: url,
         userID: userID
     }
-
-    console.log(data);
 
     viewModel.delete(data, (err, result) => {
 
@@ -75,7 +73,6 @@ const deleteView = (req, res) => {
         }
 
         if(result.affectedRows === 1){
-
             res.json({status:"success", msg:"View deleted"})
         }else{
             res.json({status:"success", msg:"View was not deleted"})
@@ -83,7 +80,49 @@ const deleteView = (req, res) => {
     })
 }
 
+const fetchViewByUrl = (req, res) => {
+
+    const {url} = req.params;
+
+    if(!url) {
+        return res.json({status:"error", msg:"Invalid url"})
+    }
+
+    viewModel.fetchByUrl(url, (err, result) => {
+        if(err) {
+            console.log(err);
+            return res.json({status:"error", msg:"Error on fetching view"})
+        }
+
+        if(result.length === 0) {
+            return res.json({status:"success", msg:"Nothing found with that url"})
+        }
+
+        res.json({status:"success", view:result})
+    })
+
+}
+
+const fetchUsersViews = (req, res) => {
+
+    const userID = req.id;
+
+    if(!userID) {
+        return res.json({status:"error", msg:"Invalid user id"})
+    }
+
+    viewModel.fetchAllByUserId(userID, (err, result) => {
+        if(err) {
+            console.log(err);
+            return res.json({status:"error", msg:"Error on fetching users views"})
+        }
+
+        res.json({status:"success", views:result})
+    })
+}
 module.exports = {
     createView,
-    deleteView
+    deleteView,
+    fetchViewByUrl,
+    fetchUsersViews
 }
