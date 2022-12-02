@@ -5,8 +5,8 @@ const createView = (req, res) => {
 
     const { views, isParallel } = req.body;
 
-    if(!views || !isParallel){
-        return res.status(404).json({status:"error", msg:"One or more values are missing"})
+    if(typeof views !== "string" || typeof isParallel !== "number"){
+        return res.status(404).json({status:"error", msg:"Wrong type of input or values missing"})
     }
 
     const url = uuidv4();
@@ -14,6 +14,18 @@ const createView = (req, res) => {
 
     if(!userID){
         return res.status(404).json({status:"error", msg:"Invalid user token"})
+    }
+
+    const visualizations = views.split(",");
+
+    const validRoutes = ["v1","v2","v3","v4","v5","v6","v7", "v8", "v9"];
+
+    const validVisualizations = visualizations.filter(vis => {
+        return validRoutes.indexOf(vis) !== -1
+    })
+
+    if(validVisualizations.toString() !== views){
+        return res.status(404).json({status:"error", msg:"Invalid input for view"})
     }
 
     const data = {
