@@ -664,7 +664,10 @@ CREATE TABLE `views` (
   `url` varchar(255) NOT NULL,
   `isParallel` tinyint(1) NOT NULL,
   `visualizations` varchar(255) NOT NULL,
-  PRIMARY KEY (`ID`,`url`)
+  `userID` int NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `url_UNIQUE` (`url`),
+  CONSTRAINT `userID` FOREIGN KEY (`ID`) REFERENCES `users` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -686,4 +689,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-02 13:49:10
+-- Dump completed on 2022-12-02 14:13:46
