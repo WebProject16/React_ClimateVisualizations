@@ -668,7 +668,7 @@ CREATE TABLE `views` (
   PRIMARY KEY (`ID`),
   UNIQUE INDEX `url_UNIQUE` (`url`),
   CONSTRAINT `views_users_fk`
-    FOREIGN KEY (`userID`) REFERENCES `users` (`userID`)
+    FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET character_set_client = @saved_cs_client */;
