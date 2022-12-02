@@ -3,19 +3,50 @@ const viewModel = require('../models/viewModel.js')
 
 const createView = (req, res) => {
 
-    const { views } = req.body;
+    const { views, isParallel } = req.body;
+
+    if(!views || !isParallel){
+        return res.status(404).json({status:"error", msg:"One or more values are missing"})
+    }
 
     const url = uuidv4();
     const userID = req.id;
 
-    res.status(201).json({url:url, userID: userID})
+    if(!userID){
+        return res.status(404).json({status:"error", msg:"Invalid user token"})
+    }
+
+    const data = {
+        url: url,
+        userID: userID,
+        views: views,
+        isParallel: isParallel
+    }
+
+    viewModel.create(data, (err, result) => {
+        if(err) {
+            console.log(err);
+            return res.json({status:"error", msg:"Error on view creation"})
+        }
+
+        res.status(201).json({status:"success", msg:"Created new visualization", url:url})
+    })
 }
 
 const deleteView = (req, res) => {
 
     const { url } = req.params;
 
+    if(!url){
+        return res.status(404).json({status:"error", msg:"One or more values are missing"})
+    }
+
+
     const userID = req.id;
+
+    if(!userID){
+        return res.status(404).json({status:"error", msg:"Invalid user token"})
+    }
 
     const data = {
         url: url,

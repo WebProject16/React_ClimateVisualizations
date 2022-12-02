@@ -660,15 +660,17 @@ DROP TABLE IF EXISTS `views`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `views` (
-  `ID` int NOT NULL AUTO_INCREMENT,
-  `url` varchar(255) NOT NULL,
-  `isParallel` tinyint(1) NOT NULL,
-  `visualizations` varchar(255) NOT NULL,
-  `userID` int NOT NULL,
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `url` VARCHAR(255) NOT NULL,
+  `isParallel` TINYINT(1) NOT NULL,
+  `visualizations` VARCHAR(255) NOT NULL,
+  `userID` INT NOT NULL,
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `url_UNIQUE` (`url`),
-  CONSTRAINT `userID` FOREIGN KEY (`ID`) REFERENCES `users` (`userID`)
+  UNIQUE INDEX `url_UNIQUE` (`url`),
+  CONSTRAINT `views_users_fk`
+    FOREIGN KEY (`userID`) REFERENCES `users` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
