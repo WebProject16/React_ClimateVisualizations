@@ -9,6 +9,14 @@ const createView = (req, res) => {
         return res.status(400).json({status:"error", msg:"Wrong type of input or values missing"});
     }
 
+    if(views.length > 30){
+        return res.status(400).json({status:"error", msg:"Views are too long"});
+    }
+
+    if(description.length > 1024){
+        return res.status(400).json({status:"error", msg:"Description is too long"});
+    }
+
     const url = uuidv4();
     const userID = req.id;
 
