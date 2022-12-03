@@ -15,3 +15,27 @@
 #v8Chart {
   height: 90vh;
 }
+
+.viewContainer {
+  padding-top: 2em;
+  display: block;
+}
+
+.nonParallel .child {
+  padding-bottom: 4em;
+}
+
+.nonParallel .child:last-child {
+  padding-bottom: 0em;
+}
+
+.parallel {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 4em;
+}
+
+.parallel .child {
+  flex: 50%;
+  width: 50%;
+}
