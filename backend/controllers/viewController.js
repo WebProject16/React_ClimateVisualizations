@@ -3,9 +3,9 @@ const viewModel = require('../models/viewModel.js')
 
 const createView = (req, res) => {
 
-    const { views, isParallel } = req.body;
+    const { views, isParallel, description } = req.body;
 
-    if(typeof views !== "string" || typeof isParallel !== "number"){
+    if(typeof views !== "string" || typeof isParallel !== "number" || typeof description !== "string"){
         return res.status(400).json({status:"error", msg:"Wrong type of input or values missing"});
     }
 
@@ -25,14 +25,15 @@ const createView = (req, res) => {
     })
 
     if(validVisualizations.toString() !== views){
-        return res.status(400).json({status:"error", msg:"Invalid input for view"});
+        return res.status(400).json({status:"error", msg:"Invalid input for 'views'"});
     }
 
     const data = {
         url: url,
         userID: userID,
         views: views,
-        isParallel: isParallel
+        isParallel: isParallel,
+        description: description
     }
 
     viewModel.create(data, (err, result) => {
@@ -122,6 +123,7 @@ const fetchUsersViews = (req, res) => {
         res.json({status:"success", views:result});
     })
 }
+
 module.exports = {
     createView,
     deleteView,

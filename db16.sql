@@ -37,7 +37,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`userID`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `username_2` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (16,'kimmo','$2b$10$jVyLjpmI7onbLeBroSBujOf5iwFOeUboxWnYcqcLw5GTWjfDKQX9m'),(18,'kim','$2b$10$HO9A6W6TvqbzRt8YfqmGceBfZjrfqWGkWoyJJ3tcCzA4uh57/O5q2'),(20,'Kimmo1','$2b$10$89Q7O1SzSkn5770CD3HTIu7CvU0dGDZnDkdtk.J22tPTwUSxDRgWi');
+INSERT INTO `users` VALUES (16,'kimmo','$2b$10$jVyLjpmI7onbLeBroSBujOf5iwFOeUboxWnYcqcLw5GTWjfDKQX9m'),(18,'kim','$2b$10$HO9A6W6TvqbzRt8YfqmGceBfZjrfqWGkWoyJJ3tcCzA4uh57/O5q2'),(20,'Kimmo1','$2b$10$89Q7O1SzSkn5770CD3HTIu7CvU0dGDZnDkdtk.J22tPTwUSxDRgWi'),(22,'user','$2b$10$c6SgjceoP1KPcB4lTIb14eLLKUTuQH8qKowDJiH/.rlAOKKguK17C');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -660,17 +660,17 @@ DROP TABLE IF EXISTS `views`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `views` (
-  `ID` INT NOT NULL AUTO_INCREMENT,
-  `url` VARCHAR(255) NOT NULL,
-  `isParallel` TINYINT(1) NOT NULL,
-  `visualizations` VARCHAR(255) NOT NULL,
-  `userID` INT NOT NULL,
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `url` varchar(40) NOT NULL,
+  `isParallel` tinyint(1) NOT NULL,
+  `visualizations` varchar(30) NOT NULL,
+  `userID` int NOT NULL,
+  `description` varchar(1024) DEFAULT NULL,
   PRIMARY KEY (`ID`),
-  UNIQUE INDEX `url_UNIQUE` (`url`),
-  CONSTRAINT `views_users_fk`
-    FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+  UNIQUE KEY `url_UNIQUE` (`url`),
+  KEY `views_users_fk` (`userID`),
+  CONSTRAINT `views_users_fk` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -691,4 +691,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-02 14:13:46
+-- Dump completed on 2022-12-03  1:48:03
