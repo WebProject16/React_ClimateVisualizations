@@ -106,7 +106,7 @@ const fetchViewByUrl = (req, res) => {
             return res.status(400).json({status:"error", msg:"Nothing found with that url"});
         }
 
-        res.json({status:"success", view:result});
+        res.json({status:"success", view:result[0]});
     })
 }
 
