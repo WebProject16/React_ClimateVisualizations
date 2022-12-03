@@ -1,19 +1,33 @@
-import React, {useEffect, useState} from "react";
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from 'react-router-dom';
 import { Get } from "../API/request";
+import V1 from './visualizations/V1';
+import V5 from './visualizations/V5';
+import V8 from './visualizations/V8';
 
 export default function CustomView() {
 
     const { url } = useParams();
 
+    const [isSuccess, setIsSuccess] = useState(true);
     const [isParallel, setIsParallel] = useState(false);
     const [viewData, setViewData] = useState([]);
     const [description, setDescription] = useState("");
     const [creator, setCreator] = useState("");
 
+    const validViews = {
+        v1: <V1/>,
+        v5: <V5/>,
+        v8: <V8/>
+    }
+
     useEffect(() => {
         Get("/views/" + url, res => {
+
             if(res.status === 200){
+
+                setIsSuccess(true);
+
                 const data = res.data.view;
 
                 console.log(data);
@@ -24,21 +38,33 @@ export default function CustomView() {
                 setCreator(data.creator);
 
             }else{
-                console.log(res);
+                setIsSuccess(false);
+                console.log(res.response.data);
             }
         })
     }, [])
 
-    const views = viewData.map(view =>
-        <h2 key={view}>{view}</h2>
-    )
-
+    if(!isSuccess){
+        return (
+            <div className="alert alert-info p-4 pb-2">
+                <h2>404 Visuaalisaatiota ei löytynyt</h2>
+                <p>Palaa takaisin<Link className="alert-link text-decoration-none"to="/"> kotisivulle</Link></p>
+            </div>
+        )
+    }
+    
     return (
         <>
-          {views}
-          <h2>Isparallel: {isParallel}</h2>
-          <h2>Creator: {creator}</h2>
-          <h2>Description: {description}</h2>
+            <p>{description}</p>
+            <p>Kokoelman tehnyt: {creator}</p>
+
+            <div className={isParallel ? "parallel" : ""}>
+            {
+                viewData.map(view =>
+                    validViews[view]
+                )
+            }
+            </div>
         </>
     )
 }
