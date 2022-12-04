@@ -11,6 +11,7 @@ import Register from './Components/Register';
 import Profile from './Components/Profile'
 import V1 from './Components/visualizations/V1';
 import V5 from './Components/visualizations/V5';
+import V7 from './Components/visualizations/V7';
 import V8 from './Components/visualizations/V8';
 
 import { Routes, Route } from 'react-router-dom';
@@ -48,6 +49,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/v1" element={<V1 />}  />
             <Route path="/v5" element={<V5 />} />
+            <Route path="/v7" element={<V7 />} />
             <Route path="/v8" element={<V8 />} />
             <Route path="/logout" element={ <LoginContext.Provider value={isLogged}><LogoutHandler /> </LoginContext.Provider>} />
             <Route path="/Create" element={<RouteGuard> <Create /> </RouteGuard>} />
