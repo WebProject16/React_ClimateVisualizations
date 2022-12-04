@@ -147,8 +147,8 @@ export default function V7() {
       <div className="card mt-4" style={{width: "32rem"}}>
         <div className="card-body">
           <h5 className="card-title">Kuvaus</h5>
-          <p className="card-text">Kuvaajan sininen käyrä on 2m vuoden ajalta vuosittainen maailmanlaajuinen lämpötilan poikkeama (maapallon pintalämpötilan keskimuutos)</p>
-          <p className="card-text">Oranssi käyrä 800k vuoden ajalta ilmakehän co2 pitoisuus (hiilidioksidin määrä (ppm))</p>             
+          <p className="card-text">Kuvaajan sininen käyrä on kahden miljoonan vuoden ajalta vuosittainen maailmanlaajuinen lämpötilan poikkeaman jälleenrakennus (maapallon pintalämpötilan keskimuutos)</p>
+          <p className="card-text">Oranssi käyrä 800-tuhannen vuoden ajalta ilmakehän co2 pitoisuuden jälleenrakennus (hiilidioksidin määrä (ppm))</p>             
           <h6 className="card-subtitle mt-2 text-muted">Lähteet:</h6>
           <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukon kuvaus</a>
           <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukko</a>
