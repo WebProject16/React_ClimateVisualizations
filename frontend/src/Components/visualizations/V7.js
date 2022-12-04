@@ -30,9 +30,22 @@ export default function V7() {
             backgroundColor: "rgb(50, 80, 200)",
             hidden: false,
             parsing: {
-                xAxisKey: "kyrBP",
+                xAxisKey: "year",
                 yAxisKey: "p50"
             },
+            pointRadius: 0
+          },
+          {
+            label: "Hiilidioksidin määrä (ppm)",
+            data: elements.v7_co2,
+            borderColor: "rgb(200, 80, 50)",
+            backgroundColor: "rgb(200, 80, 50)",
+            hidden: false,
+            parsing: {
+                xAxisKey: "year",
+                yAxisKey: "co2"
+            },
+            yAxisID: 'co2',
             pointRadius: 0
           }
         ]
@@ -54,26 +67,42 @@ export default function V7() {
         },
         scales: {
             x: {
-                type: "linear",
-                title: {
-                display: true,
-                text:"Vuosia sitten (kyr BP/tuhansina vuosina)"
+              ticks: {
+                callback: function(value) {
+                  return -value;
                 }
+              },
+              type: "linear",
+              title: {
+              display: true,
+              text:"Vuosia sitten (kyr BP/tuhansina vuosina)"
+              },    
             },
             yAxis: {
             type: "linear",
+            position: "right",
             title: {
                 display: true,
                 text:"Lämpötilan muutos C"
             }
             },
+            co2: {
+              type: "linear",
+              position: "left",
+              min: 150,
+              max: 400,
+              title: {
+                display: true,
+                text:"co2 ppm"
+              }
+            }
         },
     }
 
 
   return (
     <>
-      <div className="container-fluid">{isLoading ? (<p>Loading please wait</p>) :
+      <div className="container-fluid">{isLoading ? (<p>Odota kun sivua ladataan</p>) :
         (<Line data={data} options={options} alt="Maailmanlaajuisen lämpötilan evoluutio viimeiseltä 2-miljoonalta vuodelta"/>)}
       </div>
       <div className="card mt-4" style={{width: "24rem"}}>
