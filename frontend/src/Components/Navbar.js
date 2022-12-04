@@ -29,7 +29,7 @@ export default function Navbar() {
         {route: "/v4", text:"v4 page"},
         {route: "/v5", text:"Ilmakehän hiilidioksidipitoisuudet"},
         {route: "/v6", text:"v6 page"},
-        {route: "/v7", text:"v7 page"},
+        {route: "/v7", text:"Lämpötilan evoluutio"},
         {route: "/v8", text:"Hiilidioksidipäästöt maittain"},
     ]
 

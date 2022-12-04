@@ -24,16 +24,17 @@ export default function V7() {
     const data = {
         datasets: [
           {
-            label: "Maapallon pintalämpötilan keskimuutos",
-            data: elements.v7_temp,
-            borderColor: "rgb(50, 80, 200)",
-            backgroundColor: "rgb(50, 80, 200)",
+            label: "Ihmisten aiheuttamia tapahtumia",
+            data: elements.v10,
+            borderColor: "rgb(20, 80, 50)",
+            backgroundColor: "rgb(20, 150, 50)",
             hidden: false,
+            showLine: false,
             parsing: {
                 xAxisKey: "year",
-                yAxisKey: "p50"
+                yAxisKey: "years_ago"
             },
-            pointRadius: 0
+            pointRadius: 13
           },
           {
             label: "Hiilidioksidin määrä (ppm)",
@@ -47,56 +48,94 @@ export default function V7() {
             },
             yAxisID: 'co2',
             pointRadius: 0
+          },
+          {
+            label: "Maapallon pintalämpötilan keskimuutos",
+            data: elements.v7_temp,
+            borderColor: "rgb(50, 80, 200)",
+            backgroundColor: "rgb(50, 80, 200)",
+            hidden: false,
+            parsing: {
+                xAxisKey: "year",
+                yAxisKey: "p50"
+            },
+            pointRadius: 0
           }
         ]
     }
     
     const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-            position: "top",
-            },
-            title: {
-             display: true,
-                text: "Mailmanlaajuisen lämpötilan evoluutio viimeiseltä 2-miljoonalta vuodelta",
-                font: {
-                size:"20"
-            }
-            },
+      responsive: true,
+      plugins: {
+        legend: {
+        position: "top",
         },
-        scales: {
-            x: {
-              ticks: {
-                callback: function(value) {
-                  return -value;
-                }
-              },
-              type: "linear",
-              title: {
-              display: true,
-              text:"Vuosia sitten (kyr BP/tuhansina vuosina)"
-              },    
-            },
-            yAxis: {
-            type: "linear",
-            position: "right",
-            title: {
-                display: true,
-                text:"Lämpötilan muutos C"
-            }
-            },
-            co2: {
-              type: "linear",
-              position: "left",
-              min: 150,
-              max: 400,
-              title: {
-                display: true,
-                text:"co2 ppm"
+        title: {
+          display: true,
+          text: "Mailmanlaajuisen lämpötilan evoluutio viimeiseltä 2-miljoonalta vuodelta",
+          font: {
+            size:"20"
+          },
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context){
+              let label = context.dataset.label || ''
+              
+
+              if(context.dataset.label === "Ihmisten aiheuttamia tapahtumia"){
+                label = context.raw.clean_desc_fi
               }
+
+              if(context.dataset.label === "Maapallon pintalämpötilan keskimuutos"){
+                label = context.formattedValue + "°C"
+              }
+
+              if(context.dataset.label === "Hiilidioksidin määrä (ppm)"){
+                label = context.formattedValue + " ppm"
+              }
+
+              return label
+            },
+            title: function(context){
+              if(context[0].parsed.x && context[0].parsed.x < 0)
+                return context[0].parsed.x * -1 + "k vuotta sitten"
             }
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            callback: function(value) {
+              return -value;
+            }
+          },
+          type: "linear",
+          title: {
+          display: true,
+          text:"Vuosia sitten (kyr BP/tuhansina vuosina)"
+          },    
         },
+        yAxis: {
+        type: "linear",
+        position: "right",
+        title: {
+            display: true,
+            text:"Lämpötilan muutos C"
+        }
+        },
+        co2: {
+          type: "linear",
+          position: "left",
+          min: 150,
+          max: 400,
+          title: {
+            display: true,
+            text:"co2 ppm"
+          }
+        },
+      },
     }
 
 
