@@ -105,15 +105,14 @@ export default function V7() {
       <div className="container-fluid">{isLoading ? (<p>Odota kun sivua ladataan</p>) :
         (<Line data={data} options={options} alt="Maailmanlaajuisen lämpötilan evoluutio viimeiseltä 2-miljoonalta vuodelta"/>)}
       </div>
-      <div className="card mt-4" style={{width: "24rem"}}>
+      <div className="card mt-4" style={{width: "32rem"}}>
         <div className="card-body">
           <h5 className="card-title">Kuvaus</h5>
-          <p className="card-text"></p>
-          <p className="card-text"></p>
-          
+          <p className="card-text">Kuvaajan sininen käyrä on 2m vuoden ajalta vuosittainen maailmanlaajuinen lämpötilan poikkeama (maapallon pintalämpötilan keskimuutos)</p>
+          <p className="card-text">Oranssi käyrä 800k vuoden ajalta ilmakehän co2 pitoisuus (hiilidioksidin määrä (ppm))</p>             
           <h6 className="card-subtitle mt-2 text-muted">Lähteet:</h6>
-          <a href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukon kuvaus</a>
-          <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukko</a>
+          <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukon kuvaus</a>
+          <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukko</a>
         </div>
       </div>
     </>
