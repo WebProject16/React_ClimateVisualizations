@@ -58,7 +58,6 @@ export default function CustomView() {
             <p>{description}</p>
             <p>Kokoelman tehnyt: {creator}</p>
 
-
             <div className={"viewContainer " + (isParallel ? "parallel" : "nonParallel")}>
             {
                 viewData.map(view =>

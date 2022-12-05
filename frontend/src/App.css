@@ -39,3 +39,14 @@
   flex: 50%;
   width: 50%;
 }
+
+@media only screen and (min-width: 600px) and (max-width: 992px){
+  .parallel {
+    display: block;
+  }
+
+  .parallel .child {
+    padding-bottom: 4em;
+    width: 100%;
+  }
+}
