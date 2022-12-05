@@ -122,7 +122,7 @@ export default function V3() {
             if(context.dataset.label === "CO2 pitoisuus kuukausittain" || context.dataset.label === "CO2 pitoisuus vuosittain"){
               return context.formattedValue + " ppm"
             }
-            console.log(context)
+
             return context.parsed.y + " ppm"
           },
           title: function(context){
