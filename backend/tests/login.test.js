@@ -2,15 +2,15 @@ const request = require("supertest");
 const app = require("../app");
 const crypto = require("crypto");
 
-describe("Test user register", () => {
-    const user = crypto.randomUUID().substring(0, 30);
+describe("Test user login", () => {
+    const user = crypto.randomUUID().substring(0, 8);
 
     test("Registering user with username and password", done => {
 
         const body = {
             username: user,
-            password: "password",
-            password_rpt: "password"
+            password: "password1",
+            password_rpt: "password1"
         }
 
         request(app)
@@ -54,7 +54,7 @@ describe("Test user register", () => {
 
         const body = {
             username: user,
-            password: "password"
+            password: "password1"
         }
 
         request(app)

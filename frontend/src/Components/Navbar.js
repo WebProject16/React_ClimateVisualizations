@@ -23,13 +23,14 @@ export default function Navbar() {
 
     //Visualizations menu drop down, text can be changed to something more descriptive
     const visualizationData = [
-        {route: "/v1", text:"v1 page"},
+        {route: "/v1", text:"1850-2022 lämpötilan poikkeamat"},
         {route: "/v2", text:"v2 page"},
         {route: "/v3", text:"v3 page"},
         {route: "/v4", text:"v4 page"},
-        {route: "/v5", text:"v5 page"},
+        {route: "/v5", text:"Ilmakehän hiilidioksidipitoisuudet"},
         {route: "/v6", text:"v6 page"},
-        {route: "/v7", text:"v7 page"}
+        {route: "/v7", text:"Lämpötilan evoluutio"},
+        {route: "/v8", text:"Hiilidioksidipäästöt maittain"},
     ]
 
     const visualizations = visualizationData.map((nav) =>

@@ -2,6 +2,7 @@ import React from 'react'
 import {useRef, useState, useEffect} from 'react'
 import {Post} from '../API/request';
 import { Link } from 'react-router-dom';
+import { checkInput } from './sanitizeInput';
 
 function Register() {
     const userRef = useRef();
@@ -24,16 +25,27 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if(!user || !password || !password_rpt) {
-            errRef.current.focus();
-            return setErrMsg('Please fill all fields!');
+        if(password !== password_rpt){
+            return setErrMsg("Passwords must match")
         }
+
+        let validate = checkInput(user, password)
+
+        if(validate !== "")
+            return setErrMsg(validate)
+
         await Post("/user/register",{username:user,password:password,password_rpt:password_rpt},
         (res) => {
             if(res.status === 200){
+                setErrMsg('')
+                setPassword('')
+                setUser('')
                 setSuccess(true)
             }else if(res.response.status === 400){
                 setErrMsg(res.response.data.msg)
+            }else{
+                errRef.current.focus();
+                setErrMsg("Unexpected error, try again later")
             }
         })
     }

@@ -30,7 +30,7 @@ export default function V1() {
   const data = {
     datasets: [
       {
-        label: "Northern temperature anomaly",
+        label: "Pohjoisen pallonpuoliskon lämpötilapoikkeama",
         data: isAnnual ? dataYear : dataMonth,
         borderColor: "rgb(50, 80, 200)",
         backgroundColor: "rgb(50, 80, 200)",
@@ -41,7 +41,7 @@ export default function V1() {
         pointRadius: 1,
       },
       {
-        label: "Southern temperature anomaly",
+        label: "Eteläisen pallonpuoliskon lämpötilapoikkeama",
         data: isAnnual ? dataYear : dataMonth,
         borderColor: "rgb(230, 150, 15)",
         backgroundColor: "rgb(230, 150, 15)",
@@ -52,7 +52,7 @@ export default function V1() {
         pointRadius: 1,
       },
       {
-        label: "Global temperature anomaly",
+        label: "Maailman laajuinen lämpötilapoikkeama",
         data: isAnnual ? dataYear : dataMonth,
         borderColor: "rgb(50, 150, 100)",
         backgroundColor: "rgb(50, 150, 100)",
@@ -63,8 +63,9 @@ export default function V1() {
         pointRadius: 1,
       },
       {
-        label:v2IsVisible ? "Northern temperature reconstruction" : "",
+        label:v2IsVisible ? "Pohjoisen pallonpuoliskon lämpötilapoikkeaman jälleenrakennus (2000a)" : "",
         data: dataV2,
+        hidden: true,
         borderColor: v2IsVisible ?  "rgb(100, 0, 0)" : "rgba(0,0,0,0)",
         backgroundColor: v2IsVisible ?  "rgb(100, 0, 0)" : "rgba(0,0,0,0)",
         parsing: {
@@ -85,7 +86,10 @@ export default function V1() {
       },
       title: {
         display: true,
-        text: "Temperature anomalies " + (isAnnual ? "(annual)" : "(month)"),
+        text: "Lämpötilapoikkeamat " + (isAnnual ? "(vuosittain)" : "(kuukausittain)"),
+        font: {
+          size: 20
+        }
       },
     },
     scales: {
@@ -105,18 +109,19 @@ export default function V1() {
     <>
       <div className="container-fluid">
         <Line data={data} options={options} alt="Anomaly data chart"/>
-        <button onClick={() => setV2IsVisible(!v2IsVisible)} className="btn btn-outline-primary mt-4">{v2IsVisible ? "Hide northern temp reconstruction" : "Show northern temp reconstruction"}</button>
+        {/* <button onClick={() => setV2IsVisible(!v2IsVisible)} className="btn btn-outline-primary mt-4">{v2IsVisible ? "Hide northern temp reconstruction" : "Show northern temp reconstruction"}</button> */}
       </div>
       <div className="container-fluid">
-        <button onClick={() => setIsAnnual(!isAnnual)} className="btn btn-outline-primary mt-2">{isAnnual ? "Show monthly data" : "Show yearly data"}</button>
+        <button onClick={() => setIsAnnual(!isAnnual)} className="btn btn-outline-primary mt-2">{isAnnual ? "Näytä data kuukausittain" : "Näytä data vuosittain"}</button>
       </div>
       <div className="card mt-4" style={{width: "24rem"}}>
         <div className="card-body">
-          <h5 className="card-title">Data description</h5>
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <h6 className="card-subtitle mt-2 text-muted">Sources:</h6>
-          <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noreferrer" className="card-link">Met Office Hadley Centre</a>
-          <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005" target="_blank" rel="noreferrer" className="card-link">Stockholm University</a>
+          <h5 className="card-title">Kuvaus</h5>
+          <p className="card-text">Kuvaajassa vuosittaiset lämpötilapoikkeamat ajanjaksolta 1850-2022.</p>
+          <p>Lisäksi kuvaajaan halutessaan saa näkyville myös jälleenrakennuksen poikkeamista 2000 vuoden ajanjaksolta</p>
+          <h6 className="card-subtitle mt-2 text-muted">Lähteet:</h6>
+          <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noopener noreferrer" className="card-link">1850-2022 data</a>
+          <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005" target="_blank" rel="noopener noreferrer" className="card-link">2000 vuoden data</a>
         </div>
       </div>
     </>

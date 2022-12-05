@@ -1,16 +1,14 @@
 const userModel = require('../models/userModel.js');
 const bcrypt = require('bcrypt');
 const jwt = require("../misc/jwt");
-//const auth = require('../misc/auth');
-
-
-const hello = (req, res) => {
-    let s = userModel.hello()
-    res.json(s)
-}
+const validator = require('validator');
 
 const register = (req, res) => {
     const {username, password, password_rpt} = req.body
+
+    if(typeof username !== 'string' || typeof password !== 'string' || typeof password_rpt !== 'string'){
+        return res.status(400).json({msg:'Inputs are not valid'})
+    }
     
     if(!username){
         return res.status(400).json({
@@ -19,10 +17,10 @@ const register = (req, res) => {
     }
     if(!password || password.length < 5){
         return res.status(400).json({
-            msg:'Password must have more than 4 characters'
+            msg:'Password must have more than 5 characters'
         })
     }
-    if(!password_rpt || password != password_rpt){
+    if(!password_rpt || password !== password_rpt){
         return res.status(400).json({
             msg:'Passwords must match'
         })
@@ -33,15 +31,45 @@ const register = (req, res) => {
             msg:'Username is too long'
         })
     }
-    userModel.register(username, password, function(err, dbRes){
-        if(err){
-            if(err.errno == 1062)
-                return res.status(400).json({msg:'Username already taken'}) 
 
-            return res.status(500).json(err)
-        }else{
-            return res.status(200).json({msg:'Successfully registered new user'})
-        }})   
+    if(username.length < 3){
+        return res.status(400).json({
+            msg:'Username is too short'
+        })
+    }
+
+    if(!validator.isAlphanumeric(username)){
+
+        return res.status(400).json({
+            msg:'Username cannot contain special characters'
+        })
+    }
+
+    if(!validator.isStrongPassword(password, {minLength: 6, minLowercase: 0, minUppercase: 0, minSymbols: 0, minNumbers: 1})){
+
+        return res.status(400).json({
+            msg:'Password is not valid'
+        })
+    }
+
+    bcrypt.hash(password, 10, (err, hash) => {
+
+        if(err){
+            console.log(err);
+            return res.status(500).json({msg:'Error on registering user'}) 
+        }
+
+        userModel.register(username, hash, (err, dbRes) => {
+            if(err){
+                if(err.errno == 1062)
+                    return res.status(400).json({msg:'Username already taken'}) 
+    
+                return res.status(500).json(err)
+            }else{
+                return res.status(200).json({msg:'Successfully registered new user'})
+            }
+        })
+    })
 }
 
 const login = (req, res) => {
@@ -49,6 +77,10 @@ const login = (req, res) => {
 
     if(!username || !password){
         return res.status(400).json({status:"error",msg:"One or more fields are missing"})
+    }
+
+    if(typeof username !== 'string' || typeof password !== 'string'){
+        return res.status(400).json({msg:'Inputs are not valid'})
     }
 
     userModel.getUserByName(username, (err, result) => {
@@ -91,6 +123,10 @@ const deleteUser = (req, res) => {
         return res.status(400).json({status:"error",msg:"One or more fields are missing"});
     }
 
+    if(typeof username !== 'string' || typeof password !== 'string'){
+        return res.status(400).json({msg:'Inputs are not valid'})
+    }
+
     userModel.getUserByName(username, (err, result) => {
         if(err){
             console.log(err);
@@ -131,7 +167,6 @@ const checkToken = (req, res) => {
 }
 
 module.exports = {
-    hello,
     register,
     login,
     deleteUser,

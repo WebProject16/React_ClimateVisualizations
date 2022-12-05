@@ -11,3 +11,7 @@
 .content {
   flex: 1;
 }
+
+#v8Chart {
+  height: 90vh;
+}
