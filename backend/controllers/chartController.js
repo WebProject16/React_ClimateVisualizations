@@ -6,11 +6,11 @@ const v1 = (req, res) => {
     chartModel.getV1((err, data) => {
         if(err){
             console.log(err);
-            return res.status(500).json({status:"error", msg:"Error on fetching chart V1 data"})
+            return res.status(500).json({status:"error", msg:"Virhe haettaessa kaavion V1 tietoja"})
         }
 
         if(!data){
-            return res.status(500).json({status:"error", msg:"No data found in V1 table"})
+            return res.status(500).json({status:"error", msg:"V1-taulukosta ei löytynyt tietoja"})
         }
 
 
@@ -23,11 +23,11 @@ const v3 = (req, res) => {
     chartModel.getV3((err, data) => {
         if(err){
             console.log(err);
-            return res.status(500).json({status:"error", msg:"Error on fetching chart V3 data"})
+            return res.status(500).json({status:"error", msg:"Virhe haettaessa kaavion V3 tietoja"})
         }
 
         if(!data){
-            return res.status(500).json({status:"error", msg:"No data found in V3 table"})
+            return res.status(500).json({status:"error", msg:"V3-taulukosta ei löytynyt tietoja"})
         }
 
         res.status(200).json({dataYear: data[0], dataMonth: data[1]})
@@ -39,11 +39,11 @@ const v4 = (req, res) => {
     chartModel.getV4((err, data) => {
         if(err){
             console.log(err);
-            return res.status(500).json({status:"error", msg:"Error on fetching chart V4 data"})
+            return res.status(500).json({status:"error", msg:"Virhe haettaessa kaavion V4 tietoja"})
         }
 
         if(!data){
-            return res.status(500).json({status:"error", msg:"No data found in V4 table"})
+            return res.status(500).json({status:"error", msg:"V4-taulukosta ei löytynyt tietoja"})
         }
 
         res.status(200).json({v4: data[0], v3_annual: data[1]})
@@ -55,11 +55,11 @@ const v5 = (req, res) => {
     chartModel.getV5((err, data) => {
         if(err){
             console.log(err);
-            return res.status(500).json({status:"error", msg:"Error on fetching chart V5 data"})
+            return res.status(500).json({status:"error", msg:"Virhe haettaessa kaavion V5 tietoja"})
         }
 
         if(!data){
-            return res.status(500).json({status:"error", msg:"No data found in V5 table"})
+            return res.status(500).json({status:"error", msg:"V5-taulukosta ei löytynyt tietoja"})
         }
 
         let years = [];
@@ -89,11 +89,11 @@ const v6 = (req, res) => {
     chartModel.getV6((err, data) => {
         if(err){
             console.log(err);
-            return res.status(500).json({status:"error", msg:"Error on fetching chart V6 data"})
+            return res.status(500).json({status:"error", msg:"Virhe haettaessa kaavion V6 tietoja"})
         }
 
         if(!data){
-            return res.status(500).json({status:"error", msg:"No data found in V6 table"})
+            return res.status(500).json({status:"error", msg:"V6-taulukosta ei löytynyt tietoja"})
         }
 
         res.status(200).json({v6: data})
@@ -104,11 +104,11 @@ const v7 = (req, res) => {
     chartModel.getV7((err, data) => {
         if(err){
             console.log(err);
-            return res.status(500).json({status:"error", msg:"Error on fetching chart V7 data"})
+            return res.status(500).json({status:"error", msg:"Virhe haettaessa kaavion V7 tietoja"})
         }
 
         if(!data){
-            return res.status(500).json({status:"error", msg:"No data found in V7 table"})
+            return res.status(500).json({status:"error", msg:"V7-taulukosta ei löytynyt tietoja"})
         }
 
         res.status(200).json({v7_temp: data[0], v7_co2: data[1], v10: data[2]})
@@ -121,11 +121,11 @@ const v8 = (req, res) => {
     chartModel.getV8((err, data) => {
         if(err){
             console.log(err);
-            return res.status(500).json({status:"error", msg:"Error on fetching chart V8 data"})
+            return res.status(500).json({status:"error", msg:"Virhe haettaessa kaavion V8 tietoja"})
         }
 
         if(!data){
-            return res.status(500).json({status:"error", msg:"No data found in V8 table"})
+            return res.status(500).json({status:"error", msg:"V8-taulukosta ei löytynyt tietoja"})
         }
 
         let years = [];

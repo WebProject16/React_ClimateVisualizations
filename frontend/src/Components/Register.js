@@ -26,7 +26,7 @@ function Register() {
         e.preventDefault();
 
         if(password !== password_rpt){
-            return setErrMsg("Passwords must match")
+            return setErrMsg("Salasana ei täsmää!")
         }
 
         let validate = checkInput(user, password)
@@ -45,7 +45,7 @@ function Register() {
                 setErrMsg(res.response.data.msg)
             }else{
                 errRef.current.focus();
-                setErrMsg("Unexpected error, try again later")
+                setErrMsg("Jokin meni vikaan, yritä uudelleen.")
             }
         })
     }
@@ -57,14 +57,13 @@ function Register() {
                     <div className="alert alert-success p-4 pb-2">
                         <h2 className="alert-heading">Käyttäjä luotu onnistuneesti</h2>
                         <h4>
-                        Please
-                        <Link className="btn btn-success m-2 fs-5 pl-2 pr-2 text-decoration-none"to='/Login'>login</Link>
-                        to authenticate
+                            Ole hyvä ja
+                        <Link className="btn btn-success m-2 fs-5 pl-2 pr-2 text-decoration-none"to='/Login'>Kirjaudu sisään</Link>
                         </h4>
                     </div>
                 ) : (           
             <form onSubmit={handleSubmit}>
-            <h1>Rekisteröi käyttäjä</h1>
+            <h1>Rekisteröidy</h1>
             <div className='form-group pb-2 pt-4 w-750'>
                 <label htmlFor="username">Käyttäjänimi:</label>
                 <input type="text" id="username" className="form-control" ref={userRef} autoComplete="off" onChange={(e) => setUser(e.target.value)} value={user} />
