@@ -24,7 +24,7 @@ const viewAuthRoutes = require('./routes/viewAuthRoutes')
 
 app.use((err, req, res, next) => {
   console.error(err.stack)
-  res.status(500).send('Internal server error, check console')
+  res.status(500).send('Serverin sisäinen virhe, tarkista konsoli')
 })
 
 // endpoints that dont need authentication ->
