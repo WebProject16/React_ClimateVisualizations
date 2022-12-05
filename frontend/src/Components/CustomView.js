@@ -55,15 +55,19 @@ export default function CustomView() {
     
     return (
         <>
-            <p>{description}</p>
-            <p>Kokoelman tehnyt: {creator}</p>
-
             <div className={"viewContainer " + (isParallel ? "parallel" : "nonParallel")}>
             {
                 viewData.map(view =>
                     validViews[view]
                 )
             }
+            </div>
+
+            <div className="card mt-4">
+                <div className="card-body">
+                    <p>{description}</p>
+                    <p>Kokoelman tehnyt: {creator}</p>
+                </div>
             </div>
         </>
     )
