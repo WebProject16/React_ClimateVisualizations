@@ -7,7 +7,7 @@ const chart = {
     },
 
     getV3: (cb) => {
-        db.query("SELECT * FROM v3_mauna_loa_co2_annual; SELECT * FROM v3_mauna_loa_co2_monthly", cb)
+        db.query("SELECT * FROM v3_mauna_loa_co2_annual; SELECT * FROM v3_mauna_loa_co2_monthly; SELECT year,clean_desc_fi,years_ago*0+350 AS years_ago FROM v10_timeline_of_the_human_condition_interesting WHERE year>0; SELECT * FROM v4_1;SELECT * FROM v4_2;SELECT * FROM v4_3", cb)
     },
 
     getV4: (cb) => {

@@ -30,7 +30,7 @@ const v3 = (req, res) => {
             return res.status(500).json({status:"error", msg:"No data found in V3 table"})
         }
 
-        res.status(200).json({dataYear: data[0], dataMonth: data[1]})
+        res.status(200).json({dataYear: data[0], dataMonth: data[1], v10: data[2], v4_1: data[3],v4_2: data[4],v4_3: data[5]})
     })
 }
 

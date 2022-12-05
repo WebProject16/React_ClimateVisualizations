@@ -13,6 +13,8 @@ import V1 from './Components/visualizations/V1';
 import V3 from './Components/visualizations/V3';
 import V5 from './Components/visualizations/V5';
 import V6 from './Components/visualizations/V6';
+import V7 from './Components/visualizations/V7';
+import V8 from './Components/visualizations/V8';
 import { Routes, Route } from 'react-router-dom';
 import RouteGuard from './Components/RouteGuard';
 import { LogoutHandler} from './Components/LogoutHandler';
