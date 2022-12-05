@@ -25,7 +25,7 @@ export default function Navbar() {
     const visualizationData = [
         {route: "/v1", text:"1850-2022 lämpötilan poikkeamat"},
         {route: "/v2", text:"v2 page"},
-        {route: "/v3", text:"v3 page"},
+        {route: "/v3", text:"Mauna Loa sekä Law Dome hiilidioksidipitoisuudet"},
         {route: "/v4", text:"v4 page"},
         {route: "/v5", text:"Ilmakehän hiilidioksidipitoisuudet"},
         {route: "/v6", text:"v6 page"},
