@@ -33,18 +33,6 @@ export default function V6() {
             },
             pointRadius: 1,
           },
-    
-          {
-            label: "Hiilidioksidipitoisuus (1s ppm)",
-            data: v6,
-            borderColor: "rgb(230, 150, 15)",
-            backgroundColor: "rgb(230, 150, 15)",
-            parsing: {
-              xAxisKey: "age",
-              yAxisKey: "co2_1s_ppm",
-            },
-            pointRadius: 1,
-          },
         ]
       }
       
