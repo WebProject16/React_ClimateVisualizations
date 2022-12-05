@@ -10,6 +10,7 @@
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
     "node": "^19.0.0",
+    "uuid": "^9.0.0",
     "validator": "^13.7.0"
   },
   "devDependencies": {

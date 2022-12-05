@@ -23,13 +23,12 @@ export default function Navbar() {
 
     //Visualizations menu drop down, text can be changed to something more descriptive
     const visualizationData = [
-        {route: "/v1", text:"v1 page"},
-        {route: "/v2", text:"v2 page"},
-        {route: "/v3", text:"v3 page"},
-        {route: "/v4", text:"v4 page"},
-        {route: "/vostok", text:"Ilmakehän hiilidioksidipitoisuudet (Vostok asema)"},
+        {route: "/v1", text:"1850-2022 lämpötilan poikkeamat"},
+        {route: "/v3", text:"Mauna Loa sekä Law Dome hiilidioksidipitoisuudet"},
+        {route: "/v5", text:"Ilmakehän hiilidioksidipitoisuudet"},
         {route: "/v6", text:"v6 page"},
-        {route: "/v7", text:"v7 page"}
+        {route: "/v7", text:"Lämpötilan evoluutio"},
+        {route: "/v8", text:"Hiilidioksidipäästöt maittain"},
     ]
 
     const visualizations = visualizationData.map((nav) =>
@@ -47,7 +46,7 @@ export default function Navbar() {
         <nav id="nav" className="navbar-expand-md navbar-dark bg-dark mb-4 pt-2 pb-1">
           <div className="container-fluid">
 
-            <Link to="/"><img src="icon.png" className="m-2" alt="Logo."/></Link> 
+            <Link to="/"><img src="/icon.png" className="m-2" alt="Logo."/></Link>
             <Link className="navbar-brand" to='/'>Global climate</Link>
 
             <button className="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" id="navbarToggle">
