@@ -13,12 +13,6 @@ export default function Create() {
     const createView = (e) => {
         e.preventDefault();
 
-        for(let i = 0; i < e.target.views.options.length; i++){
-            if(e.target.views.options[i].selected){
-                setViewData(viewData => [...viewData, "v1,"])
-            }
-        }
-
         const body = {
             views: viewData.toString(),
             isParallel: isParallel,
@@ -45,7 +39,7 @@ export default function Create() {
                 <h3>Valitse visuaalisaatiot jotka halua näyttää</h3>
 
                 <div className="p-4">
-                    <select className="form-select" name="views" onClick={(e) => setViewData(e.target.value, [...viewData])} multiple>
+                    <select className="form-select" name="views" onClick={e => setViewData(viewData => [...viewData, e.target.value])} multiple>
                         <option value="v1">1850-2022 lämpötilan poikkeamat</option>
                         <option value="v3">Mauna Loa sekä Law Dome hiilidioksidipitoisuudet</option>
                         <option value="v5">Ilmakehän hiilidioksidipitoisuudet</option>
@@ -70,10 +64,13 @@ export default function Create() {
                         </div>
                         <button type="submit" className="btn btn-outline-primary mt-4">Tallenna</button>
 
-                        {isSuccess ? <div className="pt-4 mt-4">
+                        {
+                        isSuccess ?
+                        <div className="pt-4 mt-4">
                             <Link className="btn btn-success p-3 text-decoration-none"to={"/view/" + url}>Linkki näkymään</Link>
                         </div>
-                        :""}
+                        :""
+                        }
                     </div>
 
                 </div>

@@ -19,12 +19,12 @@ export default function CustomView() {
     const [creator, setCreator] = useState("");
 
     const validViews = {
-        v1: <V1/>,
-        v3: <V3/>,
-        v5: <V5/>,
-        v6: <V6/>,
-        v7: <V7/>,
-        v8: <V8/>
+        v1: <V1 key="v1" />,
+        v3: <V3 key="v3" />,
+        v5: <V5 key="v5" />,
+        v6: <V6 key="v6" />,
+        v7: <V7 key="v7" />,
+        v8: <V8 key="v8" />
     }
 
     useEffect(() => {
@@ -36,8 +36,6 @@ export default function CustomView() {
 
                 const data = res.data.view;
 
-                console.log(data);
-
                 setIsParallel(data.isParallel);
                 setViewData(data.visualizations.split(","));
                 setDescription(data.description);
@@ -45,7 +43,6 @@ export default function CustomView() {
 
             }else{
                 setIsSuccess(false);
-                console.log(res.response.data);
             }
         })
     }, [])
