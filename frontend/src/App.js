@@ -10,10 +10,9 @@ import Footer from './Components/Footer.js';
 import Register from './Components/Register';
 import Profile from './Components/Profile'
 import V1 from './Components/visualizations/V1';
+import V3 from './Components/visualizations/V3';
 import V5 from './Components/visualizations/V5';
-import V7 from './Components/visualizations/V7';
-import V8 from './Components/visualizations/V8';
-
+import V6 from './Components/visualizations/V6';
 import { Routes, Route } from 'react-router-dom';
 import RouteGuard from './Components/RouteGuard';
 import { LogoutHandler} from './Components/LogoutHandler';
@@ -51,6 +50,9 @@ function App() {
             <Route path="/v5" element={<V5 />} />
             <Route path="/v7" element={<V7 />} />
             <Route path="/v8" element={<V8 />} />
+            <Route path="/v3" element={<V3 />}  />
+            <Route path="/v5" element={<V5 />}  />
+            <Route path="/v6" element={<V6 />}  />
             <Route path="/logout" element={ <LoginContext.Provider value={isLogged}><LogoutHandler /> </LoginContext.Provider>} />
             <Route path="/Create" element={<RouteGuard> <Create /> </RouteGuard>} />
             <Route path="/Profile" element={<LoginContext.Provider value={isLogged}> <Profile /> </LoginContext.Provider>} />
