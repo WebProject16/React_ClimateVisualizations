@@ -152,6 +152,7 @@ export default function V7() {
           <h6 className="card-subtitle mt-2 text-muted">Lähteet:</h6>
           <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukon kuvaus</a>
           <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukko</a>
+          <a href="https://www.southampton.ac.uk/~cpd/history.html" target="_blank" rel="noreferrer noopener" className="card-link">Ihmistapahtumat</a>
         </div>
       </div>
     </>
