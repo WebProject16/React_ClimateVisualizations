@@ -11,7 +11,6 @@ export default function V1() {
   const [dataMonth, setDataMonth] = useState([]);
   const [dataV2, setDataV2 ] = useState([]);
 
-  const [v2IsVisible, setV2IsVisible] = useState([]);
   const [isAnnual, setIsAnnual] = useState(true);
 
   useEffect(() => {
@@ -63,11 +62,11 @@ export default function V1() {
         pointRadius: 1,
       },
       {
-        label:v2IsVisible ? "Pohjoisen pallonpuoliskon lämpötilapoikkeaman jälleenrakennus (2000a)" : "",
+        label: "Pohjoisen pallonpuoliskon lämpötilapoikkeaman jälleenrakennus (2000a)",
         data: dataV2,
         hidden: true,
-        borderColor: v2IsVisible ?  "rgb(100, 0, 0)" : "rgba(0,0,0,0)",
-        backgroundColor: v2IsVisible ?  "rgb(100, 0, 0)" : "rgba(0,0,0,0)",
+        borderColor: "rgb(100, 0, 0)",
+        backgroundColor: "rgb(100, 0, 0)",
         parsing: {
           xAxisKey: "year",
           yAxisKey: "T",
