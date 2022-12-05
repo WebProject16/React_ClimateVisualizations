@@ -106,7 +106,7 @@ export default function V1() {
   }
 
   return (
-    <>
+    <div className="child">
       <div className="container-fluid">
         <Line data={data} options={options} alt="Anomaly data chart"/>
         {/* <button onClick={() => setV2IsVisible(!v2IsVisible)} className="btn btn-outline-primary mt-4">{v2IsVisible ? "Hide northern temp reconstruction" : "Show northern temp reconstruction"}</button> */}
@@ -124,6 +124,6 @@ export default function V1() {
           <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005" target="_blank" rel="noopener noreferrer" className="card-link">2000 vuoden data</a>
         </div>
       </div>
-    </>
+    </div>
   );
 }

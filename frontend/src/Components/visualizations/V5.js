@@ -73,7 +73,7 @@ export default function V5() {
   }
 
   return (
-    <>
+    <div className="child">
       <div className="container-fluid">
         <Line data={data} options={options} alt="Ilmakehän hiilidioksidipitoisuudet perustuen Neuvostoliiton etelämantereen Vostok aseman jääkairauksiin kuvaaja."/>
       </div>
@@ -88,6 +88,6 @@ export default function V5() {
           <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2" target="_blank" rel="noreferrer" className="card-link">Tietojoukko</a>
         </div>
       </div>
-    </>
+    </div>
   );
 }

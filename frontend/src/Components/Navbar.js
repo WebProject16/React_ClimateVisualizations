@@ -48,7 +48,7 @@ export default function Navbar() {
         <nav id="nav" className="navbar-expand-md navbar-dark bg-dark mb-4 pt-2 pb-1">
           <div className="container-fluid">
 
-            <Link to="/"><img src="icon.png" className="m-2" alt="Logo."/></Link> 
+            <Link to="/"><img src="/icon.png" className="m-2" alt="Logo."/></Link>
             <Link className="navbar-brand" to='/'>Global climate</Link>
 
             <button className="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" id="navbarToggle">

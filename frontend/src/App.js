@@ -13,6 +13,8 @@ import V1 from './Components/visualizations/V1';
 import V5 from './Components/visualizations/V5';
 import V7 from './Components/visualizations/V7';
 import V8 from './Components/visualizations/V8';
+import CustomView from './Components/CustomView';
+import Error from './Components/Error';
 
 import { Routes, Route } from 'react-router-dom';
 import RouteGuard from './Components/RouteGuard';
@@ -51,12 +53,14 @@ function App() {
             <Route path="/v5" element={<V5 />} />
             <Route path="/v7" element={<V7 />} />
             <Route path="/v8" element={<V8 />} />
+            <Route path="/view/:url" element={<CustomView />} />
             <Route path="/logout" element={ <LoginContext.Provider value={isLogged}><LogoutHandler /> </LoginContext.Provider>} />
             <Route path="/Create" element={<RouteGuard> <Create /> </RouteGuard>} />
             <Route path="/Profile" element={<LoginContext.Provider value={isLogged}> <Profile /> </LoginContext.Provider>} />
             <Route path="/Contact" element={<Contact />} />
             <Route path="/Login" element={<LoginContext.Provider value={isLogged}> <Login /> </LoginContext.Provider>} />
             <Route path="/Register" element={<Register />} />
+            <Route path="*" element={<Error />} />
           </Routes>
         </div>
       </div>
