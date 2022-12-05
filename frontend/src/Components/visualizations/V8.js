@@ -94,7 +94,7 @@ export default function V8() {
   }
 
   return (
-    <>
+    <div className="child">
       <div className="container-fluid">
         <Line data={data} options={options} id="v8Chart" alt="Pinottu viivakaavio ajan suhteen maakohtaisista CO2 päästöistä."/>
       </div>
@@ -109,6 +109,6 @@ export default function V8() {
           <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D" target="_blank" rel="noreferrer" className="card-link">Tietojoukon lähteet</a>
         </div>
       </div>
-    </>
+    </div>
   );
 }
