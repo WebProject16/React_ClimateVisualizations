@@ -77,7 +77,7 @@ export default function V6() {
   }
   
   return (
-    <>
+    <div className="child">
       <div className="container-fluid">
         <Line data={data} options={options} alt="CO2 data chart"/>
       </div>
@@ -92,6 +92,6 @@ export default function V6() {
           <a href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" target="_blank" rel="noreferrer" className="card-link">Antarctic Ice Cores Revised 800KYr </a>
         </div>
       </div>
-    </>
+    </div>
   );
 }

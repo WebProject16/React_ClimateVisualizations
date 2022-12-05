@@ -140,7 +140,7 @@ export default function V7() {
 
 
   return (
-    <>
+    <div className="child">
       <div className="container-fluid">{isLoading ? (<p>Odota kun sivua ladataan</p>) :
         (<Line data={data} options={options} alt="Maailmanlaajuisen lämpötilan evoluutio viimeiseltä 2-miljoonalta vuodelta"/>)}
       </div>
@@ -155,6 +155,6 @@ export default function V7() {
           <a href="https://www.southampton.ac.uk/~cpd/history.html" target="_blank" rel="noreferrer noopener" className="card-link">Ihmistapahtumat</a>
         </div>
       </div>
-    </>
+    </div>
   )
 }

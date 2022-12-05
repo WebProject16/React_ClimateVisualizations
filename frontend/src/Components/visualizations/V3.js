@@ -155,7 +155,7 @@ export default function V3() {
   }
 
   return (
-    <>
+    <div className="child">
       <div className="container-fluid">
         <Line data={data} options={options} alt="Anomaly data chart"/>
       </div>
@@ -176,6 +176,6 @@ export default function V3() {
           <a href="https://www.southampton.ac.uk/~cpd/history.html" target="_blank" rel="noreferrer noopener" className="card-link">Ihmistapahtumat</a>
         </div>
       </div>
-    </>
+    </div>
   );
 }
