@@ -22,6 +22,10 @@ const chart = {
         db.query("SELECT * FROM v6_ice_core", cb)
     },
 
+    getV7: (cb) => {
+        db.query("SELECT kyrBP*-1 AS year,p50 FROM v7_gast; SELECT kyrBP/-1000 AS year,co2 FROM v7_co2; SELECT year/1000 AS year,clean_desc_fi,years_ago*0 AS years_ago FROM v10_timeline_of_the_human_condition_interesting WHERE year<0", cb)
+    },
+
     getV8: (cb) => {
         db.query("SELECT * FROM v8_co2_emissions", cb)
     }

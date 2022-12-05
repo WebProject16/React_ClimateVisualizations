@@ -100,6 +100,22 @@ const v6 = (req, res) => {
     })
 }
 
+const v7 = (req, res) => {
+    chartModel.getV7((err, data) => {
+        if(err){
+            console.log(err);
+            return res.status(500).json({status:"error", msg:"Error on fetching chart V7 data"})
+        }
+
+        if(!data){
+            return res.status(500).json({status:"error", msg:"No data found in V7 table"})
+        }
+
+        res.status(200).json({v7_temp: data[0], v7_co2: data[1], v10: data[2]})
+    })
+}
+
+
 const v8 = (req, res) => {
 
     chartModel.getV8((err, data) => {
@@ -184,5 +200,6 @@ module.exports = {
     v4,
     v5,
     v6,
+    v7,
     v8
 }
