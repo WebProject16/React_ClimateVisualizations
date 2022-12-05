@@ -5,16 +5,16 @@ const createView = (req, res) => {
 
     const { views, isParallel, description } = req.body;
 
-    if(typeof views !== "string" || typeof isParallel !== "number" || typeof description !== "string"){
+    if(typeof views !== "string" || typeof isParallel !== "boolean" || typeof description !== "string"){
         return res.status(400).json({status:"error", msg:"Wrong type of input or values missing"});
     }
 
-    if(views.length > 30){
-        return res.status(400).json({status:"error", msg:"Views are too long"});
+    if(views.length > 30 || description.length > 1024){
+        return res.status(400).json({status:"error", msg:"View or description is too long"});
     }
 
-    if(description.length > 1024){
-        return res.status(400).json({status:"error", msg:"Description is too long"});
+    if(views.length < 2){
+        return res.status(400).json({status:"error", msg:"View is too short"});
     }
 
     const url = uuidv4();
