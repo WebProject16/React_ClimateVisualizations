@@ -84,8 +84,8 @@ export default function V5() {
           <p className="card-text">Aikajakso on 417160 - 2342 vuotta ennen nykyhetkeä.</p>
           
           <h6 className="card-subtitle mt-2 text-muted">Lähteet:</h6>
-          <a href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html" target="_blank" rel="noreferrer" className="card-link">Tietojoukon kuvaus</a>
-          <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2" target="_blank" rel="noreferrer" className="card-link">Tietojoukko</a>
+          <a href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukon kuvaus</a>
+          <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukko</a>
         </div>
       </div>
     </div>
