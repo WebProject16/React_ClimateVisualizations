@@ -105,8 +105,8 @@ export default function V8() {
           <p className="card-text">Aikajakso on 1959 - 2020 vuotta.</p>
           
           <h6 className="card-subtitle mt-2 text-muted">Lähteet:</h6>
-          <a href="https://essd.copernicus.org/articles/14/1917/2022" target="_blank" rel="noreferrer" className="card-link">Tietojoukon kuvaus</a>
-          <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D" target="_blank" rel="noreferrer" className="card-link">Tietojoukon lähteet</a>
+          <a href="https://essd.copernicus.org/articles/14/1917/2022" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukon kuvaus</a>
+          <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukon lähteet</a>
         </div>
       </div>
     </div>
