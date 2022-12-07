@@ -56,7 +56,7 @@ export default function Create() {
                 <h3>Valitse visuaalisaatiot jotka halua näyttää</h3>
 
                 <div className="p-4">
-                    <select className="form-select viewSelector" name="views" onClick={e => {setViewData(viewData => [...viewData, e.target.value]); setError("")}} multiple>
+                    <select className="form-select viewSelector" name="views" onClick={e => {setViewData(viewData => [...viewData, e.target.value]); setError("")}} multiple disabled={isSuccess}>
                         <option value="v1">1850-2022 lämpötilan poikkeamat</option>
                         <option value="v3">Mauna Loa sekä Law Dome hiilidioksidipitoisuudet</option>
                         <option value="v5">Ilmakehän hiilidioksidipitoisuudet</option>
@@ -68,7 +68,7 @@ export default function Create() {
 
                 <div className="mb-3">
                     <label htmlFor="basicDescription" className="form-label">Kuvaus</label>
-                    <textarea className="form-control" id="basicDescription" rows="4" onChange={e => setDescription(e.target.value)}></textarea>
+                    <textarea className="form-control" id="basicDescription" rows="4" onChange={e => setDescription(e.target.value)} disabled={isSuccess} />
                 </div>
 
                 <div className="d-flex justify-content-center text-center">
@@ -78,12 +78,12 @@ export default function Create() {
 
                         <div className="row">
                             <div className="col">
-                                <input type="radio" className="btn-check" name="isParallel" id="isParallelSw"  defaultChecked={isParallel}></input>
+                                <input type="radio" className="btn-check" name="isParallel" id="isParallelSw"  defaultChecked={isParallel} disabled={isSuccess} />
                                 <label className="btn btn-outline-dark" htmlFor="isParallelSw" onClick={() => setIsParallel(true)}>Vierekkäin</label>
                             </div>
 
                             <div className="col">
-                                <input type="radio" className="btn-check" name="isParallel" id="isNonParallelSw" defaultChecked={!isParallel}/>
+                                <input type="radio" className="btn-check" name="isParallel" id="isNonParallelSw" defaultChecked={!isParallel} disabled={isSuccess} />
                                 <label className="btn btn-outline-dark" htmlFor="isNonParallelSw" onClick={() => setIsParallel(false)}>Allekkain</label>
                             </div>
                         </div>
