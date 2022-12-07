@@ -1,9 +1,7 @@
 import React from 'react'
-import { cleanup, render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Register from './Register.js'
-
-afterEach(() => cleanup())
 
 test('register page renders correctly', () => {
   const { getByLabelText, getByText} = render(<Register />)
