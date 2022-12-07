@@ -78,7 +78,7 @@ function Register() {
                 <input type="password" id="password_rpt" className="form-control" autoComplete="off" onChange={(e) => setPassword_rpt(e.target.value)} value={password_rpt} />
             </div>
             <p ref={errRef} className={errMsg ? "alert alert-danger" : "offscreen"} >{errMsg}</p>
-            <button type="submit" className="btn btn-outline-primary">Sign up!</button>
+            <button type="submit" data-testid="registerBtn" className="btn btn-outline-primary">Sign up!</button>
             </form>
             )}
         </div>
