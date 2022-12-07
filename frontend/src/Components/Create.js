@@ -7,24 +7,41 @@ export default function Create() {
     const [viewData, setViewData] = useState([]);
     const [isParallel, setIsParallel] = useState(true);
     const [description, setDescription] = useState("");
-    const [isSuccess, setIsSuccess] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(null);
     const [url, setUrl] = useState("");
+    const [error, setError] = useState("");
 
     const createView = (e) => {
         e.preventDefault();
 
+        if(viewData.length === 0) {
+            setIsSuccess(false);
+            return setError("Visuaalisaatioita ei ole valittu")
+        }
+
+        if(description.length > 1024) {
+            setIsSuccess(false);
+            return setError("Kuvaus on liian pitkä")
+        }
+
+        const uniqueViews = viewData.filter((data, i) => {
+            return viewData.indexOf(data) === i;
+        })
+
         const body = {
-            views: viewData.toString(),
+            views: uniqueViews.toString(),
             isParallel: isParallel,
             description: description
         }
 
         AuthPost("/views", body, (res) => {
             if(res.status === 201){
-                setUrl(res.data.url)
+                setUrl(res.data.url);
 
-                setIsSuccess(true)
+                setIsSuccess(true);
             }else{
+                setIsSuccess(false);
+                setError(res.response.data.msg);
             }
         })
 
@@ -39,7 +56,7 @@ export default function Create() {
                 <h3>Valitse visuaalisaatiot jotka halua näyttää</h3>
 
                 <div className="p-4">
-                    <select className="form-select viewSelector" name="views" onClick={e => setViewData(viewData => [...viewData, e.target.value])} multiple>
+                    <select className="form-select viewSelector" name="views" onClick={e => {setViewData(viewData => [...viewData, e.target.value]); setError("")}} multiple>
                         <option value="v1">1850-2022 lämpötilan poikkeamat</option>
                         <option value="v3">Mauna Loa sekä Law Dome hiilidioksidipitoisuudet</option>
                         <option value="v5">Ilmakehän hiilidioksidipitoisuudet</option>
@@ -77,7 +94,15 @@ export default function Create() {
                         <div className="pt-4">
                             <Link className="btn btn-success p-2 text-decoration-none"to={"/view/" + url}>Linkki näkymään</Link>
                         </div>
-                        :""
+                        : null
+                        }
+
+                        {
+                            !isSuccess && error ?
+                            <div className="alert alert-danger mt-4 pb-0">
+                                <p>{error}</p>
+                            </div>
+                            : null
                         }
                     </div>
 
