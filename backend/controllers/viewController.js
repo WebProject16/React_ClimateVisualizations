@@ -6,21 +6,25 @@ const createView = (req, res) => {
     const { views, isParallel, title, descriptions } = req.body;
 
     if(typeof views !== "string" || typeof isParallel !== "boolean" || typeof title !== "string" || typeof descriptions !== "object"){
-        return res.status(400).json({status:"error", msg:"Wrong type of input or values missing"});
+        return res.status(400).json({status:"error", msg:"Vääränlainen tietotyyppi tai ei tarpeeksi arvoja"});
     }
 
     if(views.length > 30 || title.length > 128){
-        return res.status(400).json({status:"error", msg:"View or title is too long"});
+        return res.status(400).json({status:"error", msg:"Otsikko tai näkymä on liian pitkä"});
     }
 
     for(const desc in descriptions){
         if(descriptions[desc].length > 512){
-            return res.status(400).json({status:"error", msg:"One of the descriptions is too long"});
+            return res.status(400).json({status:"error", msg:"Jonkin kuvaajan kuvaus on liian pitkä"});
         }
     }
 
     if(views.length < 2){
-        return res.status(400).json({status:"error", msg:"View is too short"});
+        return res.status(400).json({status:"error", msg:"Näkymiä ei ole tarpeeksi"});
+    }
+
+    if(title.length < 3){
+        return res.status(400).json({status:"error", msg:"Otsikko on liian lyhyt"});
     }
 
     const url = uuidv4();
@@ -39,7 +43,7 @@ const createView = (req, res) => {
     })
 
     if(validVisualizations.toString() !== views){
-        return res.status(400).json({status:"error", msg:"Invalid input for 'views'"});
+        return res.status(400).json({status:"error", msg:"Vääräänlainen näkymä"});
     }
 
     const orderedDesc = {};
@@ -66,10 +70,10 @@ const createView = (req, res) => {
     viewModel.create(data, (err, result) => {
         if(err) {
             console.log(err);
-            return res.status(500).json({status:"error", msg:"Error on view creation"});
+            return res.status(500).json({status:"error", msg:"Virhe näkymän luonnissa"});
         }
 
-        res.status(201).json({status:"success", msg:"Created new visualization", url:url});
+        res.status(201).json({status:"success", msg:"Näkymä luotiin onnistuneesti", url:url});
     })
 }
 

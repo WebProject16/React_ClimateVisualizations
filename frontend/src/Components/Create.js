@@ -36,6 +36,11 @@ export default function Create() {
             return setError("Otsikko on liian pitkä")
         }
 
+        if(title.length < 3) {
+            setIsSuccess(false);
+            return setError("Otsikko on liian lyhyt")
+        }
+
         for (const desc in descriptions) {
             if(descriptions[desc].length > 512){
                 return setError(`Kaavion "${titles[desc]}" kuvaus on liian pitkä`)
