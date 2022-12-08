@@ -81,7 +81,7 @@ export default function V5(props) {
         <div className="card-body">
           <h5 className="card-title">Kuvaus</h5>
           {
-            props.description.length === 0 ? 
+            !props.description ?
               <div>
                 <p className="card-text">Viivakaavio esittää ilmakehän hiilidioksidipitoisuuksia perustuen Neuvostoliiton etelämantereen Vostok aseman jääkairauksiin.</p>
                 <p className="card-text">Aikajakso on 417160 - 2342 vuotta ennen nykyhetkeä.</p>

@@ -102,7 +102,7 @@ export default function V8(props) {
         <div className="card-body">
           <h5 className="card-title">Kuvaus</h5>
           {
-            props.description.length === 0 ? 
+            !props.description ?
               <div>
                 <p className="card-text">Pinottu viivakaavio esittää maakohtaiset hiilidioksidipäästöt eri vuosina.</p>
                 <p className="card-text">Aikajakso on 1959 - 2020 vuotta.</p>

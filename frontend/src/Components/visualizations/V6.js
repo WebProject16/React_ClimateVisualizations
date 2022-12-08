@@ -87,7 +87,7 @@ export default function V6(props) {
         <div className="card-body">
           <h5 className="card-title">Kuvaus</h5>
           {
-            props.description.length === 0 ? 
+            !props.description ?
               <div>
                 <p className="card-text">Viivakaavio esittää ilmakehän hiilidioksidipitoisuuksia perustuen yhdistelmätutkimukseen etelmäntereen jääkairauksista.</p>
                 <p className="card-text">Aikajakso ~800000 vuotta.</p>

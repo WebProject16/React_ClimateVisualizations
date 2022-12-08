@@ -163,7 +163,7 @@ export default function V3(props) {
         <div className="card-body">
           <h5 className="card-title">Kuvaus</h5>
           {
-            props.description.length === 0 ? 
+            !props.description ?
               <div>
                 <p className="card-text">Viivakaaviossa ilmakehän hiilidioksidipitoisuuksia (ppm) perustuen Mauna Loalla tehtyihin mittauksiin vuosilta 1958-2021.</p>
                 <p className="card-text">Sekä Law Dome kairauksiin perustuvat hiilidioksidipitoisuuksien määrät (ppm) aikajaksoilta 948-1948</p>

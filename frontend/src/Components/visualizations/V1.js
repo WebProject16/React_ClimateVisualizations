@@ -118,7 +118,7 @@ export default function V1(props) {
         <div className="card-body">
           <h5 className="card-title">Kuvaus</h5>
           {
-            props.description.length === 0 ? 
+            !props.description ?
               <div>
                 <p className="card-text">Kuvaajassa vuosittaiset lämpötilapoikkeamat ajanjaksolta 1850-2022.</p>
                 <p>Lisäksi kuvaajaan halutessaan saa näkyville myös jälleenrakennuksen poikkeamista 2000 vuoden ajanjaksolta</p>

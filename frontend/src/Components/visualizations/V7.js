@@ -148,7 +148,7 @@ export default function V7(props) {
         <div className="card-body">
           <h5 className="card-title">Kuvaus</h5>
           {
-            props.description.length === 0 ? 
+            !props.description ?
               <div>
                 <p className="card-text">Kuvaajan sininen käyrä on kahden miljoonan vuoden ajalta vuosittainen maailmanlaajuinen lämpötilan poikkeaman jälleenrakennus (maapallon pintalämpötilan keskimuutos)</p>
                 <p className="card-text">Oranssi käyrä 800-tuhannen vuoden ajalta ilmakehän co2 pitoisuuden jälleenrakennus (hiilidioksidin määrä (ppm))</p>
