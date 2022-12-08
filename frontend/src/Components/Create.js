@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React, { useState } from "react";
 import { AuthPost } from '../API/request';
 import { Link } from 'react-router-dom';
 
