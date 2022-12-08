@@ -5,7 +5,7 @@ import { Line } from "react-chartjs-2";
 import { Get } from "../../API/request";
 import "chartjs-adapter-luxon";
 
-export default function V7() {
+export default function V7(props) {
     const [elements, setElements] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -147,8 +147,16 @@ export default function V7() {
       <div className="card mt-4" style={{width: "32rem"}}>
         <div className="card-body">
           <h5 className="card-title">Kuvaus</h5>
-          <p className="card-text">Kuvaajan sininen käyrä on kahden miljoonan vuoden ajalta vuosittainen maailmanlaajuinen lämpötilan poikkeaman jälleenrakennus (maapallon pintalämpötilan keskimuutos)</p>
-          <p className="card-text">Oranssi käyrä 800-tuhannen vuoden ajalta ilmakehän co2 pitoisuuden jälleenrakennus (hiilidioksidin määrä (ppm))</p>             
+          {
+            props.description.length === 0 ? 
+              <div>
+                <p className="card-text">Kuvaajan sininen käyrä on kahden miljoonan vuoden ajalta vuosittainen maailmanlaajuinen lämpötilan poikkeaman jälleenrakennus (maapallon pintalämpötilan keskimuutos)</p>
+                <p className="card-text">Oranssi käyrä 800-tuhannen vuoden ajalta ilmakehän co2 pitoisuuden jälleenrakennus (hiilidioksidin määrä (ppm))</p>
+              </div>
+            : <div>
+              <p>{props.description}</p>
+            </div>
+          }
           <h6 className="card-subtitle mt-2 text-muted">Lähteet:</h6>
           <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukon kuvaus</a>
           <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukko</a>

@@ -6,10 +6,22 @@ export default function Create() {
 
     const [viewData, setViewData] = useState([]);
     const [isParallel, setIsParallel] = useState(true);
-    const [description, setDescription] = useState("");
+    const [title, setTitle] = useState("");
     const [isSuccess, setIsSuccess] = useState(null);
     const [url, setUrl] = useState("");
     const [error, setError] = useState("");
+    const [descriptions, setDescriptions] = useState({});
+
+    const preventDupes = (e) => {
+
+        if(viewData.indexOf(e.target.value) > -1) {
+            return;
+        }else{
+            setViewData(viewData => [...viewData, e.target.value])
+        }
+
+        setError("");
+    }
 
     const createView = (e) => {
         e.preventDefault();
@@ -19,19 +31,22 @@ export default function Create() {
             return setError("Visuaalisaatioita ei ole valittu")
         }
 
-        if(description.length > 1024) {
+        if(title.length > 128) {
             setIsSuccess(false);
-            return setError("Kuvaus on liian pitkä")
+            return setError("Otsikko on liian pitkä")
         }
 
-        const uniqueViews = viewData.filter((data, i) => {
-            return viewData.indexOf(data) === i;
-        })
+        for (const desc in descriptions) {
+            if(descriptions[desc].length > 512){
+                return setError(`Kaavion "${titles[desc]}" kuvaus on liian pitkä`)
+            }
+        }
 
         const body = {
-            views: uniqueViews.toString(),
+            views: viewData.toString(),
             isParallel: isParallel,
-            description: description
+            title: title,
+            descriptions: descriptions
         }
 
         AuthPost("/views", body, (res) => {
@@ -48,6 +63,50 @@ export default function Create() {
         setViewData([]);
     }
 
+    const handleDescriptions = (e, row) => {
+        let oldDescs = descriptions;
+
+        oldDescs[row] = e.target.value;
+
+        setDescriptions(oldDescs)
+    }
+
+    const options = [
+        {
+            value:"v1",
+            title:"1850-2022 lämpötilan poikkeamat"
+        },
+        {
+            value:"v3",
+            title:"Mauna Loa sekä Law Dome hiilidioksidipitoisuudet"
+        },
+        {
+            value:"v5",
+            title:"Ilmakehän hiilidioksidipitoisuudet"
+        },
+        {
+            value:"v6",
+            title:"v6 page"
+        },
+        {
+            value:"v7",
+            title:"Lämpötilan evoluutio"
+        },
+        {
+            value:"v8",
+            title:"Hiilidioksidipäästöt maittain"
+        }
+    ]
+
+    const titles = {
+        v1: "1850-2022 lämpötilan poikkeamat",
+        v3: "Mauna Loa sekä Law Dome hiilidioksidipitoisuudet",
+        v5: "Ilmakehän hiilidioksidipitoisuudet",
+        v6: "v6 page",
+        v7: "Lämpötilan evoluutio",
+        v8: "Hiilidioksidipäästöt maittain",
+    }
+
     return (
         
         <div className="d-flex justify-content-center">
@@ -55,21 +114,37 @@ export default function Create() {
             <form onSubmit={createView}>
                 <h3>Valitse visuaalisaatiot jotka halua näyttää</h3>
 
-                <div className="p-4">
-                    <select className="form-select viewSelector" name="views" onClick={e => {setViewData(viewData => [...viewData, e.target.value]); setError("")}} multiple disabled={isSuccess}>
-                        <option value="v1">1850-2022 lämpötilan poikkeamat</option>
-                        <option value="v3">Mauna Loa sekä Law Dome hiilidioksidipitoisuudet</option>
-                        <option value="v5">Ilmakehän hiilidioksidipitoisuudet</option>
-                        <option value="v6">v6 page</option>
-                        <option value="v7">Lämpötilan evoluutio</option>
-                        <option value="v8">Hiilidioksidipäästöt maittain</option>
+                <div className="mt-4 mb-4">
+                    <select className="form-select viewSelector" name="views" onClick={e => preventDupes(e)} multiple disabled={isSuccess}>
+                    {
+                        options.map(option => {
+                            return <option key={option.value}  value={option.value}>{option.title}</option>
+                        })
+                    }
                     </select>
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="basicDescription" className="form-label">Kuvaus</label>
-                    <textarea className="form-control" id="basicDescription" rows="4" onChange={e => setDescription(e.target.value)} disabled={isSuccess} />
+                    <label htmlFor="title" className="form-label">Otsikko</label>
+                    <input className="form-control" id="title" rows="4" onChange={e => setTitle(e.target.value)} disabled={isSuccess} />
                 </div>
+
+                {
+                    viewData.length > 0 ? <h4 className="text-center mt-2 mb-2">Kirjoita kaaviolle kuvaukset</h4> : null
+                }
+
+                {
+                    viewData.map((row, i) =>{
+                        return (
+                            <div className="mb-3" key={row}>
+                                <label htmlFor={"desc" + i} className="form-label">{titles[row]}</label>
+                                <textarea className="form-control" id={"desc" + i} rows="2" onChange={e => handleDescriptions(e, row)} disabled={isSuccess} />
+
+                                <button className="btn btn-outline-danger mt-2" onClick={() => setViewData(viewData.filter(view => view !== row))} disabled={isSuccess}>Poista</button>
+                            </div>
+                        )
+                    })
+                }
 
                 <div className="d-flex justify-content-center text-center">
 
@@ -87,7 +162,7 @@ export default function Create() {
                                 <label className="btn btn-outline-dark" htmlFor="isNonParallelSw" onClick={() => setIsParallel(false)}>Allekkain</label>
                             </div>
                         </div>
-                        <button type="submit" className="btn btn-outline-primary mt-4">Luo näkymä</button>
+                        <button type="submit" className="btn btn-outline-primary mt-4" disabled={isSuccess}>Luo näkymä</button>
 
                         {
                         isSuccess ?

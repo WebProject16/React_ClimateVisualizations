@@ -5,7 +5,7 @@ import { Line } from "react-chartjs-2";
 import { Get } from "../../API/request";
 import "chartjs-adapter-luxon";
 
-export default function V3() {
+export default function V3(props) {
   const [elements, setElements] = useState([])
 
   useEffect(() => {
@@ -162,8 +162,17 @@ export default function V3() {
       <div className="card mt-4" style={{width: "38rem"}}>
         <div className="card-body">
           <h5 className="card-title">Kuvaus</h5>
-          <p className="card-text">Viivakaaviossa ilmakehän hiilidioksidipitoisuuksia (ppm) perustuen Mauna Loalla tehtyihin mittauksiin vuosilta 1958-2021.</p>
-          <p className="card-text">Sekä Law Dome kairauksiin perustuvat hiilidioksidipitoisuuksien määrät (ppm) aikajaksoilta 948-1948</p>
+          {
+            props.description.length === 0 ? 
+              <div>
+                <p className="card-text">Viivakaaviossa ilmakehän hiilidioksidipitoisuuksia (ppm) perustuen Mauna Loalla tehtyihin mittauksiin vuosilta 1958-2021.</p>
+                <p className="card-text">Sekä Law Dome kairauksiin perustuvat hiilidioksidipitoisuuksien määrät (ppm) aikajaksoilta 948-1948</p>
+              </div>
+            : <div>
+              <p>{props.description}</p>
+            </div>
+          }
+
           <h6 className="card-subtitle mt-2 text-muted">Lähteet:</h6>
           <div>
             <a href="https://gml.noaa.gov/ccgg/trends/" target="_blank" rel="noreferrer noopener" className="card-link">Mauna Loa CO2 data</a>

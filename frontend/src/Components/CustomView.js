@@ -15,16 +15,17 @@ export default function CustomView() {
     const [isSuccess, setIsSuccess] = useState(true);
     const [isParallel, setIsParallel] = useState(false);
     const [viewData, setViewData] = useState([]);
-    const [description, setDescription] = useState("");
+    const [title, setTitle] = useState("");
     const [creator, setCreator] = useState("");
+    const [descriptions, setDescriptions] = useState([]);
 
     const validViews = {
-        v1: <V1 key="v1" />,
-        v3: <V3 key="v3" />,
-        v5: <V5 key="v5" />,
-        v6: <V6 key="v6" />,
-        v7: <V7 key="v7" />,
-        v8: <V8 key="v8" />
+        v1: <V1 key="v1" description={descriptions[0]} />,
+        v3: <V3 key="v3" description={descriptions[1]} />,
+        v5: <V5 key="v5" description={descriptions[2]} />,
+        v6: <V6 key="v6" description={descriptions[3]} />,
+        v7: <V7 key="v7" description={descriptions[4]} />,
+        v8: <V8 key="v8" description={descriptions[5]} />
     }
 
     useEffect(() => {
@@ -35,11 +36,18 @@ export default function CustomView() {
                 setIsSuccess(true);
 
                 const data = res.data.view;
+                const views = data.visualizations.split(",");
 
                 setIsParallel(data.isParallel);
-                setViewData(data.visualizations.split(","));
-                setDescription(data.description);
+                setViewData(views);
+                setTitle(data.title);
                 setCreator(data.creator);
+
+                const descs = [data.desc1, data.desc2, data.desc3, data.desc4, data.desc5, data.desc6, data.desc7]
+
+                for(let i = 0; i < views.length; i++){
+                    setDescriptions(descriptions => [...descriptions, descs[i]])
+                }
 
             }else{
                 setIsSuccess(false);
@@ -58,19 +66,16 @@ export default function CustomView() {
     
     return (
         <>
+            <div className="text-center">
+                <h2>{title}</h2>
+                <p>Kokoelman tehnyt: {creator}</p>
+            </div>
             <div className={"viewContainer " + (isParallel ? "parallel" : "nonParallel")}>
             {
                 viewData.map(view =>
                     validViews[view]
                 )
             }
-            </div>
-
-            <div className="card mt-4">
-                <div className="card-body">
-                    <p>{description}</p>
-                    <p>Kokoelman tehnyt: {creator}</p>
-                </div>
             </div>
         </>
     )

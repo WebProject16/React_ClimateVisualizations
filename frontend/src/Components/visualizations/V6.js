@@ -5,7 +5,7 @@ import { Line } from "react-chartjs-2";
 import { Get } from "../../API/request";
 import "chartjs-adapter-luxon";
 
-export default function V6() {
+export default function V6(props) {
     
     const [v6, setV6] = useState([]);
 
@@ -86,8 +86,16 @@ export default function V6() {
       <div className="card mt-4" style={{width: "24rem"}}>
         <div className="card-body">
           <h5 className="card-title">Kuvaus</h5>
-          <p className="card-text">Viivakaavio esittää ilmakehän hiilidioksidipitoisuuksia perustuen yhdistelmätutkimukseen etelmäntereen jääkairauksista.</p>
-          <p className="card-text">Aikajakso ~800000 vuotta.</p>
+          {
+            props.description.length === 0 ? 
+              <div>
+                <p className="card-text">Viivakaavio esittää ilmakehän hiilidioksidipitoisuuksia perustuen yhdistelmätutkimukseen etelmäntereen jääkairauksista.</p>
+                <p className="card-text">Aikajakso ~800000 vuotta.</p>
+              </div>
+            : <div>
+              <p>{props.description}</p>
+            </div>
+          }
           <h6 className="card-subtitle mt-2 text-muted">Lähteet:</h6>
           <a href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" target="_blank" rel="noreferrer" className="card-link">Antarctic Ice Cores Revised 800KYr </a>
         </div>
