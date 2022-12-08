@@ -194,6 +194,20 @@ const v8 = (req, res) => {
         res.json(payload);
     })
 }
+const v9 = (req, res) => {
+    chartModel.getV9((err, data) => {
+        if(err){
+            console.log(err);
+            return res.status(500).json({status:"error", msg:"Error on fetching chart V9 data"})
+        }
+
+        if(!data){
+            return res.status(500).json({status:"error", msg:"No data found in V9 table"})
+        }
+
+        res.status(200).json({v9: data})
+    })
+}
 module.exports = {
     v1,
     v3,
@@ -201,5 +215,6 @@ module.exports = {
     v5,
     v6,
     v7,
-    v8
+    v8,
+    v9
 }

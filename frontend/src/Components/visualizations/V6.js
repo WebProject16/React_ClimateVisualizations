@@ -52,17 +52,23 @@ export default function V6() {
     
     scales: {
         xAxes: {
-            type: "linear",
-            min: -51.03,
-            max: 100543.18
+          type: "linear",
+          min: -51.03,
+          max: 100543.18,
+          title: {
+            display: true,
+          }
+
         },
 
       yAxes: {
         type: "linear",
-      },
+        title: {
+          display: true,
+      }
     },
-
-  }
+  },
+}
   
   return (
     <>
@@ -77,7 +83,7 @@ export default function V6() {
           <p className="card-text">Viivakaavio esittää ilmakehän hiilidioksidipitoisuuksia perustuen yhdistelmätutkimukseen etelmäntereen jääkairauksista.</p>
           <p className="card-text">Aikajakso ~800000 vuotta.</p>
           <h6 className="card-subtitle mt-2 text-muted">Lähteet:</h6>
-          <a href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" target="_blank" rel="noreferrer" className="card-link">Antarctic Ice Cores Revised 800KYr </a>
+          <a href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" target="_blank" rel="noopener noreferrer" className="card-link">Antarctic Ice Cores Revised 800KYr </a>
         </div>
       </div>
     </>

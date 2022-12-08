@@ -28,6 +28,10 @@ const chart = {
 
     getV8: (cb) => {
         db.query("SELECT * FROM v8_co2_emissions", cb)
+    },
+
+    getV9: (cb) => {
+        db.query("SELECT * FROM v9_co2_emissions_by_sectors", cb)
     }
 }
 
