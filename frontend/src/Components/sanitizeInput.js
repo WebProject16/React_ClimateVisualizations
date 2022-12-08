@@ -1,4 +1,4 @@
-const regExName = /[A-z][A-z0-9-_]/;
+const regExName = /^[A-z0-9-_]*$/;
 const regExPwd = /(?=.*[a-zA-Z])(?=.*[0-9])/;
 const regExSpecials = /[<>{}()[\]]/;
 
@@ -29,7 +29,7 @@ export function checkInput(username, password){
         return "Password cannot have <>{}[]()"
 
     if(!regExName.test(username))
-        return "Username cannot contain special characters";
+        return "Username cannot contain special characters or space";
 
     return "";
 }
