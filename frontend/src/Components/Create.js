@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default function Create() {
 
     const [viewData, setViewData] = useState([]);
-    const [isParallel, setIsParallel] = useState(true);
+    const [isParallel, setIsParallel] = useState(false);
     const [title, setTitle] = useState("");
     const [isSuccess, setIsSuccess] = useState(null);
     const [url, setUrl] = useState("");
@@ -59,6 +59,8 @@ export default function Create() {
                 setUrl(res.data.url);
 
                 setIsSuccess(true);
+                setError(res.data.msg);
+
             }else{
                 setIsSuccess(false);
                 setError(res.response.data.msg);
@@ -76,33 +78,6 @@ export default function Create() {
         setDescriptions(oldDescs)
     }
 
-    const options = [
-        {
-            value:"v1",
-            title:"1850-2022 lämpötilan poikkeamat"
-        },
-        {
-            value:"v3",
-            title:"Mauna Loa sekä Law Dome hiilidioksidipitoisuudet"
-        },
-        {
-            value:"v5",
-            title:"Ilmakehän hiilidioksidipitoisuudet"
-        },
-        {
-            value:"v6",
-            title:"v6 page"
-        },
-        {
-            value:"v7",
-            title:"Lämpötilan evoluutio"
-        },
-        {
-            value:"v8",
-            title:"Hiilidioksidipäästöt maittain"
-        }
-    ]
-
     const titles = {
         v1: "1850-2022 lämpötilan poikkeamat",
         v3: "Mauna Loa sekä Law Dome hiilidioksidipitoisuudet",
@@ -111,6 +86,33 @@ export default function Create() {
         v7: "Lämpötilan evoluutio",
         v8: "Hiilidioksidipäästöt maittain",
     }
+
+    const options = [
+        {
+            value:"v1",
+            title:titles["v1"]
+        },
+        {
+            value:"v3",
+            title:titles["v3"]
+        },
+        {
+            value:"v5",
+            title:titles["v5"]
+        },
+        {
+            value:"v6",
+            title:titles["v6"]
+        },
+        {
+            value:"v7",
+            title:titles["v7"]
+        },
+        {
+            value:"v8",
+            title:titles["v8"]
+        }
+    ]
 
     return (
         
@@ -129,13 +131,13 @@ export default function Create() {
                     </select>
                 </div>
 
-                <div className="mb-3">
+                <div className="mb-4">
                     <label htmlFor="title" className="form-label">Otsikko</label>
                     <input className="form-control" id="title" rows="4" onChange={e => setTitle(e.target.value)} disabled={isSuccess} />
                 </div>
 
                 {
-                    viewData.length > 0 ? <h4 className="text-center mt-2 mb-2">Kirjoita kaaviolle kuvaukset</h4> : null
+                    viewData.length > 0 ? <h4 className="text-center mt-4 mb-4">Kirjoita kaaviolle kuvaukset</h4> : null
                 }
 
                 {
@@ -156,15 +158,16 @@ export default function Create() {
                     <div>
                         <h4>Kaavioiden asettelu</h4>
 
-                        <div className="row">
-                            <div className="col">
-                                <input type="radio" className="btn-check" name="isParallel" id="isParallelSw"  defaultChecked={isParallel} disabled={isSuccess} />
-                                <label className="btn btn-outline-dark" htmlFor="isParallelSw" onClick={() => setIsParallel(true)}>Vierekkäin</label>
-                            </div>
+                        <div className="row pt-2">
 
                             <div className="col">
                                 <input type="radio" className="btn-check" name="isParallel" id="isNonParallelSw" defaultChecked={!isParallel} disabled={isSuccess} />
                                 <label className="btn btn-outline-dark" htmlFor="isNonParallelSw" onClick={() => setIsParallel(false)}>Allekkain</label>
+                            </div>
+
+                            <div className="col">
+                                <input type="radio" className="btn-check" name="isParallel" id="isParallelSw"  defaultChecked={isParallel} disabled={isSuccess} />
+                                <label className="btn btn-outline-dark" htmlFor="isParallelSw" onClick={() => setIsParallel(true)}>Vierekkäin</label>
                             </div>
                         </div>
                         <button type="submit" className="btn btn-outline-primary mt-4" disabled={isSuccess}>Luo näkymä</button>
@@ -172,7 +175,10 @@ export default function Create() {
                         {
                         isSuccess ?
                         <div className="pt-4">
-                            <Link className="btn btn-success p-2 text-decoration-none"to={"/view/" + url}>Linkki näkymään</Link>
+                            <div className="alert alert-success">
+                                <h5>{error}</h5>
+                                <Link className="btn btn-success p-2 mt-2 text-decoration-none"to={"/view/" + url}>Linkki näkymään</Link>
+                            </div>
                         </div>
                         : null
                         }
