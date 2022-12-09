@@ -40,8 +40,7 @@ export default function V6() {
       }
       
 
-  const options =
-  {
+  const options = {
     responsive: true,
     plugins: {
       legend: {
@@ -49,20 +48,24 @@ export default function V6() {
       },
       title: {
         display: true,
-        text: "ilmakehän hiilidioksidipitoisuudet"
-      },
+        text: "ilmakehän hiilidioksidipitoisuudet",
+        font: {
+          size:"20"
+        }
+      }
     },
     scales: {
-      yAxes: {
+      y: {
         type: "linear",
         min: 150,
         max: 400,
         title: {
           display: true,
+          text:"CO2 pitoisuus (ppmv)"
+        }
       }
     }
   }
-}
   
   return (
     <>
