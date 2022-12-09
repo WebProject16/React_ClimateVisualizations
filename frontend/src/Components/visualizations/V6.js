@@ -16,7 +16,6 @@ export default function V6() {
           if(res.status === 200){
             setV6(res.data.measurements);
             setLabels(res.data.labels);
-            console.log(res.data.v6)
           }else{
             console.log("Error: ", res)
           }
