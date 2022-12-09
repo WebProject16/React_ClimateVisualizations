@@ -14,6 +14,7 @@ export default function V6() {
         {
           if(res.status === 200){
             setV6(res.data.v6);
+            console.log(res.data.v6)
           }else{
             console.log("Error: ", res)
           }
@@ -53,16 +54,17 @@ export default function V6() {
     scales: {
         xAxes: {
           type: "linear",
-          min: -51.03,
-          max: 100543.18,
+          min: -810000,
+          max: 2500,
           title: {
             display: true,
           }
-
         },
 
       yAxes: {
         type: "linear",
+        min: 150,
+        max: 400,
         title: {
           display: true,
       }
