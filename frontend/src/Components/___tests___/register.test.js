@@ -155,7 +155,7 @@ test('attempt to submit only pwd numbers', async () => {
   expect(screen.getByTestId('errMsg')).not.toBeEmptyDOMElement()
 })
 
-test('attempt to submit too long pwd', async () => {
+test('attempt to submit too short pwd', async () => {
   const user = userEvent.setup()
   render(<Register />)
 
@@ -171,7 +171,7 @@ test('attempt to submit too long pwd', async () => {
   expect(screen.getByTestId('errMsg')).not.toBeEmptyDOMElement()
 })
 
-test('attempt to submit too short pwd', async () => {
+test('attempt to submit too long pwd', async () => {
   const user = userEvent.setup()
   render(<Register />)
 
