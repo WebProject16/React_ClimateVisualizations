@@ -144,7 +144,7 @@ export default function V7(props) {
       <div className="container-fluid">{isLoading ? (<p>Odota kun sivua ladataan</p>) :
         (<Line data={data} options={options} alt="Maailmanlaajuisen lämpötilan evoluutio viimeiseltä 2-miljoonalta vuodelta"/>)}
       </div>
-      <div className="card mt-4" style={{width: "32rem"}}>
+      <div className="card mt-4" style={{width: "24rem"}}>
         <div className="card-body">
           <h5 className="card-title">Kuvaus</h5>
           {

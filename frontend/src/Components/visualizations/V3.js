@@ -159,7 +159,7 @@ export default function V3(props) {
       <div className="container-fluid">
         <Line data={data} options={options} alt="Anomaly data chart"/>
       </div>
-      <div className="card mt-4" style={{width: "38rem"}}>
+      <div className="card mt-4" style={{width: "24rem"}}>
         <div className="card-body">
           <h5 className="card-title">Kuvaus</h5>
           {
