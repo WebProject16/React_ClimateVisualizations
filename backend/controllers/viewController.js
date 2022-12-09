@@ -136,6 +136,7 @@ const fetchViewByUrl = (req, res) => {
 const fetchUsersViews = (req, res) => {
 
     const userID = req.id;
+    const username = req.username;
 
     if(!userID) {
         return res.json({status:"error", msg:"Invalid user id"});
@@ -144,14 +145,14 @@ const fetchUsersViews = (req, res) => {
     viewModel.fetchAllByUserId(userID, (err, result) => {
         if(err) {
             console.log(err);
-            return res.status(500).json({status:"error", msg:"Error on fetching users views"});
+            return res.status(500).json({status:"error", msg:"Error on fetching users views", username: username});
         }
 
         if(result.length === 0) {
-            return res.status(400).json({status:"error", msg:"Nothing found for that user"});
+            return res.status(400).json({status:"error", msg:"Nothing found for that user", username: username});
         }
 
-        res.json({status:"success", views:result});
+        res.json({status:"success", views:result, username: username});
     })
 }
 

@@ -1,8 +1,9 @@
-import {Delete} from '../API/request';
+import { Delete, AuthGet } from '../API/request';
 import React, { useState,  useEffect, useRef, useContext } from 'react';
 import { LoginContext } from './LoginContext'
 import { useNavigate } from 'react-router-dom';
 import { checkInput } from './sanitizeInput';
+import { Link } from 'react-router-dom';
 
 export default function Profile() {
 
@@ -11,17 +12,29 @@ export default function Profile() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errMsg, setErrMsg] = useState('');
+    const [viewData, setViewData] = useState([]);
+    const [displayUsername, setDisplayUsername] = useState("");
     
     const nav = useNavigate()
 
     const [isDeleting, setIsDeleting] = useState(false);
+
     useEffect(() => {
-      setIsDeleting(false)
+      
+        AuthGet("/views/users/all", res => {
+            if(res.status === 200){
+                setViewData(res.data.views);
+                setDisplayUsername(res.data.username);
+            }else{
+                setDisplayUsername(res.response.data.username);
+            }
+        })
+
     }, [])
 
     useEffect(() => {
         setErrMsg('');
-      }, [username, password])
+    }, [username, password])
     
     const DelProfile = async (e) => {
         e.preventDefault()
@@ -51,33 +64,37 @@ export default function Profile() {
         })
     }
 
-    const post = [
-        {id: 1, title: 'Hello world', content: 'Welcome'},
-        {id: 2, title: 'Hello world', content: 'Welcome'},
-        {id: 3, title: 'Hello world', content: 'Welcome'},
-        {id: 4, title: 'Hello world', content: 'Welcome'},
-        {id: 5, title: 'Hello world', content: 'Welcome'},
+    const DeleteView = (url) => {
+        Delete("/views/" + url, "", res => {
+            if(res.status === 200){
+                setViewData(viewData.filter(view => view.url !== url))
+            }
+        })
+    }
 
-    ];
-
-    const views = post.map((view)=> 
-        <li key={view.id} className="list-group-item list-group-item-action flex-column align-items-start">
-            <div className="d-flex w-100 justify-content-between">
-                <h5 className="mb-1">{view.title}</h5>
+    const views = viewData.map((view, i)=> 
+        <li key={view.url} className="list-group-item list-group-item-action align-items-start">
+            <div className="p-2">
+                <h5 className="mb-3">{view.title}</h5>
+                <Link className="btn btn-outline-success text-decoration-none"to={"/view/" + view.url}>Avaa</Link>
+                <button onClick={() => DeleteView(view.url)} type="button" className="btn btn-outline-danger m-2">Poista</button>
             </div>
-            <p className="mb-1">{view.content}</p>
         </li>  
     )
 
     return (
         <div>
             <div>
-                <h2>
-                Welcome user!
-                </h2>
+                <h2>Tervetuloa {displayUsername}!</h2>
             </div>
-            <div className="list-group">
-                {views}
+            <div className="p-4 mt-4 card">
+                <h3 className="card-title">Näkymät:</h3>
+                {
+                    viewData.length > 0 ? views : 
+                    <div>
+                        <p>Näkymiä ei löytynyt</p>
+                    </div>
+                }
             </div>
                 {isDeleting ? (
                 <form onSubmit={DelProfile}>
