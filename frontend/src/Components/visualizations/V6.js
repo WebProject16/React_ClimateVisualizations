@@ -8,12 +8,14 @@ import "chartjs-adapter-luxon";
 export default function V6() {
     
     const [v6, setV6] = useState([]);
+    const [labels, setLabels] = useState([]);
 
     useEffect(() => {
         Get("/charts/v6", (res) => 
         {
           if(res.status === 200){
-            setV6(res.data.v6);
+            setV6(res.data.measurements);
+            setLabels(res.data.labels);
             console.log(res.data.v6)
           }else{
             console.log("Error: ", res)
@@ -22,6 +24,7 @@ export default function V6() {
       }, [])
       
       const data = {
+        labels: labels,
         datasets: [
           {
             label: "Hiilidioksidipitoisuus (ppm)",
@@ -29,11 +32,10 @@ export default function V6() {
             borderColor: "rgb(50, 80, 200)",
             backgroundColor: "rgb(50, 80, 200)",
             parsing: {
-              xAxisKey: "age",
               yAxisKey: "co2_ppm",
             },
-            pointRadius: 1,
-          },
+            pointRadius: 1
+          }
         ]
       }
       
@@ -50,17 +52,7 @@ export default function V6() {
         text: "ilmakehän hiilidioksidipitoisuudet"
       },
     },
-    
     scales: {
-        xAxes: {
-          type: "linear",
-          min: -810000,
-          max: 2500,
-          title: {
-            display: true,
-          }
-        },
-
       yAxes: {
         type: "linear",
         min: 150,
@@ -68,8 +60,8 @@ export default function V6() {
         title: {
           display: true,
       }
-    },
-  },
+    }
+  }
 }
   
   return (

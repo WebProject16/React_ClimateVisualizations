@@ -96,7 +96,26 @@ const v6 = (req, res) => {
             return res.status(500).json({status:"error", msg:"No data found in V6 table"})
         }
 
-        res.status(200).json({v6: data})
+        let years = [];
+
+        // push years to above array to use as labels
+        data.forEach(result =>
+            years.push(parseInt(result.age))
+        );
+
+        let measurements = [];
+
+        // push co2 values to above array
+        data.forEach(result =>
+            measurements.push(result.co2_ppm)
+        );
+
+        let payload = {
+            labels: years.reverse(),
+            measurements: measurements.reverse()
+        }
+
+        res.status(200).json(payload)
     })
 }
 
