@@ -69,14 +69,14 @@ function Login() {
             <h1>Log in</h1>
             <div className='form-group pb-2 pt-4 w-750'>
                 <label htmlFor="username">Username:</label>
-                <input type="text" id="username" className="form-control" ref={userRef} autoComplete="off" onChange={(e) => setUser(e.target.value)} value={user} />
+                <input type="text" id="username" placeholder="Käyttäjänimi" className="form-control" ref={userRef} autoComplete="off" onChange={(e) => setUser(e.target.value)} value={user} />
             </div>
             <div className='form-group pb-2 w-750'>
                 <label htmlFor='password'>Password:</label>
-                <input type="password" className="form-control" id="password" autoComplete="off" onChange={(e) => setPassword(e.target.value)} value={password} />
+                <input type="password" className="form-control" placeholder="Salasana" id="password" autoComplete="off" onChange={(e) => setPassword(e.target.value)} value={password} />
             </div>
-            <p ref={errRef} className={errMsg ? "alert alert-danger" : "offscreen"} >{errMsg}</p>
-            <button type="submit" className="btn btn-outline-primary">Log in!</button>
+            <p ref={errRef} data-testid="errMsg" className={errMsg ? "alert alert-danger" : "offscreen"} >{errMsg}</p>
+            <button type="submit" data-testid='loginBtn' className="btn btn-outline-primary">Log in!</button>
             </form>
             )}
         </div>
