@@ -3,18 +3,28 @@ const viewModel = require('../models/viewModel.js')
 
 const createView = (req, res) => {
 
-    const { views, isParallel, description } = req.body;
+    const { views, isParallel, title, descriptions } = req.body;
 
-    if(typeof views !== "string" || typeof isParallel !== "number" || typeof description !== "string"){
-        return res.status(400).json({status:"error", msg:"Wrong type of input or values missing"});
+    if(typeof views !== "string" || typeof isParallel !== "boolean" || typeof title !== "string" || typeof descriptions !== "object"){
+        return res.status(400).json({status:"error", msg:"Vääränlainen tietotyyppi tai ei tarpeeksi arvoja"});
     }
 
-    if(views.length > 30){
-        return res.status(400).json({status:"error", msg:"Views are too long"});
+    if(views.length > 30 || title.length > 128){
+        return res.status(400).json({status:"error", msg:"Otsikko tai näkymä on liian pitkä"});
     }
 
-    if(description.length > 1024){
-        return res.status(400).json({status:"error", msg:"Description is too long"});
+    for(const desc in descriptions){
+        if(descriptions[desc].length > 512){
+            return res.status(400).json({status:"error", msg:"Jonkin kuvaajan kuvaus on liian pitkä"});
+        }
+    }
+
+    if(views.length < 2){
+        return res.status(400).json({status:"error", msg:"Näkymiä ei ole tarpeeksi"});
+    }
+
+    if(title.length < 3){
+        return res.status(400).json({status:"error", msg:"Otsikko on liian lyhyt"});
     }
 
     const url = uuidv4();
@@ -33,7 +43,13 @@ const createView = (req, res) => {
     })
 
     if(validVisualizations.toString() !== views){
-        return res.status(400).json({status:"error", msg:"Invalid input for 'views'"});
+        return res.status(400).json({status:"error", msg:"Vääräänlainen näkymä"});
+    }
+
+    const orderedDesc = {};
+
+    for(let i = 0; i < visualizations.length; i++) {
+        orderedDesc[visualizations[i]] = descriptions[visualizations[i]];
     }
 
     const data = {
@@ -41,16 +57,23 @@ const createView = (req, res) => {
         userID: userID,
         views: views,
         isParallel: isParallel,
-        description: description
+        title: title,
+        desc1: orderedDesc[visualizations[0]] || "",
+        desc2: orderedDesc[visualizations[1]] || "",
+        desc3: orderedDesc[visualizations[2]] || "",
+        desc4: orderedDesc[visualizations[3]] || "",
+        desc5: orderedDesc[visualizations[4]] || "",
+        desc6: orderedDesc[visualizations[5]] || "",
+        desc7: orderedDesc[visualizations[6]] || ""
     }
 
     viewModel.create(data, (err, result) => {
         if(err) {
             console.log(err);
-            return res.status(500).json({status:"error", msg:"Error on view creation"});
+            return res.status(500).json({status:"error", msg:"Virhe näkymän luonnissa"});
         }
 
-        res.status(201).json({status:"success", msg:"Created new visualization", url:url});
+        res.status(201).json({status:"success", msg:"Näkymä luotiin onnistuneesti", url:url});
     })
 }
 

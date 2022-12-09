@@ -19,7 +19,7 @@
 -- Current Database: `db16`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `db16` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_swedish_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `db16` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
 USE `db16`;
 
@@ -82,9 +82,9 @@ DROP TABLE IF EXISTS `v10_timeline_of_the_human_condition_interesting`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `v10_timeline_of_the_human_condition_interesting` (
   `year` int DEFAULT NULL,
-  `clean_desc_fi` text COLLATE utf8_swedish_ci,
+  `clean_desc_fi` text CHARACTER SET utf8 COLLATE utf8_swedish_ci,
   `years_ago` int DEFAULT NULL,
-  `desc` text COLLATE utf8_swedish_ci
+  `desc` text CHARACTER SET utf8 COLLATE utf8_swedish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -689,22 +689,26 @@ CREATE TABLE `views` (
   `isParallel` tinyint(1) NOT NULL,
   `visualizations` varchar(30) NOT NULL,
   `userID` int NOT NULL,
-  `description` varchar(1024) DEFAULT NULL,
+  `title` varchar(128) NOT NULL,
+  `desc1` varchar(512) DEFAULT NULL,
+  `desc2` varchar(512) DEFAULT NULL,
+  `desc3` varchar(512) DEFAULT NULL,
+  `desc4` varchar(512) DEFAULT NULL,
+  `desc5` varchar(512) DEFAULT NULL,
+  `desc6` varchar(512) DEFAULT NULL,
+  `desc7` varchar(512) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `url_UNIQUE` (`url`),
   KEY `views_users_fk` (`userID`),
   CONSTRAINT `views_users_fk` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `views`
 --
 
-LOCK TABLES `views` WRITE;
-/*!40000 ALTER TABLE `views` DISABLE KEYS */;
-/*!40000 ALTER TABLE `views` ENABLE KEYS */;
-UNLOCK TABLES;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -715,4 +719,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-04 22:50:34
+-- Dump completed on 2022-12-08 20:08:10

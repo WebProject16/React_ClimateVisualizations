@@ -5,6 +5,21 @@ const host = config.server.host;
 const port = config.server.port;
 const BASE_URL = "http://" + host + port
 
+export async function AuthPost(path,body,cb){
+    const token = "Bearer " + localStorage.getItem('token')
+
+    axios.post(BASE_URL + path, body, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }}
+    ).then(res => {
+        cb(res)
+    }).catch(err => {
+        cb(err)
+    })
+}
+
 export async function Post(path,body,cb){
     axios.post(BASE_URL + path, body)
     .then((res) => {

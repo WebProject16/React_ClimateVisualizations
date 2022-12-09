@@ -44,6 +44,12 @@
   padding-bottom: 0em;
 }
 
+.viewSelector {
+  height: 15vh;
+  overflow: hidden;
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 600px) and (max-width: 992px){
   .parallel {
     display: block;
