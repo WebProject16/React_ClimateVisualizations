@@ -55,7 +55,7 @@ test("Deleting user but with no password field", done => {
 
     request(app)
         .delete("/user/deleteUser")
-        .set('Authorization', token)
+        .set("Authorization", 'Bearer ' + token)
         .send(body)
         .then(response => {
             expect(response.statusCode).toBe(400);
@@ -68,7 +68,7 @@ test("Deleting user but with no body", done => {
 
     request(app)
         .delete("/user/deleteUser")
-        .set('Authorization', token)
+        .set("Authorization", 'Bearer ' + token)
         .then(response => {
             expect(response.statusCode).toBe(400);
             expect(response.body).toHaveProperty("msg")
@@ -85,7 +85,7 @@ test("Deleting user that doesnt exist", done => {
 
     request(app)
         .delete("/user/deleteUser")
-        .set('Authorization', token)
+        .set("Authorization", 'Bearer ' + token)
         .send(body)
         .then(response => {
             expect(response.statusCode).toBe(400);
@@ -107,8 +107,8 @@ test("Deleting user with username and password", done => {
         .set("Authorization", 'Bearer ' + token)
         .send(body)
         .then(response => {
-            console.log(token)
-            console.log(response.body)
+            //console.log(token)
+            //console.log(response.body)
             expect(response.statusCode).toBe(200);
             expect(response.body).toHaveProperty("status")
             expect(response.body).toHaveProperty("msg")
@@ -118,6 +118,7 @@ test("Deleting user with username and password", done => {
         });
 });
 });
+
 
 afterAll(done => {
     done()
