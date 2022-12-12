@@ -58,7 +58,7 @@ export default function V9(props) {
         position: "top",
         labels: {
           font: {
-            size: 10.5
+            size: 12
           }
         }
       },
@@ -83,16 +83,15 @@ export default function V9(props) {
           {
             !props.description ?
               <div>
-                <p className="card-text"></p>
-                <p className="card-text"></p>
+                <p className="card-text">Piirakkakaaviosta näkyy eri toimialojen hiilidioksidipäästöt.</p>
               </div>
             : <div>
               <p>{props.description}</p>
             </div>
           }
           <h6 className="card-subtitle mt-2 text-muted">Lähteet:</h6>
-          <a href="https://essd.copernicus.org/articles/14/1917/2022" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukon kuvaus</a>
-          <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukon lähteet</a>
+          <a href="https://ourworldindata.org/emissions-by-sector#co2-emissions-by-sector" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukon kuvaus</a>
+          <a href="https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukon lähteet</a>
         </div>
       </div>
     </div>
