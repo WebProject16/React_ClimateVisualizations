@@ -114,7 +114,7 @@ const fetchViewByUrl = (req, res) => {
     const {url} = req.params;
 
     if(!url || url.length !== 36) {
-        return res.json({status:"error", msg:"Invalid url"});
+        return res.json({status:"error", msg:"Virheellinen URL"});
     }
 
     viewModel.fetchByUrl(url, (err, result) => {
