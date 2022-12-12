@@ -1,14 +1,14 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import './App.css';
+
 import Navbar from './Components/Navbar.js';
-import Header from './Components/Header.js';
 import Home from './Components/Home.js';
-import Contact from './Components/Contact.js';
 import Create from './Components/Create.js';
 import Login from './Components/Login.js';
 import Footer from './Components/Footer.js';
 import Register from './Components/Register';
 import Profile from './Components/Profile'
+
 import V1 from './Components/visualizations/V1';
 import V3 from './Components/visualizations/V3';
 import V5 from './Components/visualizations/V5';
@@ -48,7 +48,6 @@ function App() {
         <LoginContext.Provider value={isLogged}>
           <Navbar />
         </LoginContext.Provider>
-        <Header />
         <div className='container'>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -64,7 +63,6 @@ function App() {
             <Route path="/logout" element={ <LoginContext.Provider value={isLogged}><LogoutHandler /> </LoginContext.Provider>} />
             <Route path="/Create" element={<RouteGuard> <Create /> </RouteGuard>} />
             <Route path="/Profile" element={<LoginContext.Provider value={isLogged}> <Profile /> </LoginContext.Provider>} />
-            <Route path="/Contact" element={<Contact />} />
             <Route path="/Login" element={<LoginContext.Provider value={isLogged}> <Login /> </LoginContext.Provider>} />
             <Route path="/Register" element={<Register />} />
             <Route path="*" element={<Error />} />

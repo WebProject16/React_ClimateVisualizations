@@ -47,7 +47,7 @@ export default function V6(props) {
       },
       title: {
         display: true,
-        text: "ilmakehän hiilidioksidipitoisuudet",
+        text: "Ilmakehän hiilidioksidipitoisuudet perustuen etelämantereen jääkairauksiin",
         font: {
           size:"20"
         }
