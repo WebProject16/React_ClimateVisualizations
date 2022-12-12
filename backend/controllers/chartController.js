@@ -96,7 +96,26 @@ const v6 = (req, res) => {
             return res.status(500).json({status:"error", msg:"No data found in V6 table"})
         }
 
-        res.status(200).json({v6: data})
+        let years = [];
+
+        // push years to above array to use as labels
+        data.forEach(result =>
+            years.push(parseInt(result.age))
+        );
+
+        let measurements = [];
+
+        // push co2 values to above array
+        data.forEach(result =>
+            measurements.push(result.co2_ppm)
+        );
+
+        let payload = {
+            labels: years.reverse(),
+            measurements: measurements.reverse()
+        }
+
+        res.status(200).json(payload)
     })
 }
 
@@ -194,6 +213,20 @@ const v8 = (req, res) => {
         res.json(payload);
     })
 }
+const v9 = (req, res) => {
+    chartModel.getV9((err, data) => {
+        if(err){
+            console.log(err);
+            return res.status(500).json({status:"error", msg:"Error on fetching chart V9 data"})
+        }
+
+        if(!data){
+            return res.status(500).json({status:"error", msg:"No data found in V9 table"})
+        }
+
+        res.status(200).json({v9: data})
+    })
+}
 module.exports = {
     v1,
     v3,
@@ -201,5 +234,6 @@ module.exports = {
     v5,
     v6,
     v7,
-    v8
+    v8,
+    v9
 }

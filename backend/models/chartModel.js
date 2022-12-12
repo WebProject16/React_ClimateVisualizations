@@ -19,7 +19,7 @@ const chart = {
     },
 
     getV6: (cb) => {
-        db.query("SELECT * FROM v6_ice_core", cb)
+        db.query("SELECT 1950-age AS age, co2_ppm FROM v6_ice_core", cb)
     },
 
     getV7: (cb) => {
@@ -28,6 +28,10 @@ const chart = {
 
     getV8: (cb) => {
         db.query("SELECT * FROM v8_co2_emissions", cb)
+    },
+
+    getV9: (cb) => {
+        db.query("SELECT * FROM v9_co2_emissions_by_sectors", cb)
     }
 }
 

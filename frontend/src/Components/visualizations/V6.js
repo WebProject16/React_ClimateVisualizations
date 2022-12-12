@@ -8,12 +8,14 @@ import "chartjs-adapter-luxon";
 export default function V6(props) {
     
     const [v6, setV6] = useState([]);
+    const [labels, setLabels] = useState([]);
 
     useEffect(() => {
         Get("/charts/v6", (res) => 
         {
           if(res.status === 200){
-            setV6(res.data.v6);
+            setV6(res.data.measurements);
+            setLabels(res.data.labels);
           }else{
             console.log("Error: ", res)
           }
@@ -21,6 +23,7 @@ export default function V6(props) {
       }, [])
       
       const data = {
+        labels: labels,
         datasets: [
           {
             label: "Hiilidioksidipitoisuus (ppm)",
@@ -28,29 +31,15 @@ export default function V6(props) {
             borderColor: "rgb(50, 80, 200)",
             backgroundColor: "rgb(50, 80, 200)",
             parsing: {
-              xAxisKey: "age",
               yAxisKey: "co2_ppm",
             },
-            pointRadius: 1,
-          },
-    
-          {
-            label: "Hiilidioksidipitoisuus (1s ppm)",
-            data: v6,
-            borderColor: "rgb(230, 150, 15)",
-            backgroundColor: "rgb(230, 150, 15)",
-            parsing: {
-              xAxisKey: "age",
-              yAxisKey: "co2_1s_ppm",
-            },
-            pointRadius: 1,
-          },
+            pointRadius: 1
+          }
         ]
       }
       
 
-  const options =
-  {
+  const options = {
     responsive: true,
     plugins: {
       legend: {
@@ -58,22 +47,23 @@ export default function V6(props) {
       },
       title: {
         display: true,
-        text: "ilmakehän hiilidioksidipitoisuudet"
-      },
+        text: "ilmakehän hiilidioksidipitoisuudet",
+        font: {
+          size:"20"
+        }
+      }
     },
-    
     scales: {
-        xAxes: {
-            type: "linear",
-            min: -51.03,
-            max: 100543.18
-        },
-
-      yAxes: {
+      y: {
         type: "linear",
-      },
-    },
-
+        min: 150,
+        max: 400,
+        title: {
+          display: true,
+          text:"CO2 pitoisuus (ppmv)"
+        }
+      }
+    }
   }
   
   return (
@@ -97,7 +87,7 @@ export default function V6(props) {
             </div>
           }
           <h6 className="card-subtitle mt-2 text-muted">Lähteet:</h6>
-          <a href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" target="_blank" rel="noreferrer" className="card-link">Antarctic Ice Cores Revised 800KYr </a>
+          <a href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" target="_blank" rel="noopener noreferrer" className="card-link">Antarctic Ice Cores Revised 800KYr </a>
         </div>
       </div>
     </div>
