@@ -6,9 +6,7 @@ export default function Navbar() {
     const { isLoggedIn } = useContext(LoginContext)
 
     //Elements to render to everyone
-    const navItems = [
-        { route: '/contact', text: 'Contact'},
-    ];
+    const navItems = [];
 
     //elements to render for authenticated
     if(isLoggedIn){

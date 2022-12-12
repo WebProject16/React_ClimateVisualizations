@@ -1,9 +1,7 @@
 import axios from 'axios'
 import config from '../config/default.json';
 
-const host = config.server.host;
-const port = config.server.port;
-const BASE_URL = "http://" + host + port
+const BASE_URL = config.server.host;
 
 export async function AuthPost(path,body,cb){
     const token = "Bearer " + localStorage.getItem('token')
