@@ -224,7 +224,7 @@ const v9 = (req, res) => {
             return res.status(500).json({status:"error", msg:"No data found in V9 table"})
         }
 
-        res.status(200).json({v9: data})
+        res.status(200).json({v9_1: data[0], v9_2: data[1], v9_3: data[2]})
     })
 }
 module.exports = {
