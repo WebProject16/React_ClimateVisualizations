@@ -85,13 +85,7 @@ export default function Profile() {
     return (
         <div>
             <div>
-<<<<<<< HEAD
-                <h2>
-                Tervetuloa!
-                </h2>
-=======
                 <h2>Tervetuloa {displayUsername}!</h2>
->>>>>>> 8c43382252d56922192c3fd0ed88090ec6f7723c
             </div>
             <div className="p-4 mt-4 card">
                 <h3 className="card-title">Näkymät:</h3>

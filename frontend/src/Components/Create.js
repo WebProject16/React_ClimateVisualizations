@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom';
 
 export default function Create() {
 
-<<<<<<< HEAD
-        <div>
-            Vain todennetuille käyttäjille.
-=======
     const [viewData, setViewData] = useState([]);
     const [isParallel, setIsParallel] = useState(false);
     const [title, setTitle] = useState("");
@@ -199,7 +195,6 @@ export default function Create() {
                 </div>
             </form>
 
->>>>>>> 8c43382252d56922192c3fd0ed88090ec6f7723c
         </div>
     )
 }
