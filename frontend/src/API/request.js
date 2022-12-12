@@ -3,7 +3,7 @@ import config from '../config/default.json';
 
 const BASE_URL = config.server.host;
 
-export async function AuthPost(path,body,cb){
+export function AuthPost(path,body,cb){
     const token = "Bearer " + localStorage.getItem('token')
 
     axios.post(BASE_URL + path, body, {
@@ -18,7 +18,7 @@ export async function AuthPost(path,body,cb){
     })
 }
 
-export async function Post(path,body,cb){
+export function Post(path,body,cb){
     axios.post(BASE_URL + path, body)
     .then((res) => {
         cb(res)
@@ -27,7 +27,7 @@ export async function Post(path,body,cb){
     })
 }
 
-export async function Delete(path,body,cb){
+export function Delete(path,body,cb){
     const token = "Bearer " + localStorage.getItem('token')
     axios.delete(BASE_URL + path, {
         headers: {
@@ -45,7 +45,7 @@ export async function Delete(path,body,cb){
     })
 }
 
-export async function AuthGet(path,cb){
+export function AuthGet(path,cb){
     const token = "Bearer " + localStorage.getItem('token')
     axios.get(BASE_URL + path, {
         headers: {
@@ -59,7 +59,7 @@ export async function AuthGet(path,cb){
     })
 }
 
-export async function Get(path, cb) {
+export function Get(path, cb) {
     axios.get(BASE_URL + path)
     .then((res) => {
         cb(res)

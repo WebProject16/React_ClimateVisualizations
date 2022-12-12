@@ -29,7 +29,7 @@ function Login() {
       setErrMsg('');
     }, [user, password])
     
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         let validate = checkInput(user, password)
@@ -37,7 +37,7 @@ function Login() {
         if(validate !== "")
             return setErrMsg(validate)
         
-        await Post("/user/login",{username:user,password:password},
+        Post("/user/login",{username:user,password:password},
         (res) => {
             if(res.status === 200){
                 localStorage.setItem('token', res.data.token)
