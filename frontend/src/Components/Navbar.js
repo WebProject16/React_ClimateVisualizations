@@ -26,9 +26,10 @@ export default function Navbar() {
         {route: "/v1", text:"1850-2022 lämpötilan poikkeamat"},
         {route: "/v3", text:"Mauna Loa sekä Law Dome hiilidioksidipitoisuudet"},
         {route: "/v5", text:"Ilmakehän hiilidioksidipitoisuudet"},
-        {route: "/v6", text:"v6 page"},
+        {route: "/v6", text:"Ilmakehän hiilidioksidipitoisuudet"},
         {route: "/v7", text:"Lämpötilan evoluutio"},
         {route: "/v8", text:"Hiilidioksidipäästöt maittain"},
+        {route: "/v9", text:"Hiilidioksidipäästöt toimialoittain"},
     ]
 
     const visualizations = visualizationData.map((nav) =>
