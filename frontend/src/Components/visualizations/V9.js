@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState, useRef} from "react";
 // eslint-disable-next-line
 import { Chart } from "chart.js/auto";
-import { Pie } from "react-chartjs-2";
+import { Pie, getElementsAtEvent } from "react-chartjs-2";
 import { Get } from "../../API/request";
 import "chartjs-adapter-luxon";
 
@@ -10,6 +10,8 @@ export default function V9(props) {
   const [viewData1, setViewData1] = useState([]);
   const [viewData2, setViewData2] = useState([]);
   const [viewData3, setViewData3] = useState([]);
+
+  const chartRef = useRef();
 
   useEffect(() => {
     Get("/charts/v9", (res) => 
@@ -22,42 +24,17 @@ export default function V9(props) {
         setViewData2(data.v9_2);
         setViewData3(data.v9_3);
 
-        console.log(data.v9_1)
-        console.log(data.v9_2)
-        console.log(data.v9_3)
-
       }else{
         console.log("Error: ", res)
       }
     })
   }, [])
 
-  /* const data = {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [
-      {
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          'rgb(255, 99, 132.2)',
-          'rgb(54, 162, 235.2)',
-          'rgb(255, 206, 86.2)',
-          'rgb(75, 192, 192.2)',
-          'rgb(153, 102, 255.2)',
-          'rgb(255, 159, 64.2)',
-        ],
-        borderColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 206, 86)',
-          'rgb(75, 192, 192)',
-          'rgb(153, 102, 255)',
-          'rgb(255, 159, 64)',
-        ],
-        borderWidth: 1,
-      },
-    ]
-  } */
+  const changeData = (e) => {
+    const idx = getElementsAtEvent(chartRef.current, e)["0"].index;
+
+    console.log(viewData1[idx].sector)
+  }
 
   const data = {
     labels: viewData1.map(label => label.sector),
@@ -98,7 +75,7 @@ export default function V9(props) {
   return (
     <div className="child">
       <div className="container-fluid" id="v9Wrapper">
-        <Pie options={options} data={data} alt="Piirakkakaavio toimialojen hiilidioksidipäästöistä."/>
+        <Pie options={options} data={data} ref={chartRef} onClick={changeData} alt="Piirakkakaavio toimialojen hiilidioksidipäästöistä."/>
       </div>
       <div className="card mt-4" style={{width: "24rem"}}>
         <div className="card-body">
