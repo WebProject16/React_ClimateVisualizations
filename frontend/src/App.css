@@ -16,6 +16,10 @@
   height: 90vh;
 }
 
+#v9Wrapper {
+  max-width: 80%;
+}
+
 .viewContainer {
   padding-top: 2em;
   display: block;
