@@ -7,7 +7,7 @@ const register = (req, res) => {
     const {username, password, password_rpt} = req.body
 
     if(typeof username !== 'string' || typeof password !== 'string' || typeof password_rpt !== 'string'){
-        return res.status(400).json({msg:'Syötteet eivät ole kelvollisia'})
+        return res.status(400).json({msg:'Syötteet eivät kelpaa'})
     }
     
     if(!username){
@@ -80,7 +80,7 @@ const login = (req, res) => {
     }
 
     if(typeof username !== 'string' || typeof password !== 'string'){
-        return res.status(400).json({msg:'Syötteet eivät ole kelvollisia'})
+        return res.status(400).json({msg:'Syötteet eivät kelpaa'})
     }
 
     userModel.getUserByName(username, (err, result) => {
@@ -124,7 +124,7 @@ const deleteUser = (req, res) => {
     }
 
     if(typeof username !== 'string' || typeof password !== 'string'){
-        return res.status(400).json({msg:'Inputs are not valid'})
+        return res.status(400).json({msg:'Syötteet eivät kelpaa'})
     }
 
     userModel.getUserByName(username, (err, result) => {

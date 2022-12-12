@@ -217,11 +217,11 @@ const v9 = (req, res) => {
     chartModel.getV9((err, data) => {
         if(err){
             console.log(err);
-            return res.status(500).json({status:"error", msg:"Error on fetching chart V9 data"})
+            return res.status(500).json({status:"error", msg:"Virhe haettaessa kaavion V9 tietoja"})
         }
 
         if(!data){
-            return res.status(500).json({status:"error", msg:"No data found in V9 table"})
+            return res.status(500).json({status:"error", msg:"V9-taulukosta ei löytynyt tietoja"})
         }
 
         res.status(200).json({v9: data})
