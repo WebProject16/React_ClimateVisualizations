@@ -65,15 +65,15 @@ function Register() {
             <form onSubmit={handleSubmit}>
             <h1>Rekisteröidy</h1>
             <div className='form-group pb-2 pt-4 w-750'>
-                <label htmlFor="username">Username:</label>
+                <label htmlFor="username">Käyttäjänimi:</label>
                 <input type="text" placeholder="Käyttäjänimi" id="username" className="form-control" ref={userRef} autoComplete="off" onChange={(e) => setUser(e.target.value)} value={user} />
             </div>
             <div className='form-group pb-2 w-750'>
-                <label htmlFor='password'>Password:</label>
+                <label htmlFor='password'>Salasana:</label>
                 <input type="password" placeholder="Salasana" className="form-control" id="password" autoComplete="off" onChange={(e) => setPassword(e.target.value)} value={password} />
             </div>
             <div className='form-group pb-2 w-750'>
-                <label htmlFor='password_rpt'>Please repeat the password:</label>
+                <label htmlFor='password_rpt'>Toista salasana:</label>
                 <input type="password" placeholder="Toista salasana" id="password_rpt" className="form-control" autoComplete="off" onChange={(e) => setPassword_rpt(e.target.value)} value={password_rpt} />
             </div>
             <p ref={errRef} data-testid="errMsg" className={errMsg ? "alert alert-danger" : "offscreen"} >{errMsg}</p>
