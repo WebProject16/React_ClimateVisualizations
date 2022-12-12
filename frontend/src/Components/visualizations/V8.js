@@ -5,7 +5,7 @@ import { Line } from "react-chartjs-2";
 import { Get } from "../../API/request";
 import "chartjs-adapter-luxon";
 
-export default function V8() {
+export default function V8(props) {
   
   const [measurements, setMeasurements] = useState([]);
   const [labels, setLabels] = useState([]);
@@ -94,21 +94,28 @@ export default function V8() {
   }
 
   return (
-    <>
+    <div className="child">
       <div className="container-fluid">
         <Line data={data} options={options} id="v8Chart" alt="Pinottu viivakaavio ajan suhteen maakohtaisista CO2 päästöistä."/>
       </div>
       <div className="card mt-4" style={{width: "24rem"}}>
         <div className="card-body">
           <h5 className="card-title">Kuvaus</h5>
-          <p className="card-text">Pinottu viivakaavio esittää maakohtaiset hiilidioksidipäästöt eri vuosina.</p>
-          <p className="card-text">Aikajakso on 1959 - 2020 vuotta.</p>
-          
+          {
+            !props.description ?
+              <div>
+                <p className="card-text">Pinottu viivakaavio esittää maakohtaiset hiilidioksidipäästöt eri vuosina.</p>
+                <p className="card-text">Aikajakso on 1959 - 2020 vuotta.</p>
+              </div>
+            : <div>
+              <p>{props.description}</p>
+            </div>
+          }
           <h6 className="card-subtitle mt-2 text-muted">Lähteet:</h6>
-          <a href="https://essd.copernicus.org/articles/14/1917/2022" target="_blank" rel="noreferrer" className="card-link">Tietojoukon kuvaus</a>
-          <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D" target="_blank" rel="noreferrer" className="card-link">Tietojoukon lähteet</a>
+          <a href="https://essd.copernicus.org/articles/14/1917/2022" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukon kuvaus</a>
+          <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukon lähteet</a>
         </div>
       </div>
-    </>
+    </div>
   );
 }

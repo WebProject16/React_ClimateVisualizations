@@ -5,7 +5,7 @@ import { Line } from "react-chartjs-2";
 import { Get } from "../../API/request";
 import "chartjs-adapter-luxon";
 
-export default function V5() {
+export default function V5(props) {
   
   const [measurements, setMeasurements] = useState([]);
   const [labels, setLabels] = useState([]);
@@ -73,21 +73,28 @@ export default function V5() {
   }
 
   return (
-    <>
+    <div className="child">
       <div className="container-fluid">
         <Line data={data} options={options} alt="Ilmakehän hiilidioksidipitoisuudet perustuen Neuvostoliiton etelämantereen Vostok aseman jääkairauksiin kuvaaja."/>
       </div>
       <div className="card mt-4" style={{width: "24rem"}}>
         <div className="card-body">
           <h5 className="card-title">Kuvaus</h5>
-          <p className="card-text">Viivakaavio esittää ilmakehän hiilidioksidipitoisuuksia perustuen Neuvostoliiton etelämantereen Vostok aseman jääkairauksiin.</p>
-          <p className="card-text">Aikajakso on 417160 - 2342 vuotta ennen nykyhetkeä.</p>
-          
+          {
+            !props.description ?
+              <div>
+                <p className="card-text">Viivakaavio esittää ilmakehän hiilidioksidipitoisuuksia perustuen Neuvostoliiton etelämantereen Vostok aseman jääkairauksiin.</p>
+                <p className="card-text">Aikajakso on 417160 - 2342 vuotta ennen nykyhetkeä.</p>
+              </div>
+            : <div>
+              <p>{props.description}</p>
+            </div>
+          }
           <h6 className="card-subtitle mt-2 text-muted">Lähteet:</h6>
-          <a href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html" target="_blank" rel="noreferrer" className="card-link">Tietojoukon kuvaus</a>
-          <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2" target="_blank" rel="noreferrer" className="card-link">Tietojoukko</a>
+          <a href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukon kuvaus</a>
+          <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2" target="_blank" rel="noreferrer noopener" className="card-link">Tietojoukko</a>
         </div>
       </div>
-    </>
+    </div>
   );
 }

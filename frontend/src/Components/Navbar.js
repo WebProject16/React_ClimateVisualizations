@@ -24,13 +24,12 @@ export default function Navbar() {
     //Visualizations menu drop down, text can be changed to something more descriptive
     const visualizationData = [
         {route: "/v1", text:"1850-2022 lämpötilan poikkeamat"},
-        {route: "/v2", text:"v2 page"},
-        {route: "/v3", text:"v3 page"},
-        {route: "/v4", text:"v4 page"},
+        {route: "/v3", text:"Mauna Loa sekä Law Dome hiilidioksidipitoisuudet"},
         {route: "/v5", text:"Ilmakehän hiilidioksidipitoisuudet"},
-        {route: "/v6", text:"v6 page"},
+        {route: "/v6", text:"Ilmakehän hiilidioksidipitoisuudet"},
         {route: "/v7", text:"Lämpötilan evoluutio"},
         {route: "/v8", text:"Hiilidioksidipäästöt maittain"},
+        {route: "/v9", text:"Hiilidioksidipäästöt toimialoittain"},
     ]
 
     const visualizations = visualizationData.map((nav) =>
@@ -48,8 +47,13 @@ export default function Navbar() {
         <nav id="nav" className="navbar-expand-md navbar-dark bg-dark mb-4 pt-2 pb-1">
           <div className="container-fluid">
 
+<<<<<<< HEAD
             <Link to="/"><img src="icon.png" className="m-2" alt="Logo."/></Link> 
             <Link className="navbar-brand" to='/'>Globaali ilmasto</Link>
+=======
+            <Link to="/"><img src="/icon.png" className="m-2" alt="Logo."/></Link>
+            <Link className="navbar-brand" to='/'>Global climate</Link>
+>>>>>>> 8c43382252d56922192c3fd0ed88090ec6f7723c
 
             <button className="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" id="navbarToggle">
             <span className="navbar-toggler-icon"></span>

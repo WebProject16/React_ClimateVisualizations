@@ -5,13 +5,12 @@ import { Line } from "react-chartjs-2";
 import { Get } from "../../API/request";
 import "chartjs-adapter-luxon";
 
-export default function V1() {
+export default function V1(props) {
   
   const [dataYear, setDataYear] = useState([]);
   const [dataMonth, setDataMonth] = useState([]);
   const [dataV2, setDataV2 ] = useState([]);
 
-  const [v2IsVisible, setV2IsVisible] = useState([]);
   const [isAnnual, setIsAnnual] = useState(true);
 
   useEffect(() => {
@@ -63,11 +62,11 @@ export default function V1() {
         pointRadius: 1,
       },
       {
-        label:v2IsVisible ? "Pohjoisen pallonpuoliskon lämpötilapoikkeaman jälleenrakennus (2000a)" : "",
+        label: "Pohjoisen pallonpuoliskon lämpötilapoikkeaman jälleenrakennus (2000a)",
         data: dataV2,
         hidden: true,
-        borderColor: v2IsVisible ?  "rgb(100, 0, 0)" : "rgba(0,0,0,0)",
-        backgroundColor: v2IsVisible ?  "rgb(100, 0, 0)" : "rgba(0,0,0,0)",
+        borderColor: "rgb(100, 0, 0)",
+        backgroundColor: "rgb(100, 0, 0)",
         parsing: {
           xAxisKey: "year",
           yAxisKey: "T",
@@ -106,7 +105,7 @@ export default function V1() {
   }
 
   return (
-    <>
+    <div className="child">
       <div className="container-fluid">
         <Line data={data} options={options} alt="Anomaly data chart"/>
         {/* <button onClick={() => setV2IsVisible(!v2IsVisible)} className="btn btn-outline-primary mt-4">{v2IsVisible ? "Hide northern temp reconstruction" : "Show northern temp reconstruction"}</button> */}
@@ -117,13 +116,21 @@ export default function V1() {
       <div className="card mt-4" style={{width: "24rem"}}>
         <div className="card-body">
           <h5 className="card-title">Kuvaus</h5>
-          <p className="card-text">Kuvaajassa vuosittaiset lämpötilapoikkeamat ajanjaksolta 1850-2022.</p>
-          <p>Lisäksi kuvaajaan halutessaan saa näkyville myös jälleenrakennuksen poikkeamista 2000 vuoden ajanjaksolta</p>
+          {
+            !props.description ?
+              <div>
+                <p className="card-text">Kuvaajassa vuosittaiset lämpötilapoikkeamat ajanjaksolta 1850-2022.</p>
+                <p>Lisäksi kuvaajaan halutessaan saa näkyville myös jälleenrakennuksen poikkeamista 2000 vuoden ajanjaksolta</p>
+              </div>
+            : <div>
+              <p>{props.description}</p>
+            </div>
+          }
           <h6 className="card-subtitle mt-2 text-muted">Lähteet:</h6>
           <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noopener noreferrer" className="card-link">1850-2022 data</a>
           <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005" target="_blank" rel="noopener noreferrer" className="card-link">2000 vuoden data</a>
         </div>
       </div>
-    </>
+    </div>
   );
 }

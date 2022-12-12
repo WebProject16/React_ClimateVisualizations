@@ -68,6 +68,7 @@ function Login() {
             <form onSubmit={handleSubmit}>
             <h1>Kirjaudu sisään</h1>
             <div className='form-group pb-2 pt-4 w-750'>
+<<<<<<< HEAD
                 <label htmlFor="username">Käyttäjänimi:</label>
                 <input type="text" id="username" className="form-control" ref={userRef} autoComplete="off" onChange={(e) => setUser(e.target.value)} value={user} />
             </div>
@@ -77,6 +78,17 @@ function Login() {
             </div>
             <p ref={errRef} className={errMsg ? "alert alert-danger" : "offscreen"} >{errMsg}</p>
             <button type="submit" className="btn btn-outline-primary">Kirjaudu sisään!</button>
+=======
+                <label htmlFor="username">Username:</label>
+                <input type="text" id="username" placeholder="Käyttäjänimi" className="form-control" ref={userRef} autoComplete="off" onChange={(e) => setUser(e.target.value)} value={user} />
+            </div>
+            <div className='form-group pb-2 w-750'>
+                <label htmlFor='password'>Password:</label>
+                <input type="password" className="form-control" placeholder="Salasana" id="password" autoComplete="off" onChange={(e) => setPassword(e.target.value)} value={password} />
+            </div>
+            <p ref={errRef} data-testid="errMsg" className={errMsg ? "alert alert-danger" : "offscreen"} >{errMsg}</p>
+            <button type="submit" data-testid='loginBtn' className="btn btn-outline-primary">Log in!</button>
+>>>>>>> 8c43382252d56922192c3fd0ed88090ec6f7723c
             </form>
             )}
         </div>
