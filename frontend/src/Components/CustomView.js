@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from 'react-router-dom';
 import { Get } from "../API/request";
+
 import V1 from './visualizations/V1';
 import V3 from './visualizations/V3';
 import V5 from './visualizations/V5';
@@ -31,6 +32,7 @@ export default function CustomView() {
     }
 
     useEffect(() => {
+
         Get("/views/" + url, res => {
 
             if(res.status === 200){
@@ -59,7 +61,7 @@ export default function CustomView() {
                 setIsSuccess(false);
             }
         })
-    }, [])
+    }, [url])
 
     if(!isSuccess){
         return (

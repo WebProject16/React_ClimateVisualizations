@@ -6,9 +6,7 @@ export default function Navbar() {
     const { isLoggedIn } = useContext(LoginContext)
 
     //Elements to render to everyone
-    const navItems = [
-        { route: '/contact', text: 'Contact'},
-    ];
+    const navItems = [];
 
     //elements to render for authenticated
     if(isLoggedIn){
@@ -25,8 +23,8 @@ export default function Navbar() {
     const visualizationData = [
         {route: "/v1", text:"1850-2022 lämpötilan poikkeamat"},
         {route: "/v3", text:"Mauna Loa sekä Law Dome hiilidioksidipitoisuudet"},
-        {route: "/v5", text:"Ilmakehän hiilidioksidipitoisuudet"},
-        {route: "/v6", text:"Ilmakehän hiilidioksidipitoisuudet"},
+        {route: "/v5", text:"Ilmakehän hiilidioksidipitoisuudet (400 000 vuotta)"},
+        {route: "/v6", text:"Ilmakehän hiilidioksidipitoisuudet (800 000 vuotta)"},
         {route: "/v7", text:"Lämpötilan evoluutio"},
         {route: "/v8", text:"Hiilidioksidipäästöt maittain"},
         {route: "/v9", text:"Hiilidioksidipäästöt toimialoittain"},

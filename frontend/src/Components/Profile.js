@@ -37,7 +37,7 @@ export default function Profile() {
         setErrMsg('');
     }, [username, password])
     
-    const DelProfile = async (e) => {
+    const DelProfile = (e) => {
         e.preventDefault()
 
         let validate = checkInput(username, password)
@@ -45,7 +45,7 @@ export default function Profile() {
         if(validate !== "")
             return setErrMsg(validate)
 
-        await Delete ("/user/deleteUser", 
+        Delete ("/user/deleteUser", 
         {username:username, password:password},
         (res) => {
             if (res.status === 200){
