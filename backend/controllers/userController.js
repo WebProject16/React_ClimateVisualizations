@@ -7,48 +7,48 @@ const register = (req, res) => {
     const {username, password, password_rpt} = req.body
 
     if(typeof username !== 'string' || typeof password !== 'string' || typeof password_rpt !== 'string'){
-        return res.status(400).json({msg:'Inputs are not valid'})
+        return res.status(400).json({msg:'Tarkista syötteet'})
     }
     
     if(!username){
         return res.status(400).json({
-            msg:'Please enter an username'
+            msg:'Käyttäjänimi puuttuu'
         })
     }
     if(!password || password.length < 5){
         return res.status(400).json({
-            msg:'Password must have more than 5 characters'
+            msg:'Salasanan on oltava yli 5 merkkiä'
         })
     }
     if(!password_rpt || password !== password_rpt){
         return res.status(400).json({
-            msg:'Passwords must match'
+            msg:'Salasanot eivät ole samat'
         })
     }
 
     if(username.length > 30){
         return res.status(400).json({
-            msg:'Username is too long'
+            msg:'Käyttäjänimi on liian pitkä'
         })
     }
 
     if(username.length < 3){
         return res.status(400).json({
-            msg:'Username is too short'
+            msg:'Käyttäjänimi on liian lyhyt'
         })
     }
 
     if(!validator.isAlphanumeric(username)){
 
         return res.status(400).json({
-            msg:'Username cannot contain special characters'
+            msg:'Käyttäjänimessä ei voi olla erikoismerkkejä'
         })
     }
 
     if(!validator.isStrongPassword(password, {minLength: 6, minLowercase: 0, minUppercase: 0, minSymbols: 0, minNumbers: 1})){
 
         return res.status(400).json({
-            msg:'Password is not valid'
+            msg:'Salasana ei kelpaa'
         })
     }
 
@@ -56,17 +56,17 @@ const register = (req, res) => {
 
         if(err){
             console.log(err);
-            return res.status(500).json({msg:'Error on registering user'}) 
+            return res.status(500).json({msg:'Käyttäjän luonnissa taphatui virhe, yritä uudelleen'}) 
         }
 
         userModel.register(username, hash, (err, dbRes) => {
             if(err){
                 if(err.errno == 1062)
-                    return res.status(400).json({msg:'Username already taken'}) 
+                    return res.status(400).json({msg:'Käyttäjänimi on jo käytössä'}) 
     
                 return res.status(500).json(err)
             }else{
-                return res.status(200).json({msg:'Successfully registered new user'})
+                return res.status(200).json({msg:'Käyttäjän luonti onnistui'})
             }
         })
     })
@@ -76,11 +76,11 @@ const login = (req, res) => {
     const {username, password} = req.body;
 
     if(!username || !password){
-        return res.status(400).json({status:"error",msg:"One or more fields are missing"})
+        return res.status(400).json({status:"error",msg:"Yksi tai useampi syöte puuttuu"})
     }
 
     if(typeof username !== 'string' || typeof password !== 'string'){
-        return res.status(400).json({msg:'Inputs are not valid'})
+        return res.status(400).json({msg:'Syötteet eivät kelpaa'})
     }
 
     userModel.getUserByName(username, (err, result) => {
@@ -90,7 +90,7 @@ const login = (req, res) => {
         }
 
         if(!result[0]){
-            return res.status(400).json({status:"error", msg:"Invalid username or password"})
+            return res.status(400).json({status:"error", msg:"Käyttäjä nimi tai salasana eivät kelpaa"})
         }
 
         bcrypt.compare(password, result[0].password, (err, correctPassword) => {
@@ -100,7 +100,7 @@ const login = (req, res) => {
             }
 
             if(!correctPassword){
-                return res.status(400).json({status:"error", msg:"Invalid username or password"})
+                return res.status(400).json({status:"error", msg:"Käyttäjänimi tai salasana ovat väärät"})
             }
 
             jwt.createToken(result[0].userID, result[0].username, (err, token) => {
@@ -120,11 +120,11 @@ const deleteUser = (req, res) => {
     const {username, password} = req.body;
 
     if(!username || !password){
-        return res.status(400).json({status:"error",msg:"One or more fields are missing"});
+        return res.status(400).json({status:"error",msg:"Yksi tai useampi syöte puuttuu"});
     }
 
     if(typeof username !== 'string' || typeof password !== 'string'){
-        return res.status(400).json({msg:'Inputs are not valid'})
+        return res.status(400).json({msg:'Syötteet eivät kelpaa'})
     }
 
     userModel.getUserByName(username, (err, result) => {
@@ -134,7 +134,7 @@ const deleteUser = (req, res) => {
         }
 
         if(!result[0]){
-            return res.status(400).json({status:"error", msg:"Invalid username or password"});
+            return res.status(400).json({status:"error", msg:"Käyttäjänimi tai salasana ovat väärin"});
         }
 
         bcrypt.compare(password, result[0].password, (err, correctPassword) => {
@@ -144,7 +144,7 @@ const deleteUser = (req, res) => {
             }
 
             if(!correctPassword){
-                return res.status(400).json({status:"error", msg:"Invalid username or password"});
+                return res.status(400).json({status:"error", msg:"Käyttäjänimi tai salasana ovat väärin"});
             }
 
             userModel.deleteUserByName(username, (err) => {
@@ -153,7 +153,7 @@ const deleteUser = (req, res) => {
                     return res.status(500).json({status:"error", msg:err});
                 }
              
-                res.json({status:"success", msg:"Successfully deleted user"});
+                res.json({status:"success", msg:"Käyttäjä poistettiin"});
 
             })
 

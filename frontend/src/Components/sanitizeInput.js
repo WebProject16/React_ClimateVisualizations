@@ -14,7 +14,7 @@ export function checkInput(username, password){
         return "Salasanan on oltava alle 30 merkkiä"
     
     if(password.length < 5)
-        return "Salasanan on oltava yli 4 merkkiä"
+        return "Salasanan on oltava yli 5 merkkiä"
 
     if(username.length > 30)
         return "Käyttäjänimen on oltava alle 30 merkkiä"
