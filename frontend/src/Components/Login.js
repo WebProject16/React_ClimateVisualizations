@@ -51,7 +51,7 @@ function Login() {
                 setErrMsg(res.response.data.msg)
             }else{
                 errRef.current.focus();
-                setErrMsg("Unexpected error, try again later")
+                setErrMsg("Jotain meni vikaan yritä myöhemmin uudelleen")
             }
         })
         
@@ -61,22 +61,22 @@ function Login() {
         <div className="d-flex justify-content-center">
             {success ? (
                     <div className="alert alert-success p-4 pb-2">
-                        <h2 className="alert-heading">Successfully logged in!</h2>
-                        <h4>You can now access most features</h4>
+                        <h2 className="alert-heading">Sisään kirjautuminen onnistui</h2>
+                        <h4>Voit nyt luoda omia visualisaatiota</h4>
                     </div>
                 ) : (           
             <form onSubmit={handleSubmit}>
-            <h1>Log in</h1>
+            <h1>Kirjaudu sisään</h1>
             <div className='form-group pb-2 pt-4 w-750'>
-                <label htmlFor="username">Username:</label>
+                <label htmlFor="username">Käyttäjänimi:</label>
                 <input type="text" id="username" placeholder="Käyttäjänimi" className="form-control" ref={userRef} autoComplete="off" onChange={(e) => setUser(e.target.value)} value={user} />
             </div>
             <div className='form-group pb-2 w-750'>
-                <label htmlFor='password'>Password:</label>
+                <label htmlFor='password'>Salasana:</label>
                 <input type="password" className="form-control" placeholder="Salasana" id="password" autoComplete="off" onChange={(e) => setPassword(e.target.value)} value={password} />
             </div>
             <p ref={errRef} data-testid="errMsg" className={errMsg ? "alert alert-danger" : "offscreen"} >{errMsg}</p>
-            <button type="submit" data-testid='loginBtn' className="btn btn-outline-primary">Log in!</button>
+            <button type="submit" data-testid='loginBtn' className="btn btn-outline-primary">Kirjaudu sisään!</button>
             </form>
             )}
         </div>

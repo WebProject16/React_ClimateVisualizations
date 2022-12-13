@@ -12,7 +12,7 @@ beforeEach(() => {
 
 test('delete renders correctly', () => {
 
-  const deleteBtn = screen.getByText('Delete user')
+  const deleteBtn = screen.getByText('Poista käyttäjä')
   expect(deleteBtn).toBeInTheDocument()
 
 })
@@ -21,7 +21,7 @@ test('Press the delete user button', async () => {
   
   const user = userEvent.setup()
   
-  await user.click(screen.getByText('Delete user'))
+  await user.click(screen.getByText('Poista käyttäjä'))
 
   const name = screen.getByPlaceholderText("Käyttäjänimi")
   const pwd = screen.getByPlaceholderText("Salasana")
@@ -33,12 +33,12 @@ test('attempt to delete user without values', async () => {
 
     const user = userEvent.setup()
 
-    await user.click(screen.getByText('Delete user'))
+    await user.click(screen.getByText('Poista käyttäjä'))
     const name = screen.getByPlaceholderText("Käyttäjänimi")
     const pwd = screen.getByPlaceholderText("Salasana")
 
 
-  	await user.click(screen.getByText('Delete user?'))
+  	await user.click(screen.getByText('Poista käyttäjä?'))
 
 })
 
@@ -46,14 +46,14 @@ test('attempt to delete user with incorrect values', async () => {
 
   const user = userEvent.setup()
 
-  await user.click(screen.getByText('Delete user'))
+  await user.click(screen.getByText('Poista käyttäjä'))
   const name = screen.getByPlaceholderText("Käyttäjänimi")
   const pwd = screen.getByPlaceholderText("Salasana")
 
   await user.type(name, "q")
   await user.type(pwd, "q")
 
-  await user.click(screen.getByText('Delete user?'))
+  await user.click(screen.getByText('Poista käyttäjä?'))
 
 })
 

@@ -12,7 +12,7 @@ beforeEach(() => {
 test('login renders correctly', () => {
     const name = screen.getByPlaceholderText("Käyttäjänimi")
     const pwd = screen.getByPlaceholderText("Salasana")
-    const welcomeMsg = screen.getByText('Log in')
+    const welcomeMsg = screen.getByText('Kirjaudu sisään')
 
     expect(name).toBeVisible()
     expect(pwd).toBeVisible()

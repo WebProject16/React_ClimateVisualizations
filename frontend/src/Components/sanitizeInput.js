@@ -5,31 +5,31 @@ const regExSpecials = /[<>{}()[\]]/;
 export function checkInput(username, password){
 
     if(username === "")
-        return "Username is missing"
+        return "Käyttäjänimi puuttuu"
     
     if(password === "")
-        return "Password is missing"
+        return "Salasana puuttuu"
     
     if(password.length > 30)
-        return "Password must be shorter than 30 characters"
+        return "Salasanan on oltava alle 30 merkkiä"
     
     if(password.length < 5)
-        return "Password must be longer than 5 characters"
+        return "Salasanan on oltava yli 5 merkkiä"
 
     if(username.length > 30)
-        return "Username must be shorter than 30 characters"
+        return "Käyttäjänimen on oltava alle 30 merkkiä"
 
     if(username.length < 3)
-       return "Username must be longer than 2 characters"
+       return "Käyttäjänimen on oltava yli 2 merkkiä"
     
     if(!regExPwd.test(password))
-        return "Password must contain a letter and a number";
+        return "Salasanassa on oltava ainakin yksi merkki sekä numero";
 
     if(regExSpecials.test(password))
-        return "Password cannot have <>{}[]()"
+        return "Salasana ei voi pitää sisällään <>{}[]()"
 
     if(!regExName.test(username))
-        return "Username cannot contain special characters or space";
+        return "Käyttäjä nimi ei voi sisältää erikoismerkkejä tai väliä";
 
     return "";
 }
