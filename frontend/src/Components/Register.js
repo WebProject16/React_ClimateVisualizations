@@ -63,7 +63,7 @@ function Register() {
                     </div>
                 ) : (           
             <form onSubmit={handleSubmit}>
-            <h1>Register a new user</h1>
+            <h1>Rekisteröidy</h1>
             <div className='form-group pb-2 pt-4 w-750'>
                 <label htmlFor="username">Käyttäjänimi:</label>
                 <input type="text" placeholder="Käyttäjänimi" id="username" className="form-control" ref={userRef} autoComplete="off" onChange={(e) => setUser(e.target.value)} value={user} />

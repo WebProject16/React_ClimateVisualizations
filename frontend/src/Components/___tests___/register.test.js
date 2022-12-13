@@ -8,10 +8,10 @@ afterEach(() => cleanup())
 test('register page renders correctly', () => {
   const { getByLabelText, getByText} = render(<Register />)
 
-  const nameLabel = getByLabelText('Username:')
-  const pwdLabel = getByLabelText('Password:')
-  const pwdRptLabel = getByLabelText('Please repeat the password:')
-  const welcomeMsg = getByText('Register a new user')
+  const nameLabel = getByLabelText('Käyttäjänimi:')
+  const pwdLabel = getByLabelText('Salasana:')
+  const pwdRptLabel = getByLabelText('Toista salasana:')
+  const welcomeMsg = getByText('Rekisteröidy')
 
   expect(nameLabel).toBeInTheDocument()
   expect(pwdLabel).toBeInTheDocument()
