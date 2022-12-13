@@ -224,7 +224,41 @@ const v9 = (req, res) => {
             return res.status(500).json({status:"error", msg:"No data found in V9 table"})
         }
 
-        res.status(200).json({v9_1: data[0], v9_2: data[1], v9_3: data[2]})
+        const energyData = [];
+
+        for(let i = 0; i < 6; i++){
+            energyData.push({sector: data[1][i].sector, share: data[1][i].share});
+        }
+
+        const industrialData = [];
+
+        for(let i = 6; i < 8; i++){
+            industrialData.push({sector: data[1][i].sector, share: data[1][i].share});
+        }
+
+        const agricultural = [];
+
+        for(let i = 8; i < data[1].length - 2; i++){
+            agricultural.push({sector: data[1][i].sector, share: data[1][i].share});
+        }
+
+        const waste = [];
+
+        for(let i = data[1].length - 2; i < data[1].length; i++){
+            waste.push({sector: data[1][i].sector, share: data[1][i].share});
+        }
+
+        const payload = {
+            v9_1: data[0],
+            v9_2: {
+                "Energy": energyData,
+                "Industrial processes": industrialData,
+                "Agriculture, Forestry & Land Use (AFOLU)": agricultural,
+                "Waste": waste
+            }
+        }
+
+        res.status(200).json(payload)
     })
 }
 module.exports = {

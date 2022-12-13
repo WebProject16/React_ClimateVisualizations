@@ -7,9 +7,11 @@ import "chartjs-adapter-luxon";
 
 export default function V9(props) {
   
-  const [viewData1, setViewData1] = useState([]);
-  const [viewData2, setViewData2] = useState([]);
-  const [viewData3, setViewData3] = useState([]);
+  const [firstPieChartData, setFirstPieChartData] = useState([]);
+  const [secondPieChartData, setSecondPieChartData] = useState({});
+  const [chartData, setChartData] = useState([]);
+
+  const [colors, setColors] = useState([]);
 
   const chartRef = useRef();
 
@@ -20,9 +22,21 @@ export default function V9(props) {
 
         const data = res.data;
 
-        setViewData1(data.v9_1);
-        setViewData2(data.v9_2);
-        setViewData3(data.v9_3);
+        setFirstPieChartData(data.v9_1);
+
+        setSecondPieChartData(data.v9_2);
+
+        setChartData(data.v9_1);
+
+        setColors([
+          "rgb(2, 117, 216)",
+          "rgb(92, 184, 92)",
+          "rgb(91, 192, 222)",
+          "rgb(240, 173, 78)",
+          "rgb(41, 43, 44)",
+          "rgb(217, 83, 79)",
+          "rgb(163, 117, 84)"
+        ])
 
       }else{
         console.log("Error: ", res)
@@ -30,23 +44,18 @@ export default function V9(props) {
     })
   }, [])
 
-  const changeData = (e) => {
+  const changeChart = (e) => {
     const idx = getElementsAtEvent(chartRef.current, e)["0"].index;
 
-    console.log(viewData1[idx].sector)
+    setChartData(secondPieChartData[firstPieChartData[idx].sector]);
   }
 
   const data = {
-    labels: viewData1.map(label => label.sector),
+    labels: chartData.map(label => label.sector),
     datasets: [
       {
-        data: viewData1.map(label => label.share),
-        backgroundColor: [
-          'rgb(240, 173, 78)',
-          'rgb(41, 43, 44)',
-          'rgb(2, 117, 216)',
-          'rgb(92, 184, 92)'
-        ]
+        data: chartData.map(label => label.share),
+        backgroundColor: colors
       }
     ]
   }
@@ -75,8 +84,9 @@ export default function V9(props) {
   return (
     <div className="child">
       <div className="container-fluid" id="v9Wrapper">
-        <Pie options={options} data={data} ref={chartRef} onClick={changeData} alt="Piirakkakaavio toimialojen hiilidioksidipäästöistä."/>
+        <Pie options={options} data={data} ref={chartRef} onClick={changeChart} alt="Piirakkakaavio toimialojen hiilidioksidipäästöistä."/>
       </div>
+      <button className="btn btn-outline-primary" onClick={() => setChartData(firstPieChartData)}>Reset</button>
       <div className="card mt-4" style={{width: "24rem"}}>
         <div className="card-body">
           <h5 className="card-title">Kuvaus</h5>
