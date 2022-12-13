@@ -7,6 +7,7 @@ import V5 from './visualizations/V5';
 import V6 from './visualizations/V6';
 import V7 from './visualizations/V7';
 import V8 from './visualizations/V8';
+import V9 from './visualizations/V9';
 
 export default function CustomView() {
 
@@ -25,7 +26,8 @@ export default function CustomView() {
         v5: <V5 key="v5" description={descriptions["v5"]} />,
         v6: <V6 key="v6" description={descriptions["v6"]} />,
         v7: <V7 key="v7" description={descriptions["v7"]} />,
-        v8: <V8 key="v8" description={descriptions["v8"]} />
+        v8: <V8 key="v8" description={descriptions["v8"]} />,
+        v9: <V9 key="v9" description={descriptions["v9"]} />
     }
 
     useEffect(() => {

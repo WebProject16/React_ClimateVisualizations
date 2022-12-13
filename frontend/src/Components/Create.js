@@ -81,10 +81,11 @@ export default function Create() {
     const titles = {
         v1: "1850-2022 lämpötilan poikkeamat",
         v3: "Mauna Loa sekä Law Dome hiilidioksidipitoisuudet",
-        v5: "Ilmakehän hiilidioksidipitoisuudet",
-        v6: "v6 page",
+        v5: "Ilmakehän hiilidioksidipitoisuudet (400 000 vuotta)",
+        v6: "Ilmakehän hiilidioksidipitoisuudet (800 000 vuotta)",
         v7: "Lämpötilan evoluutio",
         v8: "Hiilidioksidipäästöt maittain",
+        v9: "Hiilidioksidipäästöt toimialoittain",
     }
 
     const options = [
@@ -111,6 +112,10 @@ export default function Create() {
         {
             value:"v8",
             title:titles["v8"]
+        },
+        {
+            value:"v9",
+            title:titles["v9"]
         }
     ]
 
