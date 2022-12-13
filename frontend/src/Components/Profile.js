@@ -21,6 +21,7 @@ export default function Profile() {
 
     useEffect(() => {
       
+        
         AuthGet("/views/users/all", res => {
             if(res.status === 200){
                 setViewData(res.data.views);
@@ -101,11 +102,11 @@ export default function Profile() {
                     <h3 className='mt-4'>Confirm deleting user</h3>
                     <div>
                         <label htmlFor="username">Username:</label>
-                        <input onChange={(e)=>setUsername(e.target.value)} type="text" id="username" className="form-control"/>
+                        <input onChange={(e)=>setUsername(e.target.value)} placeholder= "Käyttäjänimi" type="text" id="username" className="form-control"/>
                     </div>
                     <div>
                         <label htmlFor='password'>Password:</label>
-                        <input onChange={(e)=>setPassword(e.target.value)} type="password" id="password" className="form-control"/>                
+                        <input onChange={(e)=>setPassword(e.target.value)} placeholder= "Salasana" type="password" id="password" className="form-control"/>                
                     </div>
                     <button type="submit" className="btn btn-outline-danger mt-2">Delete user?</button>
                 </form>
