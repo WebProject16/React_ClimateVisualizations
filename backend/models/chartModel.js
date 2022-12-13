@@ -31,7 +31,7 @@ const chart = {
     },
 
     getV9: (cb) => {
-        db.query("SELECT * FROM v9_co2_emissions_by_sectors", cb)
+        db.query("SELECT * FROM v9_1; SELECT * FROM v9_2; SELECT * FROM v9_3", cb)
     }
 }
 

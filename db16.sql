@@ -654,26 +654,72 @@ INSERT INTO `v8_co2_emissions` VALUES (1959,0.104959449,0.394,1.543945669,0,0.16
 UNLOCK TABLES;
 
 --
--- Table structure for table `v9_co2_emissions_by_sectors`
+-- Table structure for table `v9_1`
 --
 
-DROP TABLE IF EXISTS `v9_co2_emissions_by_sectors`;
+DROP TABLE IF EXISTS `v9_1`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `v9_co2_emissions_by_sectors` (
+CREATE TABLE `v9_1` (
   `sector` text,
-  `gas_emission` double DEFAULT NULL
+  `share` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `v9_co2_emissions_by_sectors`
+-- Dumping data for table `v9_1`
 --
 
-LOCK TABLES `v9_co2_emissions_by_sectors` WRITE;
-/*!40000 ALTER TABLE `v9_co2_emissions_by_sectors` DISABLE KEYS */;
-INSERT INTO `v9_co2_emissions_by_sectors` VALUES ('Road',11.9),('Aviation',1.9),('Rail',0.4),('Pipeline',0.3),('Ship',1.7),('Residential',10.9),('Commercial',6.6),('Iron & Steel',7.2),('Non-ferous metals',0.7),('Machinery',0.5),('Food and tobacco',1),('Paper, pulp & printing',0.6),('Chemical & petrochemical (energy)',3.6),('Other industry',10.6),('Energy in Agri & Fishing',1.7),('Unallocated fuel combustion',7.8),('Coal',1.9),('Oil & Natural Gas',3.9),('Cement',3),('Chemical & petrochemical (industrial)',2.2),('Livestock & Manure',5.8),('Rice Cultivation',1.3),('Agricultural Soils',4.1),('Crop Burning',3.5),('Forest Land',2.2),('Cropland',1.4),('Grassland',0.1),('Landfills',1.9),('Wastewater',1.3);
-/*!40000 ALTER TABLE `v9_co2_emissions_by_sectors` ENABLE KEYS */;
+LOCK TABLES `v9_1` WRITE;
+/*!40000 ALTER TABLE `v9_1` DISABLE KEYS */;
+INSERT INTO `v9_1` VALUES ('Energy',73.2),('Industrial processes',5.2),('Waste',3.2),('Agriculture, Forestry & Land Use (AFOLU)',18.4);
+/*!40000 ALTER TABLE `v9_1` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `v9_2`
+--
+
+DROP TABLE IF EXISTS `v9_2`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `v9_2` (
+  `sector` text,
+  `share` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `v9_2`
+--
+
+LOCK TABLES `v9_2` WRITE;
+/*!40000 ALTER TABLE `v9_2` DISABLE KEYS */;
+INSERT INTO `v9_2` VALUES ('Transport',16.2),('Energy in buildings (elec and heat)',17.5),('Energy in industry',24.2),('Energy in Agri & Fishing',1.7),('Unallocated fuel combustion',7.8),('Fugitive emissions from energy',5.8),('Cement',3),('Chemical & petrochemical (industrial)',2.2),('Livestock & Manure',5.8),('Rice Cultivation',1.3),('Agricultural Soils',4.1),('Crop Burning',3.5),('Forest Land',2.2),('Cropland',1.4),('Grassland',0.1),('Landfills',1.9),('Wastewater',1.3);
+/*!40000 ALTER TABLE `v9_2` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `v9_3`
+--
+
+DROP TABLE IF EXISTS `v9_3`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `v9_3` (
+  `sector` text,
+  `share` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `v9_3`
+--
+
+LOCK TABLES `v9_3` WRITE;
+/*!40000 ALTER TABLE `v9_3` DISABLE KEYS */;
+INSERT INTO `v9_3` VALUES ('Road',11.9),('Aviation',1.9),('Rail',0.4),('Pipeline',0.3),('Ship',1.7),('Residential',10.9),('Commercial',6.6),('Iron & Steel',7.2),('Non-ferous metals',0.7),('Machinery',0.5),('Food and tobacco',1),('Paper, pulp & printing',0.6),('Chemical & petrochemical (energy)',3.6),('Other industry',10.6),('Energy in Agri & Fishing',1.7),('Unallocated fuel combustion',7.8),('Coal',1.9),('Oil & Natural Gas',3.9),('Cement',3),('Chemical & petrochemical (industrial)',2.2),('Livestock & Manure',5.8),('Rice Cultivation',1.3),('Agricultural Soils',4.1),('Crop Burning',3.5),('Forest Land',2.2),('Cropland',1.4),('Grassland',0.1),('Landfills',1.9),('Wastewater',1.3);
+/*!40000 ALTER TABLE `v9_3` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -701,13 +747,12 @@ CREATE TABLE `views` (
   UNIQUE KEY `url_UNIQUE` (`url`),
   KEY `views_users_fk` (`userID`),
   CONSTRAINT `views_users_fk` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `views`
 --
-
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -719,4 +764,4 @@ CREATE TABLE `views` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-08 20:08:10
+-- Dump completed on 2022-12-12 23:56:59

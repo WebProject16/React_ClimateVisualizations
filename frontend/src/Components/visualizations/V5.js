@@ -84,7 +84,7 @@ export default function V5(props) {
             !props.description ?
               <div>
                 <p className="card-text">Viivakaavio esittää ilmakehän hiilidioksidipitoisuuksia perustuen Neuvostoliiton etelämantereen Vostok aseman jääkairauksiin.</p>
-                <p className="card-text">Aikajakso on 417160 - 2342 vuotta ennen nykyhetkeä.</p>
+                <p className="card-text">Aikajakso on noin 400 000 vuotta.</p>
               </div>
             : <div>
               <p>{props.description}</p>

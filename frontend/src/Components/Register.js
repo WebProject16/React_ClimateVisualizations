@@ -22,7 +22,7 @@ function Register() {
       setErrMsg('');
     }, [user, password, password_rpt])
     
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         if(password !== password_rpt){
@@ -34,7 +34,7 @@ function Register() {
         if(validate !== "")
             return setErrMsg(validate)
 
-        await Post("/user/register",{username:user,password:password,password_rpt:password_rpt},
+        Post("/user/register",{username:user,password:password,password_rpt:password_rpt},
         (res) => {
             if(res.status === 200){
                 setErrMsg('')
