@@ -37,11 +37,43 @@ TOKEN=some_secret_password
 
 `GET: /charts/v1`
 
+`GET: /charts/v3`
+
+`GET: /charts/v4`
+
+`GET: /charts/v5`
+
+`GET: /charts/v6`
+
+`GET: /charts/v7`
+
+`GET: /charts/v8`
+
+`GET: /charts/v9`
+
 ---
+
 ## Available endpoints that need authentication
+
 `DELETE: /user/deleteUser` username, password
 
+`DELETE: /view/:url` delete a view
+
 `GET: /user/token`
+
+`GET: /view/users/all` fetch users views
+
+`POST: /view/` create a view
+
+---
+
+## Testing
+
+`npm test` in frontend/ and backend/ for running automatic test script. Actual test script includes this command line:
+
+`jest --watchAll --detectOpenHandles` in backend/
+
+`react-scripts test --watchAll` in frontend/
 
 ---
 
