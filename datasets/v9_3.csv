@@ -1,0 +1,30 @@
+﻿sector;share
+Road;11.90
+Aviation;1.90
+Rail;0.40
+Pipeline;0.30
+Ship;1.70
+Residential;10.90
+Commercial;6.60
+Iron & Steel;7.20
+Non-ferous metals;0.70
+Machinery;0.50
+Food and tobacco;1.00
+Paper, pulp & printing;0.60
+Chemical & petrochemical (energy);3.60
+Other industry;10.60
+Energy in Agri & Fishing;1.70
+Unallocated fuel combustion;7.80
+Coal;1.90
+Oil & Natural Gas;3.90
+Cement;3.00
+Chemical & petrochemical (industrial);2.20
+Livestock & Manure;5.80
+Rice Cultivation;1.30
+Agricultural Soils;4.10
+Crop Burning;3.50
+Forest Land;2.20
+Cropland;1.40
+Grassland;0.10
+Landfills;1.90
+Wastewater;1.30

@@ -15,6 +15,7 @@ import V5 from './Components/visualizations/V5';
 import V6 from './Components/visualizations/V6';
 import V7 from './Components/visualizations/V7';
 import V8 from './Components/visualizations/V8';
+import V9 from './Components/visualizations/V9';
 
 import CustomView from './Components/CustomView';
 import Error from './Components/Error';
@@ -58,6 +59,7 @@ function App() {
             <Route path="/v8" element={<V8 />} />
             <Route path="/v3" element={<V3 />} />
             <Route path="/v6" element={<V6 />} />
+            <Route path="/v9" element={<V9 />} />
 
             <Route path="/view/:url" element={<CustomView />} />
 

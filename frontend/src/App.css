@@ -16,6 +16,10 @@
   height: 90vh;
 }
 
+#v9Wrapper {
+  max-width: 70%;
+}
+
 .viewContainer {
   padding-top: 2em;
   display: block;
@@ -45,7 +49,7 @@
 }
 
 .viewSelector {
-  height: 15vh;
+  height: 20vh;
   overflow: hidden;
   cursor: pointer;
 }
