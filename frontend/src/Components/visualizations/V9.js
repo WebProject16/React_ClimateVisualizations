@@ -53,21 +53,17 @@ export default function V9(props) {
 
     let chart = null;
 
-    if(firstPieChartData[idx].share === value){
+    if(typeof firstPieChartData[idx] !== "undefined" && firstPieChartData[idx].share === value){
       chart = secondPieChartData[firstPieChartData[idx].sector];
       setChartSector(firstPieChartData[idx].sector);
 
-    } else if(secondPieChartData[chartSector][idx].share === value){
+    } else if(typeof secondPieChartData[chartSector][idx] !== "undefined" && secondPieChartData[chartSector][idx].share === value){
       chart = thirdPieChartData[secondPieChartData[chartSector][idx].sector];
     }
 
-    if(chart !== null){
-      console.log("toimee");
+    if(!!chart){
       setChartData(chart);
-    }else{
-      console.log("asdasd");
     }
-    
   }
 
   const data = {
