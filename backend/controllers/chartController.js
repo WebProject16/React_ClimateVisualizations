@@ -224,6 +224,8 @@ const v9 = (req, res) => {
             return res.status(500).json({status:"error", msg:"No data found in V9 table"})
         }
 
+        // v9_2
+
         const energyData = [];
 
         for(let i = 0; i < 6; i++){
@@ -248,6 +250,32 @@ const v9 = (req, res) => {
             waste.push({sector: data[1][i].sector, share: data[1][i].share});
         }
 
+        // v9_3
+
+        const transport = [];
+
+        for(let i = 0; i < 5; i++){
+            transport.push({sector: data[2][i].sector, share: data[2][i].share});
+        }
+
+        const energy_buildings = [];
+
+        for(let i = 5; i < 7; i++){
+            energy_buildings.push({sector: data[2][i].sector, share: data[2][i].share});
+        }
+
+        const energy_industry = [];
+
+        for(let i = 7; i < 14; i++){
+            energy_industry.push({sector: data[2][i].sector, share: data[2][i].share});
+        }
+
+        const fugitive_emissions = [];
+
+        for(let i = 16; i < 18; i++){
+            fugitive_emissions.push({sector: data[2][i].sector, share: data[2][i].share});
+        }
+
         const payload = {
             v9_1: data[0],
             v9_2: {
@@ -255,6 +283,12 @@ const v9 = (req, res) => {
                 "Industrial processes": industrialData,
                 "Agriculture, Forestry & Land Use (AFOLU)": agricultural,
                 "Waste": waste
+            },
+            v9_3: {
+                "Transport": transport,
+                "Energy in buildings (elec and heat)": energy_buildings,
+                "Energy in industry": energy_industry,
+                "Fugitive emissions from energy": fugitive_emissions,
             }
         }
 

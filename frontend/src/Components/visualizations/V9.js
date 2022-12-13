@@ -9,9 +9,12 @@ export default function V9(props) {
   
   const [firstPieChartData, setFirstPieChartData] = useState([]);
   const [secondPieChartData, setSecondPieChartData] = useState({});
+  const [thirdPieChartData, setThirdPieChartData] = useState({});
   const [chartData, setChartData] = useState([]);
 
   const [colors, setColors] = useState([]);
+
+  const [chartSector, setChartSector] = useState("");
 
   const chartRef = useRef();
 
@@ -23,8 +26,8 @@ export default function V9(props) {
         const data = res.data;
 
         setFirstPieChartData(data.v9_1);
-
         setSecondPieChartData(data.v9_2);
+        setThirdPieChartData(data.v9_3);
 
         setChartData(data.v9_1);
 
@@ -46,8 +49,25 @@ export default function V9(props) {
 
   const changeChart = (e) => {
     const idx = getElementsAtEvent(chartRef.current, e)["0"].index;
+    const value = getElementsAtEvent(chartRef.current, e)["0"].element.$context.raw;
 
-    setChartData(secondPieChartData[firstPieChartData[idx].sector]);
+    let chart = null;
+
+    if(firstPieChartData[idx].share === value){
+      chart = secondPieChartData[firstPieChartData[idx].sector];
+      setChartSector(firstPieChartData[idx].sector);
+
+    } else if(secondPieChartData[chartSector][idx].share === value){
+      chart = thirdPieChartData[secondPieChartData[chartSector][idx].sector];
+    }
+
+    if(chart !== null){
+      console.log("toimee");
+      setChartData(chart);
+    }else{
+      console.log("asdasd");
+    }
+    
   }
 
   const data = {
