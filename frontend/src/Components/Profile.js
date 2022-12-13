@@ -21,6 +21,7 @@ export default function Profile() {
 
     useEffect(() => {
       
+        
         AuthGet("/views/users/all", res => {
             if(res.status === 200){
                 setViewData(res.data.views);
@@ -102,11 +103,11 @@ export default function Profile() {
                     <p>Käyttäjän poistaminen poistaa myös kaikki käyttäjän luomat visualisaatiot</p>
                     <div>
                         <label htmlFor="username">Käyttäjänimi:</label>
-                        <input onChange={(e)=>setUsername(e.target.value)} type="text" id="username" className="form-control"/>
+                        <input onChange={(e)=>setUsername(e.target.value)} type="text" id="username" placeholder='Käyttäjänimi' className="form-control"/>
                     </div>
                     <div>
                         <label htmlFor='password'>Salasana:</label>
-                        <input onChange={(e)=>setPassword(e.target.value)} type="password" id="password" className="form-control"/>                
+                        <input onChange={(e)=>setPassword(e.target.value)} type="password" id="password" placeholder='Salasana' className="form-control"/>                
                     </div>
                     <button type="submit" className="btn btn-outline-danger mt-2">Poista käyttäjä?</button>
                 </form>
