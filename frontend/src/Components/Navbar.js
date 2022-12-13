@@ -7,25 +7,25 @@ export default function Navbar() {
 
     //Elements to render to everyone
     const navItems = [
-        { route: '/contact', text: 'Contact'},
+        
     ];
 
     //elements to render for authenticated
     if(isLoggedIn){
-        navItems.push({ route: '/create', text: 'Create visualizations'})
-        navItems.push({route: '/profile', text: 'Profile'})
-        navItems.push({ route: '/logout', text: 'Logout'})
+        navItems.push({ route: '/create', text: 'Luo visualisaatiota'})
+        navItems.push({route: '/profile', text: 'Profiili'})
+        navItems.push({ route: '/logout', text: 'Kirjaudu ulos'})
     }else{
         //elemements to render for unauthenticated
-        navItems.push({ route: '/login', text: 'Login'})
-        navItems.push({ route: '/register', text: 'Register'})
+        navItems.push({ route: '/login', text: 'Kirjaudu sisään'})
+        navItems.push({ route: '/register', text: 'Rekisteröidy'})
     }
 
     //Visualizations menu drop down, text can be changed to something more descriptive
     const visualizationData = [
         {route: "/v1", text:"1850-2022 lämpötilan poikkeamat"},
         {route: "/v3", text:"Mauna Loa sekä Law Dome hiilidioksidipitoisuudet"},
-        {route: "/v5", text:"Ilmakehän hiilidioksidipitoisuudet"},
+        {route: "/v5", text:"Ilmakehän hiilidioksidipitoisuudet (Vostok)"},
         {route: "/v6", text:"Ilmakehän hiilidioksidipitoisuudet"},
         {route: "/v7", text:"Lämpötilan evoluutio"},
         {route: "/v8", text:"Hiilidioksidipäästöt maittain"},
@@ -48,7 +48,7 @@ export default function Navbar() {
           <div className="container-fluid">
 
             <Link to="/"><img src="/icon.png" className="m-2" alt="Logo."/></Link>
-            <Link className="navbar-brand" to='/'>Global climate</Link>
+            <Link className="navbar-brand" to='/'>Mailmanlaajuinen ilmasto</Link>
 
             <button className="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" id="navbarToggle">
             <span className="navbar-toggler-icon"></span>
@@ -59,7 +59,7 @@ export default function Navbar() {
                     
                     <li className="nav-item dropdown">
                         <Link className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-bs-toggle="dropdown">
-                            Visualizations
+                            Visualisaatiot
                         </Link>
 
                         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
