@@ -77,6 +77,8 @@ TOKEN=some_secret_password
 
 ---
 
+## Database architeture
+
 ![eer](https://user-images.githubusercontent.com/101475167/207702681-7042a97c-b860-4a6b-96a3-1de2786e1c92.png)
 
 
