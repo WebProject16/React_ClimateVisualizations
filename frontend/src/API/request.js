@@ -1,7 +1,7 @@
 import axios from 'axios'
 import config from '../config/default.json';
 
-const BASE_URL = config.server.host;
+const BASE_URL = process.env.REACT_APP_API_ADDRESS;
 
 export function AuthPost(path,body,cb){
     const token = "Bearer " + localStorage.getItem('token')

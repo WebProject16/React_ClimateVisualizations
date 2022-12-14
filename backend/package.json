@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@mapbox/node-pre-gyp": "^1.0.10",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
@@ -23,7 +24,8 @@
   "main": "app.js",
   "scripts": {
     "devRun": "nodemon server.js",
-    "test": "jest --watchAll --detectOpenHandles"
+    "test": "jest --watchAll --detectOpenHandles",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",

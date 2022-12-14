@@ -1,0 +1,8 @@
+runtime: nodejs16
+service: server
+env_variables:
+  GAE_DB_SOCKET: "/cloudsql/reactclimatevisualization:europe-west1:db16"
+  USER: "root"
+  PASSWORD: "Ix^D#xL$Dp|GE2jP"
+  TOKEN: "a9d470dc7c6ea51bc0770071259b3efd71a6c70c1b61d2f4d4b8baf6b8d10ca1a28b7eed94eb5f2a354a6f97a98269f41c677017cdb3a136386823f88e13f58d"
+
