@@ -5,7 +5,8 @@
 ## Esittely
 React_ClimateVisualizations on web-ohjelmoinnin sovellusprojektimme tuotos. Projekti on toisen lukuvuoden ensimmäinen projekti, joka käsittelee web-ohjelmointia yksinkertaisuudessaan. Projektimme teemana toimivat maailmanlaajuiset lämpötilat, joita sivumme käsittelee eri visualisaatioiden lomassa. Tehtävänä oli ryhmätyönä luoda nettisovellus, joka sisältäisi vuosituhansien varrelta lämpötilapoikkeamia, sekä hiilioksidipäästöjen mittauksia. Sivulle haluttiin luoda perinteiset ominaisuudet, jossa asiakas voi luoda käyttäjän, kirjautua sisään ja mukauttaa sisältöä haluamansa näköiseksi.
 
-
+### Demo
+[Demo](http://5.255.109.11)
 
 ### Vastuualueet
 Alle listattuna karkeasti mitä kukakin projektin jäsen on tehnyt
