@@ -5,12 +5,12 @@ export default function Home() {
 
     const visualizationCards = [
         {route: "/v1", title:"V1", description:"v1 page", image:"/img/chart.png"},
-        {route: "/v2", title:"V2", description:"v2 page", image:"/img/chart.png"},
-        {route: "/v3", title:"V3", description:"v3 page", image:"/img/chart.png"},
-        {route: "/v4", title:"V4", description:"v4 page", image:"/img/chart.png"},
-        {route: "/v5", title:"V5", description:"v5 page", image:"/img/chart.png"},
-        {route: "/v6", title:"V6", description:"v6 page", image:"/img/chart.png"},
-        {route: "/v7", title:"V7", description:"v7 page", image:"/img/chart.png"}
+        {route: "/v3", title:"V2", description:"v2 page", image:"/img/chart.png"},
+        {route: "/v5", title:"V3", description:"v3 page", image:"/img/chart.png"},
+        {route: "/v6", title:"V4", description:"v4 page", image:"/img/chart.png"},
+        {route: "/v7", title:"V5", description:"v5 page", image:"/img/chart.png"},
+        {route: "/v8", title:"V6", description:"v6 page", image:"/img/chart.png"},
+        {route: "/v9", title:"V7", description:"v7 page", image:"/img/chart.png"}
     ]
 
     const visualizations = visualizationCards.map((nav) =>
