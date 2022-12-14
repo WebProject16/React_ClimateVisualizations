@@ -82,7 +82,7 @@ TOKEN=some_secret_password
 ### Endpointit
 #### Saatavilla olevat päätepisteet, jotka eivät vaadi todennusta
 
-`POST: /user/register` käyttäjänimi, salasana, password_rpt
+`POST: /user/register` käyttäjänimi, salasana, salasana_rpt
 
 `POST: /user/login` käyttäjänimi, salasana
 
@@ -132,4 +132,4 @@ TOKEN=some_secret_password
 ![eer](https://user-images.githubusercontent.com/101475167/207702681-7042a97c-b860-4a6b-96a3-1de2786e1c92.png)
 ##### FIGURE 5: Tietokantarakenne
 
-*Creators: Helmi Laakkonen, Lasse Suomela, Miko Prykäri and Pinja Kemppainen*
+*Tekijät: Helmi Laakkonen, Lasse Suomela, Miko Prykäri and Pinja Kemppainen*
