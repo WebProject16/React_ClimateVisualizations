@@ -4,20 +4,20 @@ import { Link } from 'react-router-dom';
 export default function Home() {
 
     const visualizationCards = [
-        {route: "/v1", title:"V1", description:"v1 page", image:"/img/chart.png"},
-        {route: "/v2", title:"V2", description:"v2 page", image:"/img/chart.png"},
-        {route: "/v3", title:"V3", description:"v3 page", image:"/img/chart.png"},
-        {route: "/v4", title:"V4", description:"v4 page", image:"/img/chart.png"},
-        {route: "/v5", title:"V5", description:"v5 page", image:"/img/chart.png"},
-        {route: "/v6", title:"V6", description:"v6 page", image:"/img/chart.png"},
-        {route: "/v7", title:"V7", description:"v7 page", image:"/img/chart.png"}
+        {route: "/v1", title:"V1", description:"v1 page", image:"/img/v1.png"},
+        {route: "/v2", title:"V2", description:"v2 page", image:"/img/v3.png"},
+        {route: "/v3", title:"V3", description:"v3 page", image:"/img/v5.png"},
+        {route: "/v4", title:"V4", description:"v4 page", image:"/img/v6.png"},
+        {route: "/v5", title:"V5", description:"v5 page", image:"/img/v7.png"},
+        {route: "/v6", title:"V6", description:"v6 page", image:"/img/v8.png"},
+        {route: "/v7", title:"V7", description:"v7 page", image:"/img/v9.png"}
     ]
 
     const visualizations = visualizationCards.map((nav) =>
 
             <div key={nav.route} className="col-sm-4 mb-2">
                 <div className="card">
-                    <img className="card-img-top" src='/img/chart.png'alt="chart"/>
+                    <img className="card-img-top" src={nav.image} alt="chart"/>
                     <div className="card-body">
                         <h5 className="card-title">{nav.title} </h5>
                         <p className="card-text">{nav.description}</p>
