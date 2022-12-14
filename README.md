@@ -55,6 +55,7 @@ FIGURE 4: React_ClimateVisualizations repositorio 12.12.2022
 
 ## Käyttöönotto
 ### Ajo-ohjeet
+`git clone https://github.com/WebProject16/React_ClimateVisualizations.git` cloonaa repo haluamaasi kansioon
 `npm install` projektin, frontend/ sekä backend/-juuressa asentaaksesi tarvittavat riippuvaisuudet
 
 Asenna .env tiedosto
