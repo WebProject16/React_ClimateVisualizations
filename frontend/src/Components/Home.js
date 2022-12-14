@@ -5,12 +5,12 @@ export default function Home() {
 
     const visualizationCards = [
         {route: "/v1", title:"1850-2022 lämpötilan poikkeamat", description:"", image:"/img/v1.png"},
-        {route: "/v3", title:"Mauna Loa & Law Dome C02-pitoisuudet", description:"", image:"/img/v3.png"},
-        {route: "/v5", title:"Ilmakehän C02-pitoisuus (400t vuotta)", description:"", image:"/img/v5.png"},
-        {route: "/v6", title:"Ilmakehän C02-pitoisuus (800t vuotta)", description:"", image:"/img/v6.png"},
+        {route: "/v3", title:"Mauna Loa & Law Dome CO2-pitoisuudet", description:"", image:"/img/v3.png"},
+        {route: "/v5", title:"Ilmakehän CO2-pitoisuus (400t vuotta)", description:"", image:"/img/v5.png"},
+        {route: "/v6", title:"Ilmakehän CO2-pitoisuus (800t vuotta)", description:"", image:"/img/v6.png"},
         {route: "/v7", title:"Lämpötilan evoluutio", description:"", image:"/img/v7.png"},
-        {route: "/v8", title:"C02-päästöt maittain", description:"", image:"/img/v8.png"},
-        {route: "/v9", title:"C02-päästöt toimialoittain", description:"", image:"/img/v9.png"}
+        {route: "/v8", title:"CO2-päästöt maittain", description:"", image:"/img/v8.png"},
+        {route: "/v9", title:"CO2-päästöt toimialoittain", description:"", image:"/img/v9.png"}
     ]
 
     const visualizations = visualizationCards.map((nav) =>
