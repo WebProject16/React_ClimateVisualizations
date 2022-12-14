@@ -89,7 +89,7 @@ export default function V9(props) {
       },
       title: {
         display: true,
-        text: "Maakohtaiset CO2 päästöt",
+        text: "Hiilidioksidipäästöt toimialoittain",
         font: {
           size:"20"
         }
@@ -109,7 +109,7 @@ export default function V9(props) {
           {
             !props.description ?
               <div>
-                <p className="card-text">Piirakkakaaviosta näkyy eri toimialojen hiilidioksidipäästöt.</p>
+                <p className="card-text">Piirakkakaaviosta näkyy eri toimialojen hiilidioksidipäästöt. Piirakan palasia voi myös painaa, jotta voi tarkastella päästöjä tarkemmin.</p>
               </div>
             : <div>
               <p>{props.description}</p>
