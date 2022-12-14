@@ -14,6 +14,10 @@ export default function Create() {
 
     const preventDupes = (e) => {
 
+        if(e.target.value === "") {
+            return;
+        }
+
         if(viewData.indexOf(e.target.value) > -1) {
             return;
         }else{
