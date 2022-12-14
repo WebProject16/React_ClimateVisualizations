@@ -15,7 +15,7 @@ export default function Home() {
 
     const visualizations = visualizationCards.map((nav) =>
 
-            <div key={nav.route} className="col-sm-4 mb-2">
+            <div key={nav.route} className="col-sm-4 mb-2 cardWrapper">
                 <div className="card">
                     <img className="card-img-top" src={nav.image} alt="chart"/>
                     <div className="card-body">
