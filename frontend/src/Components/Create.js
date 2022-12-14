@@ -186,7 +186,7 @@ export default function Create() {
                         <div className="pt-4">
                             <div className="alert alert-success">
                                 <h5>{error}</h5>
-                                <Link className="btn btn-success p-2 mt-2 text-decoration-none"to={"/view/" + url}>Linkki näkymään</Link>
+                                <Link className="btn btn-success p-2 mt-2 text-decoration-none"to={"/view/" + url}>Avaa näkymä</Link>
                             </div>
                         </div>
                         : null
